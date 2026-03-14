@@ -29,6 +29,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'atast.org',
     'www.atast.org',
+    'sss.atast.org',
     '.railway.app',
     '.up.railway.app',
 ]
