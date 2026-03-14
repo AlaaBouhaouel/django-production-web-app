@@ -23,6 +23,7 @@ urlpatterns = [
     path('genius',views.genius,name='genius'),
     path('team',views.team,name='team'),
     path('btech',views.btech,name='btech'),
+    path('sss', views.sss, name='sss'),
 
 ]
 if settings.DEBUG:

@@ -48,3 +48,6 @@ def photocontest (request):
     return render(request , 'photocontest.html')  
 def team (request):
     return render(request,'team.html')
+
+def sss(request):
+    return render(request, 'sss.html')
