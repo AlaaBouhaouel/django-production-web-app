@@ -18,7 +18,7 @@ HAS_WHITENOISE = find_spec("whitenoise") is not None
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get(
     'SECRET_KEY',
-    'django-insecure-u&fgv72#v#$rc*&@bht$n^)&0i-y(u^9=_f$)m61&lk)9q7n$7',
+    'kjyuasi-90sajk-hwjg3jk39-23xyz789randomstringhere456defmjhk53-98hjk?kls?9',
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
