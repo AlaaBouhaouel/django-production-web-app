@@ -13,14 +13,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/sss.css' %}" rel="stylesheet">
 </head>
 <body>
   <header class="sss-header" id="sss-header">
     <div class="sss-shell">
       <a class="sss-brand" href="#hero" aria-label="Student Section Summit home">
-        <img src="{% static 'assets/img/atast.png' %}" alt="ATAST logo">
-        <span>SSS</span>
+        <img class="sss-brand-mark" src="{% static 'assets/img/atast0.png' %}" alt="ATAST logo">
+        <img class="sss-brand-wordmark" src="{% static 'assets/images/atast_ss_nobg.png' %}" alt="ATAST Student Section Summit">
       </a>
 
       <nav class="sss-nav" id="sss-nav" aria-label="Primary">
@@ -35,7 +36,7 @@
       <div class="sss-header-actions">
         <a
           class="sss-register desktop-only"
-          href="https://atast.org/"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScKuGG5gf47sT4OZJ8HB7CjLfEPBQ_6NWlNc9hpsXnzDMxAYw/viewform"
           target="_blank"
           rel="noreferrer"
         >
@@ -61,7 +62,7 @@
     <div class="sss-drawer-panel">
       <div class="sss-drawer-top">
         <span>Navigate</span>
-        <button type="button" class="sss-drawer-close" id="sss-drawer-close" aria-label="Close navigation menu">×</button>
+        <button type="button" class="sss-drawer-close" id="sss-drawer-close" aria-label="Close navigation menu">&times;</button>
       </div>
       <nav class="sss-drawer-nav" aria-label="Mobile">
         <a href="#about">About</a>
@@ -73,7 +74,7 @@
       </nav>
       <a
         class="sss-register sss-register-mobile"
-        href="https://atast.org/"
+        href="https://docs.google.com/forms/d/e/1FAIpQLScKuGG5gf47sT4OZJ8HB7CjLfEPBQ_6NWlNc9hpsXnzDMxAYw/viewform"
         target="_blank"
         rel="noreferrer"
       >
@@ -88,18 +89,15 @@
       <div class="sss-hero-glow" aria-hidden="true"></div>
 
       <div class="sss-shell sss-hero-content">
-        <div class="sss-hero-badge sss-reveal">7TH EDITION — THINK AGAIN, BE DIFFERENT</div>
 
         <h1 class="sss-hero-title sss-reveal">
           <span>Student</span>
-          <span>Section</span>
-          <span>Summit</span>
+          <span>Section Summit</span>
         </h1>
+        <div class="sss-hero-small sss-reveal">7TH EDITION — THINK AGAIN, BE DIFFERENT</div>
 
         <p class="sss-hero-theme sss-reveal">
-          <span>✦</span>
-          <span>2026 Theme: AI &amp; cutting-edge technologies at the service of sustainable &amp; developed transportation</span>
-          <span>✦</span>
+          <span>SSS is the annual gathering of ATAST clubs, where students meet to learn, compete, and shape the future of the community.</span>
         </p>
 
         <div class="sss-countdown sss-reveal" aria-label="Countdown to Student Section Summit">
@@ -122,14 +120,14 @@
         </div>
 
         <div class="sss-event-meta sss-reveal">
-          <div><span>📅</span><span>March 26–28, 2026</span></div>
-          <div><span>📍</span><span>Medina Congress Center, Hammamet</span></div>
+          <div><span><i class="bi bi-calendar-event"></i></span><span>March 26–28, 2026</span></div>
+          <div><span class="sss-inline-icon"><i class="bi bi-geo-alt"></i></span><span>Medina Congress Center, Hammamet</span></div>
         </div>
 
         <div class="sss-hero-actions sss-reveal">
           <a
             class="sss-btn sss-btn-primary"
-            href="https://atast.org/"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScKuGG5gf47sT4OZJ8HB7CjLfEPBQ_6NWlNc9hpsXnzDMxAYw/viewform"
             target="_blank"
             rel="noreferrer"
           >
@@ -139,41 +137,69 @@
         </div>
       </div>
 
-      <a class="sss-scroll-indicator" href="#about" aria-label="Scroll to About section">
-        <span></span>
-      </a>
+
+      <div class="sss-hero-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none">
+            <path d="M0,88 C120,88 220,56 340,56 C500,56 610,82 740,96 C920,114 1040,132 1180,132 C1300,132 1380,108 1440,92 L1440,140 L0,140 Z"></path>
+   </svg>
+      </div>
+    </section>
+
+    <section class="sss-section sss-section-light sss-theme-reel" id="theme-reel">
+      <div class="sss-shell">
+        <div class="sss-theme-reel-wrap sss-on-scroll">
+          <div class="sss-theme-reel-frame">
+            <video autoplay muted controls playsinline preload="metadata" poster="{% static 'assets/images/sss.png' %}">
+              <source src="{% static 'assets/images/transportation.mp4' %}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <section class="sss-section sss-section-light sss-about" id="about">
       <div class="sss-shell">
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Who We Are</p>
-          <h2>About ATAST</h2>
+          <h2>About <span class="sss-heading-highlight">ATAST</span></h2>
           <div class="sss-heading-accent" aria-hidden="true"></div>
         </div>
 
-        <div class="sss-about-grid">
-          <article class="sss-about-card sss-on-scroll">
-            <h3>ATAST</h3>
-            <p>
-              Association Tunisienne pour l'Avenir des Sciences et Technologies (ATAST) was founded in 2007 by Hatem Slimane as a school club before being announced in the JORT in 2012. Since its first appearance, ATAST has tried to advance the field of science and technology in Tunisia, and these efforts have paid off on a national and international scale. Among the events organized by ATAST are B-Tech and B-Tech Junior, Science And Technology Camp which is organized every summer, and I²-FEST, an international event that welcomes participants from over 20 countries.
-            </p>
+        <div class="sss-about-top">
+          <article class="sss-about-card sss-about-split sss-on-scroll">
+            <div class="sss-about-media">
+              <img src="{% static 'assets/images/stc_2019_2.jpg' %}" alt="ATAST community">
+            </div>
+            <div class="sss-about-copy">
+              <h3>ATAST</h3>
+              <p>
+                Founded in 2007 and officially announced in the JORT in 2012, ATAST has grown into a national force for science, technology, and youth innovation in Tunisia.
+              </p>
+              <p>
+                Through flagship initiatives like B-Tech, B-Tech Junior, STC, and I²-FEST, ATAST keeps building bridges between education, creativity, and real-world impact.
+              </p>
+            </div>
           </article>
 
-          <article class="sss-about-card sss-on-scroll">
-            <h3>Student Section</h3>
-            <p>
-              The ATAST Student Section is the section of ATAST that deals with the student category and universities, which encompasses 24 ATAST clubs in different universities across various disciplines. The goal of the ATAST Student Section is to foster the talents of students in the field of science and technology while developing an entrepreneurial spirit. It is also the main responsible for organising Camps, Events such as ATAST Student Section Academy &amp; the SSS, and also Competitions like the B-Tech competition.
-            </p>
-          </article>
-
-          <article class="sss-about-card sss-on-scroll">
-            <h3>Student Section Summit</h3>
-            <p>
-              The ATAST Student Section Summit (SSS) is the annual meeting for the ATAST Clubs. During this event, there will be an annual awards that will be given in an award ceremony to recognize ATAST clubs achievements. Conferences and trainings will take place throughout the SSS, providing Atastians with the opportunity to learn about innovative topics from industry leaders. Additionally, elections for the student section leadership will take place. The SSS will feature participation from 24 clubs with up to 300 Students from different universities, providing a diverse group of students to share ideas and collaborate.
-            </p>
+          <article class="sss-about-card sss-about-split sss-on-scroll">
+            <div class="sss-about-media">
+              <img src="{% static 'assets\images\sss.png' %}" alt="ATAST student clubs">
+            </div>
+            <div class="sss-about-copy">
+              <h3>Student Section</h3>
+              <p>
+                The ATAST Student Section brings together 24 university clubs across different disciplines, creating a nationwide network of ambitious student innovators.
+              </p>
+              <p>
+                It drives student-focused camps, academies, competitions, and leadership experiences designed to grow technical skills, entrepreneurial spirit, and collaboration.
+              </p>
+            </div>
           </article>
         </div>
+
+
       </div>
     </section>
 
@@ -204,68 +230,72 @@
       <div class="sss-shell">
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">What's Waiting For You</p>
-          <h2>What We Do</h2>
+          <h2>What <span class="sss-heading-highlight">WE</span> Do</h2>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
           <p class="sss-section-intro">
             3 exceptional days filled with innovation, learning, competition, and unforgettable experiences — for 300+ students from 24 ATAST clubs across Tunisia.
           </p>
         </div>
 
-        <div class="sss-activity-grid">
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🎤</div>
+        <div class="sss-activity-marquee sss-on-scroll">
+          <div class="sss-activity-track" id="sss-activity-track">
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-mic"></i></div>
             <h3>Inspiring Conferences</h3>
             <p>Expert speakers share insights on AI, sustainability, transportation, and cutting-edge technologies.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🛠️</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-tools"></i></div>
             <h3>Interactive Workshops</h3>
             <p>Hands-on sessions covering practical skills in tech, design thinking, leadership, and entrepreneurship.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🏆</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-trophy"></i></div>
             <h3>B-Tech Competition</h3>
             <p>The flagship competition where 24 ATAST clubs compete to showcase innovative tech projects aligned with a specific theme.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🌱</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-flower1"></i></div>
             <h3>B-Tech Junior</h3>
             <p>For school club participants aged 12–18. Same concept as B-Tech, tailored to younger innovators.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">💻</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-laptop"></i></div>
             <h3>Hackathon Challenge</h3>
             <p>An intense hackathon pushing teams to build creative solutions to real-world problems in limited time.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🎭</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-stars"></i></div>
             <h3>Student Talent Show</h3>
             <p>The first edition — a celebration of Tunisian creativity, passion and diversity of talent. Music, dance, theater, spoken word and more.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">💬</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-chat-dots"></i></div>
             <h3>Round Table Discussions</h3>
             <p>Engage in deep discussions with experts on the future of technology and its societal impact.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🤝</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-people"></i></div>
             <h3>Networking Opportunities</h3>
             <p>Connect with 300+ students, professionals, and leaders from diverse fields across Tunisia.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">✨</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-moon-stars"></i></div>
             <h3>Gala Night</h3>
             <p>An unforgettable evening celebration with awards, entertainment, and lasting memories.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🗳️</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-box-seam"></i></div>
             <h3>SS Election</h3>
             <p>The Student Section election — shaping the future leadership of ATAST's student community.</p>
           </article>
-          <article class="sss-activity-card sss-on-scroll">
-            <div class="sss-activity-icon" aria-hidden="true">🥇</div>
+          <article class="sss-activity-card">
+            <div class="sss-activity-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Trophies &amp; Prizes</h3>
             <p>Valuable prizes, trophies, and the ATAST Labo prize for the B-Tech winner to compete worldwide.</p>
           </article>
+          </div>
         </div>
       </div>
     </section>
@@ -275,6 +305,8 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Meet The Team</p>
           <h2>Speakers &amp; Organizers</h2>
+          <div class="sss-heading-accent" aria-hidden="true"></div>
+
           <p class="sss-section-intro">
             Learn from accomplished professionals and connect with the passionate team behind the summit.
           </p>
@@ -290,7 +322,7 @@
         <div class="sss-tab-panels sss-on-scroll">
           <section class="sss-tab-panel is-active" data-tab-group="speakers" data-panel="conference" role="tabpanel">
             <div class="sss-coming-soon">
-              <div class="sss-coming-soon-icon" aria-hidden="true">🎤</div>
+              <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-mic"></i></div>
               <h3>Speakers coming soon</h3>
               <p>We’re preparing a strong lineup of voices from industry, research, and innovation across Tunisia and beyond.</p>
             </div>
@@ -306,7 +338,7 @@
 
           <section class="sss-tab-panel" data-tab-group="speakers" data-panel="roundtable" role="tabpanel" hidden>
             <div class="sss-coming-soon">
-              <div class="sss-coming-soon-icon" aria-hidden="true">💬</div>
+              <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-chat-dots"></i></div>
               <h3>Speakers coming soon</h3>
               <p>Round table guests will be revealed soon, with experts ready to explore the future impact of emerging technologies.</p>
             </div>
@@ -320,7 +352,7 @@
 
           <section class="sss-tab-panel" data-tab-group="speakers" data-panel="workshop" role="tabpanel" hidden>
             <div class="sss-coming-soon">
-              <div class="sss-coming-soon-icon" aria-hidden="true">🛠️</div>
+              <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-tools"></i></div>
               <h3>Speakers coming soon</h3>
               <p>Workshop trainers will be announced soon with hands-on sessions designed to sharpen real practical skills.</p>
             </div>
@@ -334,7 +366,7 @@
 
           <section class="sss-tab-panel" data-tab-group="speakers" data-panel="organizers" role="tabpanel" hidden>
             <div class="sss-coming-soon">
-              <div class="sss-coming-soon-icon" aria-hidden="true">⭐</div>
+              <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-star"></i></div>
               <h3>Speakers coming soon</h3>
               <p>The organizer spotlight is being prepared to showcase the team making the summit experience happen.</p>
             </div>
@@ -354,6 +386,8 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Event Schedule</p>
           <h2>Dates &amp; Program</h2>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
           <p class="sss-section-intro">March 26–28, 2026 • Medina Congress Center, Hammamet</p>
         </div>
 
@@ -462,7 +496,7 @@
 
               <section class="sss-tab-panel" data-tab-group="schedule" data-panel="day-2" role="tabpanel" hidden>
                 <div class="sss-schedule-placeholder">
-                  <div class="sss-coming-soon-icon" aria-hidden="true">📅</div>
+                  <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-calendar-event"></i></div>
                   <h3>Schedule coming soon</h3>
                   <p>The detailed Friday program will be revealed soon with conferences, workshops, and summit highlights.</p>
                 </div>
@@ -470,7 +504,7 @@
 
               <section class="sss-tab-panel" data-tab-group="schedule" data-panel="day-3" role="tabpanel" hidden>
                 <div class="sss-schedule-placeholder">
-                  <div class="sss-coming-soon-icon" aria-hidden="true">📍</div>
+                  <div class="sss-coming-soon-icon" aria-hidden="true"><i class="bi bi-geo-alt"></i></div>
                   <h3>Schedule coming soon</h3>
                   <p>The final day agenda will be published soon, including closing experiences and celebration moments.</p>
                 </div>
@@ -486,7 +520,9 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Representing Tunisia</p>
           <h2>Participating Clubs</h2>
-          <p class="sss-section-intro sss-section-intro-light">24 ATAST clubs from universities across Tunisia</p>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
+          <p class="sss-section-intro sss-section-intro-light">13 ATAST clubs from universities across Tunisia</p>
         </div>
 
         <div class="sss-clubs-grid">
@@ -503,17 +539,6 @@
           <article class="sss-club-card sss-on-scroll"><span>ENIT</span></article>
           <article class="sss-club-card sss-on-scroll"><span>ISIGK</span></article>
           <article class="sss-club-card sss-on-scroll"><span>ISTMT</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 14</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 15</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 16</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 17</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 18</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 19</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 20</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 21</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 22</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 23</span></article>
-          <article class="sss-club-card sss-on-scroll is-placeholder"><span>Club 24</span></article>
         </div>
       </div>
     </section>
@@ -523,37 +548,38 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Recognition &amp; Awards</p>
           <h2>The SSS Prizes</h2>
+              <div class="sss-heading-accent" aria-hidden="true"></div>
           <p class="sss-section-intro">Celebrating excellence, innovation, and talent</p>
         </div>
 
         <div class="sss-prizes-grid">
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">🏆</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-trophy"></i></div>
             <h3>Prize Category 01</h3>
             <p>Recognition for an outstanding performance and impact during the summit experience.</p>
           </article>
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">🥇</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Prize Category 02</h3>
             <p>Awarding standout innovation, creativity, and quality in project execution.</p>
           </article>
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">🏅</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Prize Category 03</h3>
             <p>Highlighting a team or participant who demonstrated remarkable technical excellence.</p>
           </article>
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">✨</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Prize Category 04</h3>
             <p>Celebrating originality, energy, and a memorable contribution to the event atmosphere.</p>
           </article>
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">🎖️</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Prize Category 05</h3>
             <p>Reserved for an exceptional achievement recognized by the summit jury and organizers.</p>
           </article>
           <article class="sss-prize-card sss-on-scroll">
-            <div class="sss-prize-icon" aria-hidden="true">👑</div>
+            <div class="sss-prize-icon" aria-hidden="true"><i class="bi bi-award"></i></div>
             <h3>Prize Category 06</h3>
             <p>An elegant spotlight on one of the summit’s highest honors and most prestigious distinctions.</p>
           </article>
@@ -566,20 +592,27 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Our Journey</p>
           <h2>Previous <span class="sss-heading-highlight">Editions</span></h2>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
         </div>
 
         <div class="sss-editions-grid">
           <article class="sss-edition-card sss-on-scroll sss-edition-tourism">
+            <div class="sss-edition-media" aria-hidden="true">
+              <video autoplay muted loop playsinline preload="metadata">
+                <source src="{% static 'assets/images/tourism.mp4' %}" type="video/mp4">
+              </video>
+            </div>
             <div class="sss-edition-overlay"></div>
             <div class="sss-edition-top">
               <span class="sss-edition-year">2025</span>
-              <span class="sss-edition-play" aria-hidden="true">▶</span>
+              <span class="sss-edition-play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
             </div>
             <div class="sss-edition-body">
               <p>SSS 2025</p>
               <h3>Tourism</h3>
               <div class="sss-edition-actions">
-                <a href="#" class="sss-edition-btn">Trailer</a>
+                <a href="{% static 'assets/images/tourism.mp4' %}" class="sss-edition-btn" target="_blank" rel="noreferrer">Trailer</a>
                 <a href="#" class="sss-edition-btn sss-edition-btn-secondary">Recap</a>
               </div>
             </div>
@@ -589,7 +622,7 @@
             <div class="sss-edition-overlay"></div>
             <div class="sss-edition-top">
               <span class="sss-edition-year">2024</span>
-              <span class="sss-edition-play" aria-hidden="true">▶</span>
+              <span class="sss-edition-play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
             </div>
             <div class="sss-edition-body">
               <p>SSS 2024</p>
@@ -605,7 +638,7 @@
             <div class="sss-edition-overlay"></div>
             <div class="sss-edition-top">
               <span class="sss-edition-year">2023</span>
-              <span class="sss-edition-play" aria-hidden="true">▶</span>
+              <span class="sss-edition-play" aria-hidden="true"><i class="bi bi-play-fill"></i></span>
             </div>
             <div class="sss-edition-body">
               <p>SSS 2023</p>
@@ -625,6 +658,8 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Where It Happens</p>
           <h2>Venue &amp; Location</h2>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
         </div>
 
         <div class="sss-venue-layout">
@@ -678,6 +713,8 @@
         <div class="sss-section-heading sss-on-scroll">
           <p class="sss-kicker">Got Questions?</p>
           <h2>Frequently Asked Questions</h2>
+            <div class="sss-heading-accent" aria-hidden="true"></div>
+
         </div>
 
         <div class="sss-faq-list sss-on-scroll">
@@ -747,7 +784,7 @@
     <section class="sss-section sss-contact" id="contact">
       <div class="sss-shell">
         <div class="sss-contact-hero sss-on-scroll">
-          <span class="sss-contact-badge">🎟️ Registrations are NOW OPEN!</span>
+          <span class="sss-contact-badge"><i class="bi bi-ticket-perforated"></i> Registrations are NOW OPEN!</span>
           <h2>Ready to Join Us?</h2>
           <p>
             Whether you're passionate about technology, business, creativity, or innovation — this summit is made for YOU!
@@ -755,7 +792,7 @@
           <strong>SSS Student Section Summit — Where Students Become Leaders.</strong>
           <a
             class="sss-btn sss-btn-primary sss-contact-register"
-            href="https://atast.org/"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScKuGG5gf47sT4OZJ8HB7CjLfEPBQ_6NWlNc9hpsXnzDMxAYw/viewform"
             target="_blank"
             rel="noreferrer"
           >
@@ -765,27 +802,23 @@
 
         <div class="sss-contact-grid">
           <article class="sss-contact-card sss-on-scroll">
-            <span class="sss-contact-icon" aria-hidden="true">✉️</span>
+            <span class="sss-contact-icon" aria-hidden="true"><i class="bi bi-envelope"></i></span>
             <h3>Email</h3>
-            <a href="mailto:studentsection.atast@gmail.com">studentsection.atast@gmail.com</a>
+            <a href="mailto:info.atast@gmail.com">info.atast@gmail.com</a>
           </article>
 
           <article class="sss-contact-card sss-on-scroll">
-            <span class="sss-contact-icon" aria-hidden="true">📞</span>
+            <span class="sss-contact-icon" aria-hidden="true"><i class="bi bi-telephone"></i></span>
             <h3>Phone</h3>
-            <a href="tel:+21600000000">+216 00 000 000</a>
+            <a href="tel:+21629535631">+21629535631</a>
           </article>
 
           <article class="sss-contact-card sss-on-scroll">
-            <span class="sss-contact-icon" aria-hidden="true">🌐</span>
+            <span class="sss-contact-icon" aria-hidden="true"><i class="bi bi-globe2"></i></span>
             <h3>Social Media</h3>
             <div class="sss-social-links">
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="ATAST Student Section on Facebook">f</a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="ATAST Student Section on Instagram">◎</a>
-            </div>
-            <div class="sss-social-copy">
-              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">ATAST Student Section</a>
-              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">@atast.student.section</a>
+              <a href="https://www.facebook.com/atast.ss" target="_blank" rel="noreferrer" aria-label="ATAST Student Section on Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/atast.ss" target="_blank" rel="noreferrer" aria-label="ATAST Student Section on Instagram"><i class="bi bi-instagram"></i></a>
             </div>
           </article>
         </div>
@@ -818,17 +851,16 @@
         <div class="sss-footer-connect">
           <h3>Connect</h3>
           <div class="sss-footer-socials">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook">f</a>
-            <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram">◎</a>
-            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
-            <a href="https://www.youtube.com/" target="_blank" rel="noreferrer" aria-label="YouTube">▶</a>
+            <a href="https://www.facebook.com/atast.ss" target="_blank" rel="noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/atast.ss" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/atast-ss" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
       </div>
 
       <div class="sss-footer-bottom">
         <p>© 2026 ATAST — Tunisian Association for the Future of Sciences and Technology. All rights reserved.</p>
-        <a class="sss-back-to-top" href="#hero" aria-label="Back to top">↑</a>
+        <a class="sss-back-to-top" href="#hero" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
       </div>
     </div>
   </footer>
@@ -870,6 +902,8 @@
         }
       }
 
+      let countdownTimer;
+
       function updateCountdown() {
         const now = Date.now();
         const distance = Math.max(0, countdownTarget - now);
@@ -884,22 +918,28 @@
         setValue(countdownEls.seconds, seconds);
       }
 
-      function createBinaryRain() {
-        const binaryRain = document.getElementById("sss-binary-rain");
-        const columns = window.innerWidth < 768 ? 18 : 34;
-        binaryRain.innerHTML = "";
+      function scheduleCountdownTick() {
+        updateCountdown();
+        const delay = 1000 - (Date.now() % 1000);
+        countdownTimer = window.setTimeout(scheduleCountdownTick, delay);
+      }
+
+        function createBinaryRain() {
+          const binaryRain = document.getElementById("sss-binary-rain");
+          const columns = window.innerWidth < 768 ? 18 : 34;
+          binaryRain.innerHTML = "";
 
         for (let i = 0; i < columns; i += 1) {
           const column = document.createElement("span");
           column.className = "sss-binary-column";
           column.style.left = (i * (100 / columns)).toFixed(2) + "%";
-          column.style.animationDuration = 10 + Math.random() * 14 + "s";
-          column.style.animationDelay = -Math.random() * 16 + "s";
-          column.style.opacity = (0.08 + Math.random() * 0.08).toFixed(2);
-          column.textContent = Array.from({ length: 40 }, () => (Math.random() > 0.5 ? "1" : "0")).join(" ");
-          binaryRain.appendChild(column);
+            column.style.animationDuration = "30s";
+            column.style.animationDelay = -Math.random() * 16 + "s";
+            column.style.opacity = (0.18 + Math.random() * 0.14).toFixed(2);
+            column.textContent = Array.from({ length: 40 }, () => (Math.random() > 0.5 ? "1" : "0")).join(" ");
+            binaryRain.appendChild(column);
+          }
         }
-      }
 
       function animateStatNumber(el) {
         if (el.dataset.animated === "true") {
@@ -1016,6 +1056,32 @@
         });
       }
 
+      function setupActivityMarquee() {
+        const track = document.getElementById("sss-activity-track");
+        if (!track || track.dataset.ready === "true") {
+          return;
+        }
+
+        const originalCards = Array.from(track.children);
+        originalCards.forEach(function (card) {
+          const clone = card.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+        });
+
+        function measureTrack() {
+          const visibleCards = Array.from(track.children).slice(0, originalCards.length);
+          const distance = visibleCards.reduce(function (total, card) {
+            return total + card.getBoundingClientRect().width;
+          }, 0) + ((visibleCards.length - 1) * 22);
+          track.style.setProperty("--sss-marquee-distance", distance + "px");
+        }
+
+        measureTrack();
+        window.addEventListener("resize", measureTrack);
+        track.dataset.ready = "true";
+      }
+
       window.addEventListener("scroll", updateHeader, { passive: true });
       menuToggle.addEventListener("click", function () { toggleDrawer(true); });
       drawerClose.addEventListener("click", function () { toggleDrawer(false); });
@@ -1034,12 +1100,12 @@
       window.addEventListener("resize", createBinaryRain);
 
       updateHeader();
-      updateCountdown();
+      scheduleCountdownTick();
       createBinaryRain();
       setupScrollReveal();
       setupTabs();
       setupFaq();
-      setInterval(updateCountdown, 1000);
+      setupActivityMarquee();
     }());
   </script>
 </body>
