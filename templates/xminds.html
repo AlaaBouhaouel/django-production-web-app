@@ -4,436 +4,501 @@
 <html lang="en">
 
 <head>
-
-  <title>ATAST</title>
+  <title>X-Mind — ATAST</title>
   <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
-
   <meta content="" name="description">
   <meta content="" name="keywords">
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="description" content="I-Fest²">
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.css ' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css ' %}">
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rubik+Mono+One&display=swap"
-    rel="stylesheet">
-      <!-- Google Fonts -->
-      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <!-- Vendor CSS -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
-      <!-- Vendor CSS Files -->
-      <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-      <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-    
-      <!-- Template Main CSS File -->
-      <link href="{% static 'assets/css/style.css ' %}" rel="stylesheet">
+  <style>
+    /* ── Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
 
-</head>
-<style>
-  body {
-  font-family: "Open Sans", sans-serif;
-  color: #444444;
-  }
-
-  a {
-    color: #ca2120;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #ca2120;
-    text-decoration: none;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif;
-    color: #ffffff; 
-
-  }
-
-
-    
-    .col-md-9{
-      display: flex;
-      justify-content: center;
+    body {
+      background: #111111;
+      color: #cccccc;
+      font-family: "Open Sans", sans-serif;
+      margin: 0;
     }
-    /*--------------------------------------------------------------
-    # Header
-    --------------------------------------------------------------*/
+
+    a { color: #ca2120; text-decoration: none; }
+    a:hover { color: #e03332; }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: "Raleway", sans-serif;
+      color: #ffffff;
+    }
+
+    /* ── Header ── */
     #header {
       transition: all 0.5s;
       z-index: 997;
       padding: 15px 0;
-      background: rgba(0, 0, 0, 0.8);
-    
+      background: rgba(0,0,0,0.85);
+      position: fixed;
+      top: 0; left: 0; right: 0;
     }
-    
+
     #header.header-scrolled,
     #header.header-inner-pages {
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0,0,0,0.95);
     }
-    
-    #header .logo {
-      font-size: 20px;
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-    }
-    
-    #header .logo a {
-      color: #fff;
-    }
-    
-    #header .logo a span {
-      color: #ca2120;
-    }
-    
-    #header .logo img {
-      max-height: 40px;
-    }
+
+    #header .logo img { max-height: 40px; }
+
     .get-started-btn {
-      background-color: #222222;
+      background-color: transparent;
       color: #fff;
       border-radius: 4px;
-      padding: 7px 25px 8px 25px;
+      padding: 7px 25px 8px;
       white-space: nowrap;
       transition: 0.3s;
       font-size: 14px;
       display: inline-block;
       border: 2px solid #ca2120;
     }
-    
-    .get-started-btn:hover {
-      background: #ca2120;
-      color: #343a40;
-    }
-    
-    @media (max-width: 992px) {
-      .get-started-btn {
-        padding: 7px 20px 8px 20px;
-        margin-right: 15px;
-      }
-    }
-    .logo img {
-      max-width: 350px; /* Adjust the width as needed */
-      /*height: auto;  Maintain the aspect ratio */
-    }
-    
-    @media (min-width: 768px) {
-        .col-md-9 {
-            flex: 0 0 auto;
-            width: 100% !important; 
-            margin-top: 0px !important;
+    .get-started-btn:hover { background: #ca2120; color: #fff; }
 
-        }
-    }
-    .mt-5{
-      margin-top: 0px !important;
-    }
-    .container-lg{
-        margin-top:calc(-1 * var(--bs-gutter-y));
-
-    }
-    .container_1{
+    /* ── Hero ── */
+    .page-hero {
+      position: relative;
+      min-height: 420px;
       display: flex;
+      align-items: center;
       justify-content: center;
+      overflow: hidden;
+      margin-top: 70px;
     }
-    .container_2{
-      margin-top: 15px;
-      display: flex;
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url("{% static 'assets/img/Xmind1.jpg' %}") center/cover no-repeat;
+      filter: brightness(0.28);
+      z-index: 0;
     }
-    .section-title{
-      color: #444444;
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(202,33,32,0.18) 0%, transparent 70%);
     }
-    .m_title{
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .hero-content h1 span { color: #ca2120; }
+
+    .hero-content p {
+      font-size: 1.1rem;
+      color: #cccccc;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── Highlight Badges ── */
+    .highlights-section { padding: 60px 0 30px; }
+
+    .highlight-badge {
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-top: 3px solid #ca2120;
+      border-radius: 6px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+      height: 100%;
+    }
+
+    .highlight-badge:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(202,33,32,0.18);
+    }
+
+    .highlight-badge i {
+      font-size: 2rem;
       color: #ca2120;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .highlight-badge h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .highlight-badge p {
+      font-size: 0.85rem;
+      color: #999999;
+      margin: 0;
+    }
+
+    /* ── Subjects Grid ── */
+    .subjects-section { padding: 10px 0 50px; }
+
+    .subject-chip {
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      padding: 12px 18px;
       display: flex;
-      justify-content: center;
-      font-size: 3rem;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 0.2s;
+    }
 
-    }
-    .col-md-9{
-      margin-top: 5rem !important;
+    .subject-chip:hover { border-color: #ca2120; }
 
+    .subject-chip i {
+      color: #ca2120;
+      font-size: 1.1rem;
+      flex-shrink: 0;
     }
-    .col2{
-      width:auto;
+
+    .subject-chip span {
+      color: #cccccc;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
-    .xmind-img{
-      width: 300px !important;
+
+    /* ── Content Card ── */
+    .content-section { padding: 10px 0 70px; }
+
+    .content-card {
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-left: 4px solid #ca2120;
+      border-radius: 6px;
+      padding: 36px;
     }
-    </style>
-    <body>
+
+    .content-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .content-card h3 i { color: #ca2120; }
+
+    .content-card p {
+      color: #bbbbbb;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .content-card p:last-child { margin-bottom: 0; }
+
+    /* ── CTA Button ── */
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 2px solid #ca2120;
+      color: #ffffff;
+      padding: 10px 28px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: 0.3s;
+      margin-top: 20px;
+    }
+    .cta-btn:hover { background: #ca2120; color: #ffffff; }
+
+    /* ── Section Label ── */
+    .section-label {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .section-label h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .section-label h2 span { color: #ca2120; }
+    .section-label .divider {
+      width: 50px;
+      height: 3px;
+      background: #ca2120;
+      margin: 10px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── Footer ── */
+    #footer {
+      background: #000;
+      padding: 0;
+      color: #fff;
+      font-size: 14px;
+    }
+    #footer .footer-top {
+      background: #151515;
+      border-bottom: 1px solid #222222;
+      padding: 60px 0 30px;
+    }
+    #footer .footer-top .footer-info { margin-bottom: 30px; }
+    #footer .footer-top .footer-info h3 {
+      font-size: 28px;
+      margin: 0 0 20px;
+      padding: 2px 0;
+      line-height: 1;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    #footer .footer-top .footer-info h3 span { color: #ca2120; }
+    #footer .footer-top .footer-info p {
+      font-size: 14px;
+      line-height: 24px;
+      margin-bottom: 0;
+      font-family: "Raleway", sans-serif;
+      color: #fff;
+    }
+    #footer .footer-top h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      padding-bottom: 12px;
+    }
+    #footer .footer-top .footer-links { margin-bottom: 30px; }
+    #footer .footer-top .footer-links ul { list-style: none; padding: 0; margin: 0; }
+    #footer .footer-top .footer-links ul i {
+      padding-right: 2px;
+      color: #ca2120;
+      font-size: 18px;
+      line-height: 1;
+    }
+    #footer .footer-top .footer-links ul li {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    #footer .footer-top .footer-links ul li:first-child { padding-top: 0; }
+    #footer .footer-top .footer-links ul a { color: #fff; transition: 0.3s; display: inline-block; line-height: 1; }
+    #footer .footer-top .footer-links ul a:hover { color: #ca2120; }
+    #footer .copyright { text-align: center; padding-top: 30px; }
+    #footer .credits { padding-top: 10px; text-align: center; font-size: 13px; color: #fff; }
+  </style>
+</head>
+
+<body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-lg-between">
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
       <a href="" class="logo me-auto me-lg-0">
-        <div>
-        <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" >
-        </div> 
-            <!-- Uncomment below if you prefer to use an image logo -->
-
+        <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" alt="ATAST">
       </a>
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <a href="..\" class="get-started-btn scrollto">Home</a>
-
+      <a href="/" class="get-started-btn">Home</a>
     </div>
-  </header><!-- End Header -->
+  </header>
 
-  <section class="py-2">
+  <!-- ======= Hero ======= -->
+  <section class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>X-<span>Mind</span></h1>
+      <p>🧠 The ultimate advanced training program — 10 subjects, 150 hours, international experts.</p>
+    </div>
+  </section>
 
-    <div class="container-lg">
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-12">
-            <h1 class="m_title">X-Mind</h1>
-            <div class="section-header d-flex flex-wrap justify-content-between pb-2 mt-5 mt-lg-0" >
+  <!-- ======= Highlight Badges ======= -->
+  <section class="highlights-section">
+    <div class="container">
+      <div class="row g-4">
 
-              <h4 class="section-title" style="  text-align: center;">Unleash Your Potential with X-MIND: The Ultimate Training Program !</h4>
-
-            </div>
-
+        <div class="col-lg-3 col-sm-6">
+          <div class="highlight-badge">
+            <i class="bi bi-calendar2-range"></i>
+            <h4>6-Month Program</h4>
+            <p>A structured deep-dive over six months of intensive learning.</p>
           </div>
         </div>
-      </div>
-      <div class="container_1">
-        <img src="{% static 'assets/img/Xmind1.jpg' %}"class="img-fluid xmind-img" style="width: 80%; padding: auto;" alt="">
-      </div>
-      <div class="container_2">
 
-        <div class="col1">
-          <h2 style="color: #ca2120;font-weight: bold;">About X-Mind</h2>
-          <h3 style="color: #151515;font-weight: bold; font-size: large;">Unleash Your Potential with X-MIND: The Ultimate Training Program !</h3>
-          <p class="fst-italic">X-MIND is a transformative six-month online program designed for those eager to master the realms of C++, AI, 3D, web development, CNC, and beyond. As an advanced training initiative for trainers, X-MIND offers ten meticulously curated subjects delivered by international experts. This 150-hour hybrid program blends online learning with interactive sessions, ensuring a comprehensive and immersive educational experience. Participants will gain cutting-edge skills and knowledge, empowering them to excel and innovate in their respective fields. Join X-MIND to elevate your expertise and become a leader in the ever-evolving tech landscape.</p>
+        <div class="col-lg-3 col-sm-6">
+          <div class="highlight-badge">
+            <i class="bi bi-clock-history"></i>
+            <h4>150 Hours</h4>
+            <p>Hybrid format combining online sessions with interactive workshops.</p>
+          </div>
+        </div>
 
-          <p>
-            Embark on your journey with X-MIND and transform your future in technology today!
-          </p>
+        <div class="col-lg-3 col-sm-6">
+          <div class="highlight-badge">
+            <i class="bi bi-globe-americas"></i>
+            <h4>International Experts</h4>
+            <p>10 subjects delivered by world-class instructors from across the globe.</p>
+          </div>
+        </div>
 
+        <div class="col-lg-3 col-sm-6">
+          <div class="highlight-badge">
+            <i class="bi bi-award"></i>
+            <h4>Trainer Certification</h4>
+            <p>An advanced program for trainers — level up and lead the next generation.</p>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
-    <!-- ======= Footer ======= -->
-    <style>
-      #footer {
-    background: #000;
-    padding: 0px ;
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  #footer .footer-top {
-    background: #151515;
-    border-bottom: 1px solid #222222;
-    padding: 60px 0 30px 0;
-  }
-  
-  #footer .footer-top .footer-info {
-    margin-bottom: 30px;
-  }
-  
-  #footer .footer-top .footer-info h3 {
-    font-size: 28px;
-    margin: 0 0 20px 0;
-    padding: 2px 0 2px 0;
-    line-height: 1;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  
-  #footer .footer-top .footer-info h3 span {
-    color: #ca2120;
-  }
-  
-  #footer .footer-top .footer-info p {
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 0;
-    font-family: "Raleway", sans-serif;
-    color: #fff;
-  }
-  
-  
-  #footer .footer-top h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    position: relative;
-    padding-bottom: 12px;
-  }
-  
-  #footer .footer-top .footer-links {
-    margin-bottom: 30px;
-  }
-  
-  #footer .footer-top .footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #footer .footer-top .footer-links ul i {
-    padding-right: 2px;
-    color: #ca2120;
-    font-size: 18px;
-    line-height: 1;
-  }
-  
-  #footer .footer-top .footer-links ul li {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  #footer .footer-top .footer-links ul li:first-child {
-    padding-top: 0;
-  }
-  
-  #footer .footer-top .footer-links ul a {
-    color: #fff;
-    transition: 0.3s;
-    display: inline-block;
-    line-height: 1;
-  }
-  
-  #footer .footer-top .footer-links ul a:hover {
-    color: #ca2120;
-  }
-  
-  #footer .footer-top .footer-newsletter form {
-    margin-top: 30px;
-    background: #fff;
-    padding: 6px 10px;
-    position: relative;
-    border-radius: 4px;
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=email] {
-    border: 0;
-    padding: 4px;
-    width: calc(100% - 110px);
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=submit] {
-    position: absolute;
-    top: 0;
-    right: -2px;
-    bottom: 0;
-    border: 0;
-    background: none;
-    font-size: 16px;
-    padding: 0 20px;
-    background: #ca2120;
-    color: #151515;
-    transition: 0.3s;
-    border-radius: 0 4px 4px 0;
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-    background: #ca2120;
-  }
-  
-  #footer .copyright {
-    text-align: center;
-    padding-top: 30px;
-  }
-  
-  #footer .credits {
-    padding-top: 10px;
-    text-align: center;
-    font-size: 13px;
-    color: #fff;
-  }
-    </style>
 
-    <footer id="footer">
-      <div class="footer-top">
-        <div class="container">
-          <div class="row">
-  
-            <div class="col-lg-3 col-md-6">
-              <div class="footer-info">
-                <h3>ATAST<span>.</span></h3>
-                <p>
-                  Av. Hadj Ali Soua <br>
-                  , Ksar Hellal 5070 TUN <br><br>
-                  <strong>Phone:</strong> +21629535631<br>
-                  <strong>Email:</strong> info.atast@gmail.com<br>
-                </p>
-  
-              </div>
-            </div>
-  
-  
-  
-            <div class="col-lg-3 col-md-6 footer-links">
-              <h4>Our clubs</h4>
-              <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
-              </ul>
-            </div>
-  
-            <div class="col-lg-4 col-md-6 footer-newsletter">
-              <img src="{% static 'assets/img/atast.png'  %}" class="img-fluid" alt="">
+  <!-- ======= Subjects ======= -->
+  <section class="subjects-section">
+    <div class="container">
+      <div class="section-label">
+        <h2>What You'll <span>Learn</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="row g-3">
 
-            </div>
-  
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-braces"></i>
+            <span>C++ Programming</span>
           </div>
         </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-robot"></i>
+            <span>Artificial Intelligence</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-box"></i>
+            <span>3D Design & Modeling</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-code-slash"></i>
+            <span>Web Development</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-tools"></i>
+            <span>CNC Machining</span>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6">
+          <div class="subject-chip">
+            <i class="bi bi-cpu"></i>
+            <span>+ 5 More Advanced Topics</span>
+          </div>
+        </div>
+
       </div>
-  
+    </div>
+  </section>
+
+  <!-- ======= Content ======= -->
+  <section class="content-section">
+    <div class="container">
+      <div class="content-card">
+        <h3><i class="bi bi-info-circle"></i> About X-Mind</h3>
+        <p>
+          🚀 X-MIND is a transformative six-month online program designed for those eager to master C++, AI, 3D design, web development, CNC, and beyond. As an advanced training initiative for trainers, it offers ten meticulously curated subjects delivered by international experts.
+        </p>
+        <p>
+          🎓 This 150-hour hybrid program blends online learning with interactive sessions, ensuring a comprehensive and immersive educational experience. Participants gain cutting-edge skills and the knowledge to excel and innovate in their respective fields.
+        </p>
+        <p>
+          💡 Join X-MIND to elevate your expertise and become a leader in the ever-evolving tech landscape. Embark on your journey and transform your future in technology today!
+        </p>
+        <a href="https://www.facebook.com/ATASTpage" target="_blank" class="cta-btn">
+          <i class="bi bi-facebook"></i> Learn More on Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
       <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>ATAST</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>ATAST<span>.</span></h3>
+              <p>
+                Av. Hadj Ali Soua<br>
+                Ksar Hellal 5070, TUN<br><br>
+                <strong>Phone:</strong> +21629535631<br>
+                <strong>Email:</strong> info.atast@gmail.com<br>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Clubs</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" alt="ATAST">
+          </div>
+
         </div>
       </div>
-    </footer><!-- End Footer -->
-  
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-  </body>
-  
-  </html>
-  </body>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>ATAST</span></strong>. All Rights Reserved
+      </div>
+    </div>
+  </footer>
+
+  <!-- Vendor JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

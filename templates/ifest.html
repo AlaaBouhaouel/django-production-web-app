@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.css ' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css ' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css' %}">
   <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -42,156 +42,196 @@
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
   
     <!-- Template Main CSS File -->
-    <link href="{% static 'assets/css/style.css ' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 </head>
 <style>
+  * { box-sizing: border-box; }
+
   body {
-  font-family: "Open Sans", sans-serif;
-  color: #444444;
+    font-family: "Open Sans", sans-serif;
+    color: #e0e0e0;
+    background: #111111;
   }
 
-  a {
-    color: #ca2120;
-    text-decoration: none;
-  }
+  a { color: #ca2120; text-decoration: none; }
+  a:hover { color: #e84140; }
 
-  a:hover {
-    color: #ca2120;
-    text-decoration: none;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: "Raleway", sans-serif;
-    color: #ffffff; 
-
+    color: #ffffff;
   }
 
+  /* Header */
+  #header {
+    transition: all 0.5s;
+    z-index: 997;
+    padding: 15px 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+  }
+  #header .logo img { max-height: 40px; }
 
-    
-    .col-md-9{
-      display: flex;
-      justify-content: center;
-    }
-    /*--------------------------------------------------------------
-    # Header
-    --------------------------------------------------------------*/
-    #header {
-      transition: all 0.5s;
-      z-index: 997;
-      padding: 15px 0;
-      background: rgba(0, 0, 0, 0.8);
-    
-    }
-    
-    #header.header-scrolled,
-    #header.header-inner-pages {
-      background: rgba(0, 0, 0, 0.8);
-    }
-    
-    #header .logo {
-      font-size: 20px;
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-    }
-    
-    #header .logo a {
-      color: #fff;
-    }
-    
-    #header .logo a span {
-      color: #ca2120;
-    }
-    
-    #header .logo img {
-      max-height: 40px;
-    }
-    .get-started-btn {
-      background-color: #222222;
-      color: #fff;
-      border-radius: 4px;
-      padding: 7px 25px 8px 25px;
-      white-space: nowrap;
-      transition: 0.3s;
-      font-size: 14px;
-      display: inline-block;
-      border: 2px solid #ca2120;
-    }
-    
-    .get-started-btn:hover {
-      background: #ca2120;
-      color: #343a40;
-    }
-    
-    @media (max-width: 992px) {
-      .get-started-btn {
-        padding: 7px 20px 8px 20px;
-      }
-    }
-    .logo img {
-      max-width: 350px; /* Adjust the width as needed */
-      /*height: auto;  Maintain the aspect ratio */
-    }
-    
-    @media (min-width: 768px) {
-        .col-md-9 {
-            flex: 0 0 auto;
-            width: 100% !important; 
-            margin-top: 0px !important;
+  .get-started-btn {
+    background-color: transparent;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 26px;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+    display: inline-block;
+    border: 2px solid #ca2120;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .get-started-btn:hover {
+    background: #ca2120;
+    color: #fff;
+  }
 
-        }
+  /* Hero */
+  .page-hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .page-hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url("{% static 'assets/img/ifest-bg1.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+  }
+  .page-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 20px 60px;
+  }
+  .page-hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 12px;
+    letter-spacing: 2px;
+  }
+  .page-hero h1 span { color: #ca2120; }
+  .page-hero p {
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto 28px;
+  }
 
-    }
-    @media (max-width: 768px) {
-      .container_2{
-          display: block !important;
-        }
-      }
-      
-      .container-lg{
-        margin-top:calc(-1 * var(--bs-gutter-y));
+  /* Main content area */
+  .ifest-body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 20px 60px;
+  }
 
-    }
-  .mt-lg{
+  /* Highlight badges */
+  .highlight-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+  .highlight-badge {
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-top: 3px solid #ca2120;
+    border-radius: 10px;
+    padding: 20px 24px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .highlight-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(202,33,32,0.2);
+  }
+  .highlight-badge i {
+    font-size: 1.8rem;
+    color: #ca2120;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .highlight-badge strong {
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  .highlight-badge span {
+    color: #888;
+    font-size: 0.85rem;
+  }
+
+  /* Content card */
+  .content-card {
+    display: flex;
+    gap: 36px;
+    align-items: flex-start;
+    background: #1c1c1c;
+    border: 1px solid #2a2a2a;
+    border-left: 4px solid #ca2120;
+    border-radius: 16px;
+    padding: 36px;
+    transition: box-shadow 0.3s;
+  }
+  .content-card:hover {
+    box-shadow: 0 8px 32px rgba(202,33,32,0.15);
+  }
+  .content-card .text-side { flex: 1; }
+  .content-card h3 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .content-card h3 i { color: #ca2120; font-size: 1.4rem; }
+  .content-card p {
+    color: #bbb;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 14px;
+  }
+  .content-card .img-side {
+    width: 300px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  .content-card .img-side img {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .cta-wrap {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
   }
-    .container_2{
-      margin-top: 15px;
-      display: flex;
-    }
-    .section-title{
-      color: #444444;
-      font-size: 2rem;
-      text-align: center;
 
-
-    }
-    .ifest_title{
-      color: #ca2120;
-      text-align: center;
-      font-size: 4rem;
-
-    }
-    .col-md-9{
-      margin-top: 5rem !important;
-
-    }
-    .col2{
-      width:100%;
-      display: flex;
-      justify-content: center;
-    }
-    </style>
+  @media (max-width: 860px) {
+    .content-card { flex-direction: column; }
+    .content-card .img-side { width: 100%; }
+    .page-hero h1 { font-size: 2.8rem; }
+  }
+  @media (max-width: 560px) {
+    .highlight-row { flex-direction: column; }
+    .page-hero h1 { font-size: 2rem; }
+  }
+</style>
     <body>
 
   <!-- ======= Header ======= -->
@@ -211,51 +251,76 @@
     </div>
   </header><!-- End Header -->
 
-  <section class="py-2">
+  <!-- Hero -->
+  <div class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>I-Fest<span>²</span></h1>
+      <p>The International Festival for Engineering, Science and Technology in Tunisia</p>
+      <a href="https://ifest-tunisia.org/" class="get-started-btn">
+        <i class="bi bi-box-arrow-up-right me-2"></i>Official Website
+      </a>
+    </div>
+  </div>
 
-    <div class="container-lg">
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-12">
-            <img src="{% static 'assets/img/ifest-bg.jpg' %}"class="img-fluid" alt="">
-          </div>
+  <!-- Body -->
+  <div class="ifest-body">
 
-        </div>
+    <!-- Highlight badges -->
+    <div class="highlight-row">
+      <div class="highlight-badge">
+        <i class="bi bi-globe-americas"></i>
+        <strong>International</strong>
+        <span>Students from across the globe</span>
       </div>
-    <div class="container_1">
-      
-        <h1 class="ifest_title">I-Fest²</h1>
-        <div class="mt-lg" >
-
-          <h4 class="section-title" >The International Festival For Engineering, Science And Technology In Tunisia</h4>
-
-
+      <div class="highlight-badge">
+        <i class="bi bi-calendar2-week"></i>
+        <strong>9 Days</strong>
+        <span>Packed with activities & excursions</span>
       </div>
-      <div class="container_2">
-
-        <div class="col1">
-          <h3 style="color: #151515;font-weight: bold; font-size: large;">ONE OF THE BIGGEST INTERNATIONAL SCIENCE FAIR IN AFRICA</h3>
-          <p class="fst-italic">I-FEST², the International Festival of Engineering Science and Technology in Tunisia, is a 9-day-festival organized by ATAST, the Tunisian Association for the future of Science and Technology, open for all students between the ages of 14 and 24.
-            The 9-day program will be an experience as unique, educational and fun as possible, including various activities and many new discoveries, and will include various trips and excursions to discover the rich Tunisian culture.</p>
-
-          <p>
-            2024 Registration Is Open!
-
-          </p>
-
-        </div>
-        <div class="col2">
-          <img src="{% static 'assets/img/ifest.png' %}"class="img-fluid" alt="">
-  
-        </div>
+      <div class="highlight-badge">
+        <i class="bi bi-people"></i>
+        <strong>Ages 14 – 24</strong>
+        <span>Open to all eligible students</span>
       </div>
-      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-
-        <a href="https://ifest-tunisia.org/" class="get-started-btn scrollto">More about I-Fest²</a>
+      <div class="highlight-badge">
+        <i class="bi bi-trophy"></i>
+        <strong>Top Science Fair</strong>
+        <span>One of the biggest in Africa</span>
       </div>
     </div>
+
+    <!-- Main content card -->
+    <div class="content-card">
+      <div class="text-side">
+        <h3>
+          <i class="bi bi-info-circle"></i>
+          About I-Fest²
+        </h3>
+        <p>
+          I-FEST² is a 9-day festival organized by ATAST — the Tunisian Association for the Future of Science and Technology. 🌍
+          It is open to all students between the ages of 14 and 24, bringing together young innovators from around the world.
+        </p>
+        <p>
+          The program is designed to be as unique, educational, and fun as possible — featuring competitions, workshops, and hands-on activities. 🔬⚙️
+          Participants also enjoy guided trips and excursions to discover the rich Tunisian culture. 🏛️
+        </p>
+        <p>
+          🎉 <strong style="color:#ca2120;">2026 Registration Is Soon!</strong> Don't miss your chance to be part of this incredible experience.
+        </p>
+      </div>
+      <div class="img-side">
+        <img src="{% static 'assets/img/ifest.png' %}" alt="I-Fest²">
+      </div>
     </div>
-  </section>
+
+    <div class="cta-wrap">
+      <a href="https://ifest-tunisia.org/" class="get-started-btn">
+        <i class="bi bi-arrow-right-circle me-2"></i>More about I-Fest²
+      </a>
+    </div>
+
+  </div>
     <!-- ======= Footer ======= -->
     <style>
       #footer {

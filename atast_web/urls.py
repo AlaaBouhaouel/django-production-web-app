@@ -24,6 +24,7 @@ urlpatterns = [
     path('team',views.team,name='team'),
     path('btech',views.btech,name='btech'),
     path('sss', views.sss, name='sss'),
+    path('news', views.news, name='news'),
 
 ]
 if settings.DEBUG:

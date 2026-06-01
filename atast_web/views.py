@@ -51,3 +51,6 @@ def team (request):
 
 def sss(request):
     return render(request, 'sss.html')
+
+def news(request):
+    return render(request, 'news.html')
