@@ -593,16 +593,6 @@ section {
   padding-top: 20px;
 }
 
-.clients .swiper-slideclient img {
-  opacity: 0.5;
-  transition: 0.3s;
-  filter: grayscale(100);
-}
-
-.clients .swiper-slideclient img:hover {
-  filter: none;
-  opacity: 1;
-}
 
 .clients .swiper-pagination {
   margin-top: 20px;

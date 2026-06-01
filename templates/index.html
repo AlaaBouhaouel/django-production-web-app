@@ -39,6 +39,126 @@
   ======================================================== -->
 </head>
 
+<style>
+  .member{
+  width: 160px;
+  height: auto;
+  margin: 10px;
+}
+ .member-info{
+  padding: 10px !important;
+ }
+
+ .member-info h4 {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  color: #ca2120;
+}
+
+  .row-team {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  @media (min-width: 992px) {
+      .row-team .col-lg-3 {
+          flex: 0 0 auto;
+          width: auto !important;
+      }
+  }
+  .img-fluid {
+    border-radius: 10px;
+  }
+  .portfolio-wrap{
+    background: #fff !important;
+  }
+  .portfolio-info h4, .portfolio-info p {
+    color: #fff !important;
+    font-weight: bold;
+    z-index: 100;
+  }
+  .border{
+    border-radius: 10px;
+  }
+  .card img{
+    border-radius: 10px;
+  }
+  .news{
+  width: 100%;
+  }
+
+  .news-row{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .news-item{
+    width: fit-content;
+    display: flex;
+    Flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+  }
+  .news-item img{
+    height: 300px !important;
+    object-fit: cover;
+    border-radius: 10px;
+    }
+  .news-item h4{
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #000000;
+  }
+  .news-info{
+    margin: 10px 0px;
+    display: flex;
+    Flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+
+  }
+  .news-info h4{
+
+    font-size: 16px;
+    text-align: center;
+    color: #000000;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 300px;
+
+  }
+  .news-info p{
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+    word-wrap: break-word;
+    white-space: normal;
+    width: 300px;
+
+  }
+  .seperator{
+    border-right: 1px solid #948989;
+    margin: 10px 0;
+    
+  }
+  .swiper-slideclient img{
+    filter: grayscale(0%);
+  }
+</style>
 <body>
 
   <!-- ======= Header ======= -->
@@ -61,7 +181,7 @@
           <li><a class="nav-link scrollto " href="#ne">Events</a></li>
           <li><a class="nav-link scrollto " href="#portfolio">News</a></li>  <!-- make the news part -->
 
-          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li><a class="nav-link scrollto" href="/team">Team</a></li>
             
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -95,33 +215,33 @@
 
       <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box" onclick="window.location.href='/ifest'">
+          <div class="icon-box border" onclick="window.location.href='/ifest'">
             <i class="ri-store-line"></i>
             <h3><a href="/ifest">I-Fest²</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box" onclick="window.location.href='/clubs'">
+          <div class="icon-box border" onclick="window.location.href='/clubs'">
             <i class="ri-bar-chart-box-line"></i>
             <h3><a href="/clubs">Clubs</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box" onclick="window.location.href='/maker_space'">
+          <div class="icon-box border" onclick="window.location.href='/maker_space'">
             <i class="ri-calendar-todo-line"></i>
             <h3><a href="/maker_space">Maker Space</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box" onclick="window.location.href='/xminds'">
+          <div class="icon-box border" onclick="window.location.href='/xminds'">
             <i class="ri-paint-brush-line"></i>
             <h3><a href="/xminds">X-Mind</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box" onclick="window.location.href='/gifts'">
+          <div class="icon-box border" onclick="window.location.href='/gifts'">
             <i class="ri-database-2-line"></i>
-            <h3><a href="\gifts">Gift zone</a></h3>
+            <h3><a href="/gifts">Gift zone</a></h3>
           </div>
         </div>
       </div>
@@ -130,7 +250,69 @@
   </section><!-- End Hero -->
 
   <main id="main">
+    <!-- ======== News Section ======== -->
+     <section class="news">
+      <div class="container news-container" data-aos="fade-up">
+        <div class="section-title">
+          <h1 style="color: #ca2120;font-weight: bold;">News and Achievements!</h1>
+        </div>
+        <div class="news-row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <div class="news-row">
+              <div class="news-item">
+                <img src="{% static 'assets/img/news/affiche1.png' %}"  alt="">
+                <div class="news-info">
+                  <h4>Summer Training Session Is Open — Join Now!✨🚀 </h4>
+                  <p>You're interested in building innovative solutions? coding and building robots? Join our summer training session and enhance your skills in science and technology!</p>
+                </div>
+              </div>
+              <div class="seperator"></div>
+              <div class="news-item">
+                <img src="{% static 'assets/img/news/affiche3.png' %}"  alt="">
+                <div class="news-info">
+                  <h4>Shape your summer! Be creative!</h4>
+                  <p>Get ready to explore the world of science and technology this summer! <br>🔬💡🤖 !استعد لاكتشاف عالم العلوم والتكنولوجيا</p>
+                </div>
+              </div>
+              <div class="seperator"></div>
+              <div class="news-item">
+                <img src="{% static 'assets/img/news/ioai2026_1.jpg' %}"  alt="">
+                <div class="news-info">
+                  <h4>I-OAI 2026 - International Olympiad in Artificial Intelligence - Chine 2026</h4>
+                  <p>A team of talented Atastians represented Tunisia at this prestigious competition and achieved outstanding results!✨🚀 </p>
+                </div>
+              </div>
+                <div class="seperator"></div>
+              <div class="news-item">
+                <img src="{% static 'assets/img/news/ifest.jpg' %}"  alt="">
+                <div class="news-info">
+                  <h4>I-Fest² 2026</h4>
+                  <p>Join us for this year's edition of our international science and technology festival!💡🤖 Registration will open soon.</p>
+                </div>
+              </div>
+              <div class="seperator"></div>
+              <div class="news-item">
+                <img src="{% static 'assets/img/news/portugal.jpg' %}"  alt="">
+                <div class="news-info">
+                  <h4>Atastians Represent Tunisia at Prestigious Competition with Outstanding Results</h4>
+                  <p>برافو بطلات تونس...  🇹🇳 الف مبروك التتويج من #البرتغال
+فخوريييييين... 👏
+#جائزة التميز العام للفريق التونسي مع مرتبة الشرف 🥇 🏅🎖👑.
+Prix de l'excellence et selection de top projets</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+
+
+
+      </div>
+
+
+
+    </section>
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
@@ -140,21 +322,20 @@
             <img src="{% static 'assets/img/about.jpg' %}"class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-            <h2 style="color: #ca2120;font-weight: bold;">About Us</h2>
-            <h3 style="color: #151515;font-weight: bold; font-size: large;">Join the community of excellence!</h3>
-            <p class="fst-italic">
-              We are ATAST, a Tunisian association dedicated to the future of science and technology, inspiring and nurturing young scientists with our unique approach. ATAST is a vibrant community where passion for innovation meets comprehensive education, fostering the next generation of STEM leaders.</p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> We provide comprehensive teaching programs in robotics, coding, and innovative technologies, designed to equip students with the skills and knowledge necessary to excel in today's rapidly evolving technological landscape.</li>
-              <li><i class="ri-check-double-line"></i> 
-                Our experienced mentors guide students in developing deep analytical thinking and advanced problem-solving skills, ensuring they are well-prepared to tackle complex challenges and excel in their future endeavors.</li>
-              <li><i class="ri-check-double-line"></i>  
-                We offer robust support to foster creative vision, providing the resources and guidance needed to bring innovative ideas to life and achieve tangible results.</li>
-            </ul>
-            <p>
-              Join us at ATAST, where the future of science and technology begins with our youth.
-            </p>
-          </div>
+              <h2 style="color: #ca2120;font-weight: bold;">About Us</h2>
+              <h3 style="color: #151515;font-weight: bold; font-size: large;">Join the community of excellence!</h3>
+              <p class="fst-italic">
+                ATAST is a Tunisian association dedicated to science and technology, inspiring young minds and nurturing the next
+            generation of STEM leaders.</p>
+              <ul>
+                <li><i class="ri-check-double-line"></i> Comprehensive programs in robotics, coding, and emerging technologies to
+            equip students with future-ready skills.</li>
+                <li><i class="ri-check-double-line"></i> Experienced mentors who develop analytical thinking and problem-solving
+            abilities.</li>
+                <li><i class="ri-check-double-line"></i> Hands-on support to turn creative ideas into tangible results.</li>
+              </ul>
+              <p>Join us where the future of science and technology begins.</p>
+            </div>
         </div>
 
       </div>
@@ -183,7 +364,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="image col-lg-6" style='background-image: url("{% static "assets/img/features.jpg" %}");' data-aos="fade-right"></div>
+          <div class="image col-lg-6 border" style='background-image: url("{% static "assets/img/features.jpg" %}");' data-aos="fade-right"></div>
           <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
             <h2 style="color: #ca2120;font-weight: bold; margin-top: 15px;">International Affiliations</h2>
             <h3 style="color: #151515;font-weight: bold; font-size: large;">Join the community of excellence!</h3>
@@ -473,7 +654,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row no-gutters">
-          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
+          <div class="image border col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
           <div class="col-xl-7 ps-4 ps-lg-5 pe-4 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
             <div class="content d-flex flex-column justify-content-center">
               <h3>ATAST With Numbers</h3>
@@ -596,7 +777,7 @@
 
         <div class="row-team">
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch1">
+          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
                 <img src="{% static 'assets/img/team/team-1.jpg'  %}" class="img-fluid" alt="">
@@ -608,7 +789,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch1">
+          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
                 <img src="{% static 'assets/img/team/hela.jpg' %}"class="img-fluid" alt="">
@@ -621,7 +802,7 @@
             </div>
           </div>
           
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch1">
+          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
                 <img src="{% static 'assets/img/team/ali.jpg' %}"class="img-fluid" alt="">
@@ -635,7 +816,7 @@
 
 
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch1">
+          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
                 <img src="{% static 'assets/img/team/yosra.jpg' %}"class="img-fluid" alt="">
@@ -647,7 +828,7 @@
             </div>
           </div>
           
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch1">
+          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
                 <img src="{% static 'assets/img/team/mariem.jpg'  %}" class="img-fluid" alt="">
