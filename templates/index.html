@@ -158,6 +158,46 @@
   .swiper-slideclient img{
     filter: grayscale(0%);
   }
+  .Acheivements{
+    border: 0.2px solid #5b5656;
+    background: url('static/assets/img/ifest-bg.jpg');
+    
+  }
+  .clients .swiper-slideclient img {
+    opacity: 1;
+    transition: 0.3s;
+    filter: grayscale(0);
+  }
+  .ach-row{
+    display: flex;
+    gap: 200px;
+    justify-content: center;
+    padding: 10px auto ;
+    align-items: center;    
+  }
+  .ach {
+    width: 200px;
+    background-color: #ca2120;
+    color: #ffffff;
+    border-color: #000000;
+    font-size: 1.3rem ;
+    font-weight: 700;
+
+  }
+  .ach:hover{
+    background-color: #ffffff;
+    color: #a31d1d;
+    width: 220px;
+    border-color: #ca2120;
+
+  }
+  .ach-row h3{
+    text-align: start;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+
 </style>
 <body>
 
@@ -179,7 +219,7 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">International</a></li>
           <li><a class="nav-link scrollto " href="#ne">Events</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">News</a></li>  <!-- make the news part -->
+          <li><a class="nav-link scrollto " href="#achievements">News</a></li>  <!-- make the news part -->
 
           <li><a class="nav-link scrollto" href="/team">Team</a></li>
             
@@ -215,15 +255,15 @@
 
       <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
         <div class="col-xl-2 col-md-4">
-          <div class="icon-box border" onclick="window.location.href='/ifest'">
-            <i class="ri-store-line"></i>
-            <h3><a href="/ifest">I-Fest²</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
           <div class="icon-box border" onclick="window.location.href='/clubs'">
             <i class="ri-bar-chart-box-line"></i>
             <h3><a href="/clubs">Clubs</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4">
+          <div class="icon-box border" onclick="window.location.href='/ifest'">
+            <i class="ri-store-line"></i>
+            <h3><a href="/ifest">I-Fest²</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4">
@@ -254,16 +294,27 @@
      <section class="news">
       <div class="container news-container" data-aos="fade-up">
         <div class="section-title">
-          <h1 style="color: #ca2120;font-weight: bold;">News and Achievements!</h1>
+          <h1 style="color: #ca2120;font-weight: bold;">Latest News!</h1>
         </div>
         <div class="news-row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <div class="news-row">
+                <div class="news-item">
+                <img src="{% static 'assets/img/news/portugal.jpg' %}"  alt="">
+                <div class="news-info">
+                  <h4>Atastians Represent Tunisia at Prestigious Competition with Outstanding Results🏅🎖</h4>
+                  <p>برافو بطلات تونس...  🇹🇳 الف مبروك التتويج من #البرتغال
+فخوريييييين... 👏
+#جائزة التميز العام للفريق التونسي مع مرتبة الشرف 🥇 🏅🎖👑.
+Prix de l'excellence et selection de top projets</p>
+                </div>
+              </div>
+              <div class="seperator"></div>
               <div class="news-item">
                 <img src="{% static 'assets/img/news/affiche1.png' %}"  alt="">
                 <div class="news-info">
                   <h4>Summer Training Session Is Open — Join Now!✨🚀 </h4>
-                  <p>You're interested in building innovative solutions? coding and building robots? Join our summer training session and enhance your skills in science and technology!</p>
+                  <p>You're interested in building innovative solutions? Join our summer training session and enhance your skills in science and technology! <br>🔬💡🤖 !استعد لاكتشاف عالم العلوم والتكنولوجيا</p>
                 </div>
               </div>
               <div class="seperator"></div>
@@ -274,44 +325,17 @@
                   <p>Get ready to explore the world of science and technology this summer! <br>🔬💡🤖 !استعد لاكتشاف عالم العلوم والتكنولوجيا</p>
                 </div>
               </div>
-              <div class="seperator"></div>
-              <div class="news-item">
-                <img src="{% static 'assets/img/news/ioai2026_1.jpg' %}"  alt="">
-                <div class="news-info">
-                  <h4>I-OAI 2026 - International Olympiad in Artificial Intelligence - Chine 2026</h4>
-                  <p>A team of talented Atastians represented Tunisia at this prestigious competition and achieved outstanding results!✨🚀 </p>
-                </div>
-              </div>
-                <div class="seperator"></div>
-              <div class="news-item">
-                <img src="{% static 'assets/img/news/ifest.jpg' %}"  alt="">
-                <div class="news-info">
-                  <h4>I-Fest² 2026</h4>
-                  <p>Join us for this year's edition of our international science and technology festival!💡🤖 Registration will open soon.</p>
-                </div>
-              </div>
-              <div class="seperator"></div>
-              <div class="news-item">
-                <img src="{% static 'assets/img/news/portugal.jpg' %}"  alt="">
-                <div class="news-info">
-                  <h4>Atastians Represent Tunisia at Prestigious Competition with Outstanding Results</h4>
-                  <p>برافو بطلات تونس...  🇹🇳 الف مبروك التتويج من #البرتغال
-فخوريييييين... 👏
-#جائزة التميز العام للفريق التونسي مع مرتبة الشرف 🥇 🏅🎖👑.
-Prix de l'excellence et selection de top projets</p>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>
-
-
-
-
       </div>
-
-
-
+    </section>
+    <section class="Acheivements">
+      <div class="ach-row">
+        <h3>Find The Latest <br> <span>News</span> And <span>Achievements</span>!</h3>
+        <button class="get-started-btn ach">Find More</button>
+      </div>
     </section>
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -346,9 +370,10 @@ Prix de l'excellence et selection de top projets</p>
       <div class="container" data-aos="zoom-in">
 
         <div class="clients-slider swiper">
+          <h2 style="color: #ca2120;font-weight: bold;">Partners & Supporters</h2>
+
           <div class="swiper-wrapper align-items-center">
             <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-1.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-2.png' %}" class="img-fluid" alt=""></div>
             <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
             <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
             <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
@@ -682,7 +707,7 @@ Prix de l'excellence et selection de top projets</p>
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="bi bi-clock"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="16" data-purecounter-duration="2" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="17" data-purecounter-duration="2" class="purecounter"></span>
                     <p><strong>Years of experience</strong>  have honed ATAST's approach to fostering innovation and excellence across Tunisia.</p>
                   </div>
                 </div>
@@ -690,7 +715,7 @@ Prix de l'excellence et selection de top projets</p>
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
                     <i class="bi bi-award"></i>
-                    <span data-purecounter-start="0" data-purecounter-end="523" data-purecounter-duration="2" class="purecounter"></span>
+                    <span data-purecounter-start="0" data-purecounter-end="622" data-purecounter-duration="2" class="purecounter"></span>
                     <p><strong>Awards</strong> at ATAST recognize excellence and innovation within our community.</p>
                   </div>
                 </div>
