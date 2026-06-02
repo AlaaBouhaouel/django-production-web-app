@@ -358,6 +358,10 @@
     background: #ddd;
     max-width: 120px;
   }
+  .news-info a{
+    color: #000;
+    text-decoration: underline;
+  }
 
 
 
@@ -480,8 +484,8 @@
             <div class="news-row">
               <div class="news-item">
                 <img src="{% static 'assets/img/news/1.jpg' %}"  alt="">
-                <div class="news-info">
-                  <h4>ORO 2026 - OPEN ROBOTICS OLYMPIAD 🏅🎖</h4>
+                  <div class="news-info">
+                    <h4><a href="/oro"> ORO 2026 - OPEN ROBOTICS OLYMPIAD 🏅🎖</a></h4>
                   <p>⚔️ The arena is calling… 🤖🔥<br>Registrations for ORO 2026 are NOW OPEN!<br> Step into the world of robotics, innovation, and competition where creativity meets technology. 🚀</p>
                 </div>
               </div>
@@ -615,7 +619,15 @@ Prix de l'excellence et selection de top projets</p>
       <h2 style="color: #ca2120;font-weight: bold;">National Events</h2>
       <h3 style="color: #151515;font-weight: bold; font-size: large;">You want to know more?</h3>
       <div class="scrolling-wrapper">
-
+        <div class="card">
+          <img src="{% static 'assets/img/ne/oro-ind.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>ORO</h2>
+            <p>Participate in ORO, the Olympiad of Robotics organized by ATAS in Tunisia, where innovation and robotics expertise shine.</p>
+            <a href="oro" class="get-started-btnX">learn more</a>
+          </div>
+        </div>
+        
         <div class="card">
           <img src="{% static 'assets/img/ne/btech.jpg' %}" class="imag" alt="">
           <div class="card-body">
@@ -697,14 +709,7 @@ Prix de l'excellence et selection de top projets</p>
           </div>
         </div>
 
-        <div class="card">
-          <img src="{% static 'assets/img/ne/oro-ind.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>ORO</h2>
-            <p>Participate in ORO, the Olympiad of Robotics organized by ATAS in Tunisia, where innovation and robotics expertise shine.</p>
-            <a href="oro" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
+        
 
         <div class="card">
           <img src="{% static 'assets/img/ne/photocontest0.jpg' %}" class="imag" alt="">

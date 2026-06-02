@@ -54,3 +54,41 @@ def sss(request):
 
 def news(request):
     return render(request, 'news.html')
+
+def oro_poussins(request):
+    return render(request, 'oro_poussins.html')
+
+def oro_juniors(request):
+    return render(request, 'oro_juniors.html')
+
+def oro_colleges(request):
+    return render(request, 'oro_colleges.html')
+def oro_seniors(request):
+    return render(request, 'oro_seniors.html')
+
+def oro_comp_bowling(request):
+    return render(request, 'oro_comp_bowling.html')
+
+def oro_comp_robofoot(request):
+    return render(request, 'oro_comp_robofoot.html')
+
+def oro_comp_smartcity(request):
+    return render(request, 'oro_comp_smartcity.html')
+
+def oro_comp_linefollower(request):
+    return render(request, 'oro_comp_linefollower.html')
+
+def oro_comp_sumo(request):
+    return render(request, 'oro_comp_sumo.html')
+
+def oro_comp_roborace(request):
+    return render(request, 'oro_comp_roborace.html')
+
+def oro_comp_maze(request):
+    return render(request, 'oro_comp_maze.html')
+
+def oro_comp_coding(request):
+    return render(request, 'oro_comp_coding.html')
+
+def oro_comp_firefighting(request):
+    return render(request, 'oro_comp_firefighting.html')

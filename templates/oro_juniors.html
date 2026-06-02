@@ -1,0 +1,172 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORO — Juniors (10–12 ans)</title>
+  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    :root{--gold:#F5B800;--red:#C8281E;--dark:#0d0d0d;--dark2:#181818}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--dark);color:#fff;font-family:'Inter',sans-serif}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;height:auto}
+    #oro-nav{background:rgba(13,13,13,1);border-bottom:1px solid rgba(245,184,0,.18);padding:11px 0}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+    .nav-links a{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-home{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .2s;white-space:nowrap}
+    .nav-home:hover{color:var(--gold)}
+    .nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+    @media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,13,13,.98);padding:20px;gap:16px;border-bottom:1px solid rgba(245,184,0,.15);z-index:10}.nav-links.open{display:flex}.nav-mobile-toggle{display:block}}
+    .oro-hero{position:relative;height:60vh;min-height:320px;background-image:url('{% static "assets/img/oro/headline.png" %}');background-size:cover;background-position:center top;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .oro-hero::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.78)}
+    .hero-inner{position:relative;z-index:2;padding:0 20px}
+    .hero-eyebrow{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .hero-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,16vw,11rem);line-height:.85;letter-spacing:.06em;color:#fff;text-shadow:0 0 80px rgba(245,184,0,.25)}
+    .hero-big span{color:var(--gold)}
+    .hero-sub{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:12px}
+    .hero-pills{display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap}
+    .hero-pill{background:rgba(245,184,0,.1);border:1px solid rgba(245,184,0,.4);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 14px;border-radius:2px}
+    .comp-section{padding:70px 0 90px}
+    .section-label{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
+    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);color:#fff;letter-spacing:.05em;margin:0 0 6px}
+    .section-rule{width:50px;height:3px;background:var(--gold);margin:14px 0 40px}
+    .back-link{display:inline-flex;align-items:center;gap:6px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:32px;transition:color .2s}
+    .back-link:hover{color:var(--gold)}
+    .comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .comp-card{background:var(--dark2);border:1px solid rgba(255,255,255,.06);border-radius:6px;overflow:hidden;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
+    .comp-card:hover{transform:translateY(-7px);border-color:var(--gold);box-shadow:0 16px 48px rgba(245,184,0,.12)}
+    .comp-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+    .comp-card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;flex:1}
+    .comp-name{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:700;color:#fff;letter-spacing:.06em;text-transform:uppercase}
+    .comp-btn{display:inline-flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(245,184,0,.5);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 14px;border-radius:2px;cursor:pointer;transition:.2s;width:fit-content;margin-top:auto}
+    .comp-btn:hover{background:var(--gold);border-color:var(--gold);color:#000}
+    @media(max-width:768px){.comp-grid{grid-template-columns:repeat(2,1fr)}}
+    .oro-footer{background:var(--dark2);border-top:1px solid rgba(245,184,0,.15);padding:56px 0 28px}
+    .footer-desc{color:rgba(255,255,255,.4);font-size:13px;line-height:1.7;max-width:280px}
+    .footer-head{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+    .footer-contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:11px;color:rgba(255,255,255,.5);font-size:13px}
+    .footer-contact-row i{color:var(--gold);font-size:15px;flex-shrink:0;margin-top:1px}
+    .footer-social{display:flex;gap:10px;margin-top:18px}
+    .footer-social a{width:34px;height:34px;border:1px solid rgba(245,184,0,.25);border-radius:3px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:15px;transition:.2s}
+    .footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+    .footer-links-list{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:0}
+    .footer-links-list a{color:rgba(255,255,255,.4);font-size:13px;transition:.2s}
+    .footer-links-list a:hover{color:var(--gold)}
+    .footer-bottom{margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,.06);text-align:center;color:rgba(255,255,255,.25);font-size:12px}
+    .footer-bottom span{color:var(--gold)}
+  </style>
+</head>
+<body>
+
+  <section class="oro-hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Open Robotic Olympiad &bull; 1st Edition</p>
+      <div class="hero-big">OR<span>O</span></div>
+      <p class="hero-sub">Juniors &bull; 10 – 12 ans</p>
+      <div class="hero-pills">
+        <span class="hero-pill">3 Competitions</span>
+        <span class="hero-pill">Ages 10–12</span>
+      </div>
+    </div>
+  </section>
+
+  <nav id="oro-nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/oro" class="nav-logo" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.1em;color:#fff">OR<span style="color:var(--gold)">O</span></a>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/oro#categories">Categories</a></li>
+          <li><a href="/oro#edition">1st Edition</a></li>
+          <li><a href="/oro#gallery">Gallery</a></li>
+          <li><a href="/oro#contact">Contact</a></li>
+        </ul>
+        <a href="/" class="nav-home">&#8592; Home</a>
+        <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">
+          <i class="bi bi-list"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="comp-section">
+    <div class="container">
+      <a href="/oro" class="back-link"><i class="bi bi-arrow-left"></i> All categories</a>
+      <span class="section-label">Juniors &bull; 10–12 ans</span>
+      <h2 class="section-title">Competitions</h2>
+      <div class="section-rule"></div>
+
+      <div class="comp-grid">
+
+        <div class="comp-card">
+          <img src="{% static 'assets/img/oro/p_bowling.jpg' %}" class="comp-card-img" alt="Bowling">
+          <div class="comp-card-body">
+            <div class="comp-name">Bowling</div>
+            <a href="/oro_comp_bowling" class="comp-btn">View <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <img src="{% static 'assets/img/oro/f_robofoot.jpg' %}" class="comp-card-img" alt="RoboFoot">
+          <div class="comp-card-body">
+            <div class="comp-name">RoboFoot</div>
+            <a href="/oro_comp_robofoot" class="comp-btn">View <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+        <div class="comp-card">
+          <img src="{% static 'assets/img/oro/f_smartcity.jpg' %}" class="comp-card-img" alt="Smart City">
+          <div class="comp-card-body">
+            <div class="comp-name">Smart City</div>
+            <a href="/oro_comp_smartcity" class="comp-btn">View <i class="bi bi-arrow-right"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="oro-footer" id="contact">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-6">
+          <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;margin:0 0 14px">OR<span style="color:var(--gold)">O</span></p>
+          <p class="footer-desc">Open Robotic Olympiad — organized by ATAST, inspiring the next generation of robotics engineers in Tunisia.</p>
+          <div class="footer-social">
+            <a href="https://www.facebook.com/atast.ksarhelal" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <p class="footer-head">Contact</p>
+          <div class="footer-contact-row"><i class="bi bi-geo-alt-fill"></i><span>Av. Hadj Ali Soua, Ksar Hellal 5070, Tunisia</span></div>
+          <div class="footer-contact-row"><i class="bi bi-envelope-fill"></i><span>info.atast@gmail.com</span></div>
+          <div class="footer-contact-row"><i class="bi bi-telephone-fill"></i><span>+216 29 535 631</span></div>
+          <div class="footer-contact-row"><i class="bi bi-whatsapp"></i><span>+216 28 670 570</span></div>
+        </div>
+        <div class="col-lg-4 col-md-12">
+          <p class="footer-head">Quick Links</p>
+          <ul class="footer-links-list">
+            <li><a href="/oro#categories">All Categories</a></li>
+            <li><a href="/oro_poussins">Poussins</a></li>
+            <li><a href="/oro_colleges">Collèges</a></li>
+            <li><a href="/oro_seniors">Seniors</a></li>
+            <li><a href="/">ATAST Website</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2025 <span>ORO</span> — Open Robotic Olympiad. Organized by <span>ATAST</span>.</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
