@@ -1,453 +1,131 @@
-﻿{% load static %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-  <title>ATAST</title>
-  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
-
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="description" content="I-Fest²">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendor.css' %}">
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/style.css' %}">
-  <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Rubik+Mono+One&display=swap"
-    rel="stylesheet">
-  
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-  
-    <!-- Template Main CSS File -->
-    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <title>ATAST — ORO Open Robotic Olympiad</title>
+  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    body{font-family:"Open Sans",sans-serif;color:#555;margin:0;padding:0;background:#fff}
+    h1,h2,h3,h4,h5{font-family:"Raleway",sans-serif;margin:0}
+    a{color:#ca2120;text-decoration:none}a:hover{color:#e03030}
+    img{max-width:100%;height:auto}
+    #header{background:rgba(0,0,0,.9);padding:12px 0;position:fixed;top:0;left:0;right:0;z-index:997}
+    .logo img{height:40px;object-fit:contain}
+    .home-btn{color:#fff!important;background:#ca2120;border:2px solid #ca2120;border-radius:4px;padding:7px 20px;font-size:14px;font-weight:600;transition:.3s;display:inline-block;white-space:nowrap}
+    .home-btn:hover{background:transparent!important;color:#ca2120!important}
+    .page-hero{position:relative;height:65vh;min-height:340px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding-bottom:50px}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.15) 0%,rgba(0,0,0,.72) 100%)}
+    .hero-inner{position:relative;z-index:2}
+    .hero-tag{display:inline-block;background:#ca2120;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:3px;margin-bottom:12px}
+    .hero-inner h1{font-size:3.2rem;font-weight:800;color:#fff;margin:0 0 12px;line-height:1.1}
+    .hero-inner p{font-size:1.1rem;color:rgba(255,255,255,.88);max-width:660px;line-height:1.6;margin:0}
+    .page-main{padding:64px 0 60px}
+    .content-section{padding:48px 0;border-bottom:1px solid #f0f0f0}
+    .content-section:last-child{border-bottom:none}
+    .section-tag{display:inline-block;background:#fff3f3;color:#ca2120;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:14px;border:1px solid rgba(202,33,32,.2)}
+    .content-section h2{font-size:1.8rem;font-weight:800;color:#151515;margin-bottom:16px;line-height:1.3}
+    .content-section .lead{font-size:1.05rem;font-weight:600;color:#333;margin-bottom:14px;line-height:1.6}
+    .content-section p{color:#555;line-height:1.85;margin-bottom:14px;font-size:.97rem}
+    .content-img{width:100%;border-radius:14px;object-fit:cover;display:block;max-height:420px}
+    .coming-soon-badge{display:inline-flex;align-items:center;gap:8px;background:#fff8f3;border:1px solid rgba(202,33,32,.2);border-radius:8px;padding:10px 18px;color:#ca2120;font-weight:600;font-size:.95rem;margin-top:20px}
+    @media(max-width:768px){.page-hero{height:50vh;min-height:260px;padding-bottom:28px}.hero-inner h1{font-size:1.9rem}.hero-inner p{font-size:.9rem}.content-section h2{font-size:1.35rem}.content-section{padding:32px 0}}
+    #footer{background:#000;padding:0;color:#fff;font-size:14px}
+    #footer .footer-top{background:#151515;border-bottom:1px solid #222;padding:50px 0 30px}
+    #footer h3{font-size:22px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:14px}
+    #footer h3 span{color:#ca2120}
+    #footer h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:14px}
+    #footer p{font-size:14px;line-height:24px;color:#ccc}
+    #footer .footer-links ul{list-style:none;padding:0;margin:0}
+    #footer .footer-links ul li{padding:6px 0;display:flex;align-items:center}
+    #footer .footer-links ul i{padding-right:6px;color:#ca2120;font-size:16px}
+    #footer .footer-links ul a{color:#ccc;transition:.3s}
+    #footer .footer-links ul a:hover{color:#ca2120}
+    #footer .copyright{text-align:center;padding:22px 0;color:#888}
+  </style>
 </head>
-<style>
-  body {
-  font-family: "Open Sans", sans-serif;
-  color: #444444;
-  }
+<body>
 
-  a {
-    color: #ca2120;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #ca2120;
-    text-decoration: none;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Raleway", sans-serif;
-    color: #ffffff; 
-
-  }
-
-
-    
-    .col-md-9{
-      display: flex;
-      justify-content: center;
-    }
-    /*--------------------------------------------------------------
-    # Header
-    --------------------------------------------------------------*/
-    #header {
-      transition: all 0.5s;
-      z-index: 997;
-      padding: 15px 0;
-      background: rgba(0, 0, 0, 0.8);
-    
-    }
-    
-    #header.header-scrolled,
-    #header.header-inner-pages {
-      background: rgba(0, 0, 0, 0.8);
-    }
-    
-    #header .logo {
-      font-size: 20px;
-      margin: 0;
-      padding: 0;
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      display: block;
-    }
-    
-    #header .logo a {
-      color: #fff;
-    }
-    
-    #header .logo a span {
-      color: #ca2120;
-    }
-    
-    #header .logo img {
-      max-height: 40px;
-    }
-    .get-started-btn {
-      background-color: #222222;
-      color: #fff;
-      border-radius: 4px;
-      padding: 7px 25px 8px 25px;
-      white-space: nowrap;
-      transition: 0.3s;
-      font-size: 14px;
-      display: inline-block;
-      border: 2px solid #ca2120;
-    }
-    
-    .get-started-btn:hover {
-      background: #ca2120;
-      color: #343a40;
-    }
-    
-    @media (max-width: 992px) {
-      .get-started-btn {
-        padding: 7px 20px 8px 20px;
-      }
-    }
-    .logo img {
-      max-width: 350px; /* Adjust the width as needed */
-      /*height: auto;  Maintain the aspect ratio */
-    }
-    
-    @media (min-width: 910px) {
-        .col-md-9 {
-            flex: 0 0 auto;
-            width: 50% !important; 
-            margin-top: 0px !important;
-
-        }
-        .container_1{
-          margin-top: 5rem !important;
-        }
-        .container-lg{
-          display: flex!important;
-        }
-
-
-    }
-
-
-
-
-      .container-lg{
-        margin-top:calc(-1 * var(--bs-gutter-y));
-    }
-    .container-lg{
-        display: block;
-    }
-  .mt-lg{
-    display: flex;
-    text-align: center;
-  }
-    .container_2{
-      margin-top: 15px;
-      display: block;
-    }
-    .section-title{
-      color: #444444;
-    }
-    .ifest_title{
-      color: #ca2120;
-      display: flex;
-      justify-content: center;
-      font-size: 3rem;
-      padding: 20px 0px;
-
-    }
-    .col-md-9{
-      margin-top: 5rem !important;
-
-    }
-    .col2{
-      width:100%;
-      display: flex;
-      justify-content: center;
-    }
-    </style>
-    <body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-lg-between">
-      <a href="" class="logo me-auto me-lg-0">
-        <div>
-        <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" >
-        </div> 
-            <!-- Uncomment below if you prefer to use an image logo -->
-
-      </a>
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      <a href="/" class="get-started-btn scrollto">Home</a>
- 
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="/" class="logo"><img src="{% static 'assets/img/atast.png' %}" alt="ATAST"></a>
+      <a href="/" class="home-btn">&#8592; Home</a>
     </div>
-  </header><!-- End Header -->
+  </header>
 
-  <section class="py-2">
-
-    <div class="container-lg">
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-12">
-            <img src="{% static 'assets/img/ne/oro.jpg' %}"class="img-fluid" alt="" style="max-width: 500px;">
-          </div>
-
-        </div>
+  <section class="page-hero" style="background-image:url('{% static 'assets/img/oro/header.png' %}')">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-tag">National Events</span>
+        <h1>ORO</h1>
+        <p>Open Robotic Olympiad — where innovation and engineering prowess converge</p>
       </div>
-    <div class="container_1">
-      
-        <h1 class="ifest_title">ORO</h1>
-        <div class="mt-lg" >
-
-          <h4 class="section-title" >Welcome to ORO, the OPEN ROBOTIC OLYMPIAD organized by ATAST, where innovation and engineering prowess converge in the largest robotics competition.</h4>
-
-
-      </div>
-      <div class="container_2">
-
-        <div class="col1">
-          <p class="fst-italic">ORO brings together robotics enthusiasts from around the globe to showcase their technical skills and creativity. Participants compete in various challenges that push the boundaries of robotics technology, from autonomous navigation to complex manipulation tasks. This Olympiad not only highlights technical excellence but also fosters collaboration and problem-solving among participants. With a focus on innovation and cutting-edge robotics, ORO inspires the next generation of engineers and inventors to redefine the possibilities of robotics technology.
-          <p>
-            Stay tuned!
-
-          </p>
-
-        </div>
-        <div class="col2">
-          <img src="{% static 'assets/img/ne/atst.png' %}"class="img-fluid" alt="" style="width: 100px; height: 100px;">
-  
-        </div>
-      </div>
-
-    </div>
     </div>
   </section>
-    <!-- ======= Footer ======= -->
-    <style>
-      #footer {
-    background: #000;
-    padding: 0px ;
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  #footer .footer-top {
-    background: #151515;
-    border-bottom: 1px solid #222222;
-    padding: 60px 0 30px 0;
-  }
-  
-  #footer .footer-top .footer-info {
-    margin-bottom: 30px;
-  }
-  
-  #footer .footer-top .footer-info h3 {
-    font-size: 28px;
-    margin: 0 0 20px 0;
-    padding: 2px 0 2px 0;
-    line-height: 1;
-    font-weight: 700;
-    text-transform: uppercase;
-  }
-  
-  #footer .footer-top .footer-info h3 span {
-    color: #ca2120;
-  }
-  
-  #footer .footer-top .footer-info p {
-    font-size: 14px;
-    line-height: 24px;
-    margin-bottom: 0;
-    font-family: "Raleway", sans-serif;
-    color: #fff;
-  }
-  
-  
-  #footer .footer-top h4 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #fff;
-    position: relative;
-    padding-bottom: 12px;
-  }
-  
-  #footer .footer-top .footer-links {
-    margin-bottom: 30px;
-  }
-  
-  #footer .footer-top .footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #footer .footer-top .footer-links ul i {
-    padding-right: 2px;
-    color: #ca2120;
-    font-size: 18px;
-    line-height: 1;
-  }
-  
-  #footer .footer-top .footer-links ul li {
-    padding: 10px 0;
-    display: flex;
-    align-items: center;
-  }
-  
-  #footer .footer-top .footer-links ul li:first-child {
-    padding-top: 0;
-  }
-  
-  #footer .footer-top .footer-links ul a {
-    color: #fff;
-    transition: 0.3s;
-    display: inline-block;
-    line-height: 1;
-  }
-  
-  #footer .footer-top .footer-links ul a:hover {
-    color: #ca2120;
-  }
-  
-  #footer .footer-top .footer-newsletter form {
-    margin-top: 30px;
-    background: #fff;
-    padding: 6px 10px;
-    position: relative;
-    border-radius: 4px;
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=email] {
-    border: 0;
-    padding: 4px;
-    width: calc(100% - 110px);
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=submit] {
-    position: absolute;
-    top: 0;
-    right: -2px;
-    bottom: 0;
-    border: 0;
-    background: none;
-    font-size: 16px;
-    padding: 0 20px;
-    background: #ca2120;
-    color: #151515;
-    transition: 0.3s;
-    border-radius: 0 4px 4px 0;
-  }
-  
-  #footer .footer-top .footer-newsletter form input[type=submit]:hover {
-    background: #ca2120;
-  }
-  
-  #footer .copyright {
-    text-align: center;
-    padding-top: 30px;
-  }
-  
-  #footer .credits {
-    padding-top: 10px;
-    text-align: center;
-    font-size: 13px;
-    color: #fff;
-  }
-    </style>
 
-    <footer id="footer">
-      <div class="footer-top">
-        <div class="container">
-          <div class="row">
-  
-            <div class="col-lg-3 col-md-6">
-              <div class="footer-info">
-                <h3>ATAST<span>.</span></h3>
-                <p>
-                  Av. Hadj Ali Soua <br>
-                  , Ksar Hellal 5070 TUN <br><br>
-                  <strong>Phone:</strong> +21629535631<br>
-                  <strong>Email:</strong> info.atast@gmail.com<br>
-                </p>
-  
-              </div>
-            </div>
-  
-  
-  
-            <div class="col-lg-3 col-md-6 footer-links">
-              <h4>Our clubs</h4>
-              <ul>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
-                <li><i class="bx bx-chevron-right"></i> <a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
-              </ul>
-            </div>
-  
-            <div class="col-lg-4 col-md-6 footer-newsletter">
-              <img src="{% static 'assets/img/atast.png'  %}" class="img-fluid" alt="">
+  <main class="page-main">
+    <div class="container">
 
+      <div class="content-section" data-aos="fade-up">
+        <span class="section-tag">About the Event</span>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <h2>Open Robotic Olympiad</h2>
+            <p class="lead">The largest robotics competition organized by ATAST — bringing together robotics enthusiasts to showcase their technical skills and creativity.</p>
+            <p>Participants compete in various challenges that push the boundaries of robotics technology, from autonomous navigation to complex manipulation tasks. This Olympiad not only highlights technical excellence but also fosters collaboration and problem-solving among participants.</p>
+            <p>With a focus on innovation and cutting-edge robotics, ORO inspires the next generation of engineers and inventors to redefine the possibilities of robotics technology.</p>
+            <div class="coming-soon-badge">
+              <i class="bi bi-clock"></i> Next edition coming soon — stay tuned!
             </div>
-  
+          </div>
+          <div class="col-lg-5" data-aos="fade-left">
+            <img src="{% static 'assets/img/oro/poster.jpeg' %}" class="content-img" style="object-fit: contain ;" alt="ORO Robotics">
           </div>
         </div>
       </div>
-  
+
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-top">
       <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>ATAST</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <h3>ATAST<span>.</span></h3>
+            <p>Av. Hadj Ali Soua<br>Ksar Hellal 5070 TUN<br><br><strong>Phone:</strong> +21629535631<br><strong>Email:</strong> info.atast@gmail.com</p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links mb-4 mb-lg-0">
+            <h4>Our Clubs</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" alt="" style="max-width:200px">
+          </div>
         </div>
       </div>
-    </footer><!-- End Footer -->
-  
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-      crossorigin="anonymous"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-  </body>
-  
-  </html>
-  </body>
+    </div>
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong>ATAST</strong>. All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>AOS.init({duration:600,easing:'ease-in-out',once:true});</script>
+</body>
+</html>
