@@ -254,13 +254,110 @@ p{
             -ms-overflow-style: none;  /* For Internet Explorer and Edge */
     }
 
-    .container_1::-webkit-scrollbar {
-            display: none; /* For Chrome, Safari, and Opera */
-        }
-    h3{
-        padding-left: 20px;
-    }
-    
+    .container_1::-webkit-scrollbar { display: none; }
+
+  /* Page title strip */
+  .page-hero {
+    padding: 100px 0 40px 0px;
+    text-align: center;
+        background-color: #151515;
+  }
+  .page-hero h1 {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin: 0;
+  }
+  .page-hero h1 span { color: #ca2120; }
+  .page-hero p { color: #777; font-size: 1rem; margin-top: 8px; }
+
+  /* Section title */
+  .team-section { padding: 28px 0 8px; }
+  .team-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .team-section-title h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-left: 0;
+  }
+  .team-section-title::before {
+    content: '';
+    width: 4px;
+    height: 20px;
+    background: #ca2120;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .team-section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #2a2a2a;
+  }
+
+  /* Grid replacing the horizontal scroll */
+  .team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 8px;
+  }
+
+  /* Card */
+  .cardid {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 90px;
+    height: auto !important;
+    background: transparent;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .img-id-cont { display: flex; justify-content: center; }
+  .img-id {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top;
+    border: 2px solid #333 !important;
+    margin-bottom: 0 !important;
+    display: block;
+    transition: border-color 0.2s;
+  }
+  .cardid:hover .img-id { border-color: #ca2120 !important; }
+  .name-id p {
+    color: #bbb !important;
+    font-size: 11px !important;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0;
+    word-break: break-word;
+    white-space: normal;
+    width: 90px;
+  }
+
+  /* Main page bg */
+  .py-2 { background-color: #151515; padding: 0 0 60px !important; }
+  .col-md-9 { display: block; margin-top: 0 !important; width: 100% !important; }
+  .e1, .e2, .e3, .e4 { padding-bottom: 10px !important; }
+  h3 { padding-left: 0; }
+
+  .coming-soon { color: #444; font-style: italic; font-size: 14px; }
+
     </style>
     <body>
 
@@ -281,15 +378,20 @@ p{
     </div>
   </header><!-- End Header -->
 
-  <section class="py-2">
+  <div class="page-hero">
+    <div class="container">
+      <h1>Meet the <span>Team</span></h1>
+      <p>The people dedicated to shaping Tunisia's future in science and technology.</p>
+    </div>
+  </div>
 
-    <div class="container-lg">
+  <section class="py-2">
+    <div class="container">
       <div class="col-md-9">
-        <section class="e1">
-            <div class="container_12">
-                <h3>Administration ATAST Staff</h3>
-            </div>
-            <div class="scrolling-wrapper">
+
+        <section class="e1 team-section">
+            <div class="team-section-title"><h3>Administration Staff</h3></div>
+            <div class="team-grid">
                 <div class="cardid">
                     <div class="img-id-cont">
                         <img class="img-id" src="static/assets/img/team/team-1.jpg"></img>
@@ -349,11 +451,9 @@ p{
             </div>
         </section>
         
-        <section class="e2">
-            <div class="container_12">
-                <h3>ATAST Scientific and Linguistic Staff</h3>
-            </div>
-            <div class="scrolling-wrapper">
+        <section class="e2 team-section">
+            <div class="team-section-title"><h3>Scientific and Linguistic Staff</h3></div>
+            <div class="team-grid">
                 <div class="cardid">
                     <div class="img-id-cont">
                         <img class="img-id" src="static/assets/img/team/team-1.jpg"></img>
@@ -472,11 +572,9 @@ p{
             </div>
         </section>
         
-        <section class="e3">
-            <div class="container_12">
-                <h3>ATAST Coaching Staff</h3>
-            </div>
-            <div class="scrolling-wrapper">
+        <section class="e3 team-section">
+            <div class="team-section-title"><h3>Coaching Staff</h3></div>
+            <div class="team-grid">
                 <div class="cardid">
                     <div class="img-id-cont">
                         <img class="img-id" src="static/assets/img/team/team-1.jpg"></img>
@@ -556,11 +654,9 @@ p{
             </div>
         </section>
         
-        <section class="e4">
-            <div class="container_12">
-                <h3>ATAST Experts and Technical Advisors</h3>
-            </div>
-            <div class="scrolling-wrapper">
+        <section class="e4 team-section">
+            <div class="team-section-title"><h3>Experts and Technical Advisors</h3></div>
+            <div class="team-grid">
                 
                 <div class="cardid">
                     <div class="img-id-cont">
@@ -645,22 +741,14 @@ p{
 
             </div>
         </section>
-        <section class="e4">
-             <div class="container_12">
-                <h3>ATAST Student Section Board</h3>
-            </div>
-            <div class="scrolling-wrapper">
-                <p>Coming Soon..</p>
-            </div>
+        <section class="e4 team-section">
+            <div class="team-section-title"><h3>Student Section Board</h3></div>
+            <p class="coming-soon">Coming Soon..</p>
         </section>
-        <section class="e4">
-             <div class="container_12">
-                <h3>ATAST Junior Board</h3>
-            </div>
-            <div class="scrolling-wrapper">
-                <p>Coming Soon..</p>
 
-            </div>
+        <section class="e4 team-section">
+            <div class="team-section-title"><h3>Junior Board</h3></div>
+            <p class="coming-soon">Coming Soon..</p>
         </section>
 
       </div>

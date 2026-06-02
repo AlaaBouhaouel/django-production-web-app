@@ -40,6 +40,52 @@
 </head>
 
 <style>
+  #hero {
+    background: none;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+
+  }
+
+
+  .hero-slider {
+    position: absolute;
+    inset: 0;
+    filter: brightness(0.35);
+
+  }
+  #hero .container {
+    position: relative;
+    z-index: 10;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1200ms ease;
+    z-index: 0;
+  }
+
+  .slide.active {
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+    background: rgba(0, 0, 0, 0.25);
+  }
   .member{
   width: 160px;
   height: auto;
@@ -200,8 +246,123 @@
     color: #ffffff;
   }
 
+  @media (max-width: 768px) {
+    #hero {
+      height: 40vh;
+      min-height: 220px;
+      padding-top: 0;
+      align-items: center;
+    }
+    #hero .container {
+      padding-top: 65px;
+      padding-bottom: 0;
+    }
+    #hero h1 {
+      font-size: 2rem;
+      margin-bottom: 6px;
+    }
+    #hero h2 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    #hero h5 {
+      font-size: 0.85rem;
+    }
+    .ach-row {
+      flex-direction: column;
+      gap: 20px;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .ach-row h3 {
+      text-align: center;
+      font-size: 1.3rem;
+    }
+    .ach {
+      width: 160px;
+      font-size: 1rem;
+    }
+    .ach:hover {
+      width: 170px;
+    }
+      .section-title p {
+        font-size: 20px;
+        font-weight: 400;
+
+  }
+  .display{
+    display: block !important;
+    color: #ca2120;
+    background-color: transparent;
+  }
+  .swiper-slideclient{
+    padding: 10px;
+  }
+  }
+
+  /* ---- Team sneak-peek ---- */
+  .row-team-wrapper {
+    position: relative;
+  }
+  .row-team-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 100px;
+    background: linear-gradient(to right, transparent, #fff);
+    pointer-events: none;
+    z-index: 5;
+  }
+  .team .member {
+    width: 190px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.09);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    background: #fff;
+  }
+  .team .member:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.16);
+  }
+  .team .member .member-img img {
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+  .team .member .member-info {
+    padding: 12px 10px !important;
+    text-align: center;
+  }
+  .team .member .member-info h4 {
+    font-size: 14px !important;
+    font-weight: 700;
+    color: #151515;
+    margin: 0;
+  }
+  .bton {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .bton::before,
+  .bton::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+    max-width: 120px;
+  }
+
+
 
 </style>
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -225,9 +386,12 @@
           <li><a class="nav-link scrollto " href="#achievements">News</a></li>  <!-- make the news part -->
 
           <li><a class="nav-link scrollto" href="/team">Team</a></li>
-            
-          </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li class="d-lg-none"><a class="nav-link" href="/clubs">Clubs</a></li>
+          <li class="d-lg-none"><a class="nav-link" href="/ifest">I-Fest²</a></li>
+          <li class="d-lg-none"><a class="nav-link" href="/maker_space">Maker Space</a></li>
+          <li class="d-lg-none"><a class="nav-link" href="/xminds">X-Mind</a></li>
+          <li class="d-lg-none"><a class="nav-link" href="/gifts">Gift zone</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -239,8 +403,20 @@
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center justify-content-center">
-    <div class="container" data-aos="fade-up">
+    <div class="hero-slider" id="heroSlider">
+      <div class="slide active" style="background-image: url('{% static 'assets/img/hero/1.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/2.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/3.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/4.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/6.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/7.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/8.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/0.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/11.jpg' %}');"></div>
+      <div class="slide" style="background-image: url('{% static 'assets/img/hero/22.jpg' %}');"></div>
 
+    </div>
+    <div class="container" data-aos="fade-up">
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
         <div class="col-xl-6 col-lg-8">
           <h1>ATAST<span>.</span></h1>
@@ -256,32 +432,32 @@
         </div>
       </div>
 
-      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-        <div class="col-xl-2 col-md-4">
+      <div class="row gy-4 mt-5 justify-content-center d-none d-md-flex" data-aos="zoom-in" data-aos-delay="250">
+        <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/clubs'">
             <i class="ri-bar-chart-box-line"></i>
             <h3><a href="/clubs">Clubs</a></h3>
           </div>
         </div>
-        <div class="col-xl-2 col-md-4">
+        <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/ifest'">
             <i class="ri-store-line"></i>
             <h3><a href="/ifest">I-Fest²</a></h3>
           </div>
         </div>
-        <div class="col-xl-2 col-md-4">
+        <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/maker_space'">
             <i class="ri-calendar-todo-line"></i>
             <h3><a href="/maker_space">Maker Space</a></h3>
           </div>
         </div>
-        <div class="col-xl-2 col-md-4">
+        <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/xminds'">
             <i class="ri-paint-brush-line"></i>
             <h3><a href="/xminds">X-Mind</a></h3>
           </div>
         </div>
-        <div class="col-xl-2 col-md-4">
+        <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/gifts'">
             <i class="ri-database-2-line"></i>
             <h3><a href="/gifts">Gift zone</a></h3>
@@ -331,6 +507,9 @@ Prix de l'excellence et selection de top projets</p>
 
             </div>
           </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="/news" class="get-started-btn">See more</a>
         </div>
       </div>
     </section>
@@ -431,93 +610,110 @@ Prix de l'excellence et selection de top projets</p>
 
         <div class="card">
           <img src="{% static 'assets/img/ne/btech.jpg' %}" class="imag" alt="">
-          <h2>B-tech</h2>
-          <p>B-Tech: Where Business Meets Technology. Compete in two rounds with innovative projects with business models to win!</p>
-          <a href="btech" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>B-tech</h2>
+            <p>B-Tech: Where Business Meets Technology. Compete in two rounds with innovative projects with business models to win!</p>
+            <a href="btech" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
-                
         <div class="card">
           <img src="{% static 'assets/img/ne/camp.jpg' %}" class="imag" alt="">
-          <h2>ATAST Camps</h2>
-          <p>ATAST camps offers an outstanding experience, where participants embark on a journey of world exploration and intellectual growth amidst the beauty of STEM and nature.</p>
-          <a href="camp" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>ATAST Camps</h2>
+            <p>ATAST camps is a journey of world exploration and intellectual growth amidst the beauty of STEM and nature.</p>
+            <a href="camp" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
         <div class="card">
           <img src="{% static 'assets/img/ne/genius.jpg' %}" class="imag" alt="">
-          <h2>Genius Olympiad Tunisia</h2>
-          <p>The National Genius Olympiad Tunisia showcases top young STEM talents, serving as a qualifier for the international finals in the USA.</p>
-          <a href="/genius" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>Genius Olympiad Tunisia</h2>
+            <p>The National Genius Olympiad Tunisia showcases top young STEM talents, serving as a qualifier for the international finals in the USA.</p>
+            <a href="/genius" class="get-started-btnX">learn more</a>
+          </div>
         </div>
-        
-        <div class="card">
-          <img src="{% static 'assets/img/ne/tunibrico.jpg' %}"class="imag" alt="">
-          <h2>Tunibrico</h2><!--================not sure of the name =======================================-->
-          <p>In Tunibrico, the esteemed national competition, words become weapons as contestants vie for victory through their linguistic prowess.</p>
-          <a href="/tunibrico" class="get-started-btnX">learn more</a>
-        </div>
-        
 
-        
+        <div class="card">
+          <img src="{% static 'assets/img/ne/tunibrico.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>Tunibrico</h2>
+            <p>In Tunibrico words become weapons as contestants vie for victory through their linguistic prowess.</p>
+            <a href="/tunibrico" class="get-started-btnX">learn more</a>
+          </div>
+        </div>
+
         <div class="card">
           <img src="{% static 'assets/img/ne/ai.jpg' %}" class="imag" alt="">
-          <h2>IA Youth Challenge</h2>
-          <p>The first national competition, invites wordsmiths to demonstrate their linguistic prowess in an exhilarating battle of wits.</p>
-          <a href="/ai" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>IA Youth Challenge</h2>
+            <p>The first national competition, invites wordsmiths to demonstrate their linguistic prowess in an exhilarating battle of wits.</p>
+            <a href="/ai" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
-        
         <div class="card">
           <img src="{% static 'assets/img/ne/isef.jpg' %}" class="imag" alt="">
-          <h2>ISEF Tunisia</h2>
-          <p>Join the National ISEF Competition, where top young scientists present their projects before advancing to the USA finals.</p>
-          <a href="https://www.societyforscience.org/isef/" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>ISEF Tunisia</h2>
+            <p>Join the National ISEF Competition, where top young scientists present their projects before advancing to the USA finals.</p>
+            <a href="https://www.societyforscience.org/isef/" class="get-started-btnX">learn more</a>
+          </div>
         </div>
-        
-        
-        
+
         <div class="card">
           <img src="{% static 'assets/img/ne/vex.jpg' %}" class="imag" alt="">
-          <h2>VEX national</h2>
-          <p>The VEX Tunisia Nationals highlights the best young robotics talents, acting as a gateway to the global VEX Robotics competition.</p>
-          <a href="https://www.vexrobotics.com/competition" class="get-started-btnX">learn more</a>
-        </div>
-        
-        <div class="card">
-          <img src="{% static 'assets/img/ne/training.jpg' %}"class="imag" alt="">
-          <h2>Training day</h2>
-          <p>Join the ATAS National Training Day for expert-led, hands-on STEM training that boosts skills and knowledge.</p>
-          <a href="training" class="get-started-btnX">learn more</a>
-        </div>
-        
-        <div class="card">
-          <img src="{% static 'assets/img/ne/cyber.jpg' %}"class="imag" alt="">
-          <h2>Cyber day</h2>
-          <p>Join us for Cyber Day, where participants compete, learn, and delve into the world of cybersecurity.</p>
-          <a href="cyber" class="get-started-btnX">learn more</a>
+          <div class="card-body">
+            <h2>VEX national</h2>
+            <p>The VEX Tunisia Nationals highlights the best young robotics talents, acting as a gateway to the global VEX Robotics competition.</p>
+            <a href="https://www.vexrobotics.com/competition" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
         <div class="card">
-          <img src="{% static 'assets/img/ne/oro-ind.jpg' %}"class="imag" alt="">
-          <h2>ORO</h2>
-          <p>Participate in ORO, the Olympiad of Robotics organized by ATAS in Tunisia, where innovation and robotics expertise shine.</p>
-          <a href="oro" class="get-started-btnX">learn more</a>
+          <img src="{% static 'assets/img/ne/training.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>Training day</h2>
+            <p>Join the ATAS National Training Day for expert-led, hands-on STEM training that boosts skills and knowledge.</p>
+            <a href="training" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
         <div class="card">
-          <img src="{% static 'assets/img/ne/photocontest0.jpg' %}"class="imag" alt="">
-          <h2>photocontest</h2><!--================not sure of the name =======================================-->
-          <p>Enter the ATAST PhotoContest to showcase your scientific creativity through captivating visual storytelling.<br> Science trough my cam!</p>
-          <a href="photocontest" class="get-started-btnX">learn more</a>
+          <img src="{% static 'assets/img/ne/cyber.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>Cyber day</h2>
+            <p>Join us for Cyber Day, where participants compete, learn, and delve into the world of cybersecurity.</p>
+            <a href="cyber" class="get-started-btnX">learn more</a>
+          </div>
         </div>
 
+        <div class="card">
+          <img src="{% static 'assets/img/ne/oro-ind.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>ORO</h2>
+            <p>Participate in ORO, the Olympiad of Robotics organized by ATAS in Tunisia, where innovation and robotics expertise shine.</p>
+            <a href="oro" class="get-started-btnX">learn more</a>
+          </div>
+        </div>
 
-        <div class="card" style="margin-left: 0px;">
-          <img src="{% static 'assets/img/ne/spell.jpg' %}"class="imag" alt="">
-          <h2>Spell</h2>
-          <p>Spell, a prestigious national competition, invites participants to showcase their linguistic skills in a thrilling battle of words</p>
-          <a href="/spell" class="get-started-btnX">learn more</a>
+        <div class="card">
+          <img src="{% static 'assets/img/ne/photocontest0.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>Photocontest</h2>
+            <p>Enter the ATAST PhotoContest to showcase your scientific creativity through captivating visual storytelling.</p>
+            <a href="photocontest" class="get-started-btnX">learn more</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="{% static 'assets/img/ne/spell.jpg' %}" class="imag" alt="">
+          <div class="card-body">
+            <h2>Spell</h2>
+            <p>Spell, a prestigious national competition, invites participants to showcase their linguistic skills in a thrilling battle of words.</p>
+            <a href="/spell" class="get-started-btnX">learn more</a>
+          </div>
         </div>
       </div>
     </div>
@@ -789,80 +985,73 @@ Prix de l'excellence et selection de top projets</p>
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2 style="color: #ca2120;">Team</h2>
-          <p style="color: #151515;">Check our Team</p>
+          <h2 style="color: #ca2120;">Meet the Team</h2>
+          <p style="color: #555;">The people behind ATAST — dedicated, passionate, and driven.</p>
         </div>
 
-        <div class="row-team">
+        <div class="row-team-wrapper">
+          <div class="row-team">
 
-          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
-              <div class="member-img">
-                <img src="{% static 'assets/img/team/team-1.jpg'  %}" class="img-fluid" alt="">
-   
-              </div>
-              <div class="member-info">
-                <h4>Hatem Slimane</h4>
+            <div class="member-cards align-items-stretch1">
+              <div class="member" data-aos="fade-up" data-aos-delay="100" onclick="window.location.href='/team'">
+                <div class="member-img">
+                  <img src="{% static 'assets/img/team/team-1.jpg' %}" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Hatem Slimane</h4>
+                </div>
               </div>
             </div>
+
+            <div class="member-cards align-items-stretch1">
+              <div class="member" data-aos="fade-up" data-aos-delay="150" onclick="window.location.href='/team'">
+                <div class="member-img">
+                  <img src="{% static 'assets/img/team/hela.jpg' %}" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Hela Beizigue</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="member-cards align-items-stretch1">
+              <div class="member" data-aos="fade-up" data-aos-delay="200" onclick="window.location.href='/team'">
+                <div class="member-img">
+                  <img src="{% static 'assets/img/team/ali.jpg' %}" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Ali Ben Abeljalil</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="member-cards align-items-stretch1">
+              <div class="member" data-aos="fade-up" data-aos-delay="250" onclick="window.location.href='/team'">
+                <div class="member-img">
+                  <img src="{% static 'assets/img/team/yosra.jpg' %}" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Yosra Kerkeni</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="member-cards align-items-stretch1">
+              <div class="member" data-aos="fade-up" data-aos-delay="300" onclick="window.location.href='/team'">
+                <div class="member-img">
+                  <img src="{% static 'assets/img/team/mariem.jpg' %}" alt="">
+                </div>
+                <div class="member-info">
+                  <h4>Mariem Bzewich</h4>
+                </div>
+              </div>
+            </div>
+
           </div>
-
-          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="{% static 'assets/img/team/hela.jpg' %}"class="img-fluid" alt="">
-
-              </div>
-
-              <div class="member-info">
-              <h4>Hela Beizigue</h4>
-              </div>
-            </div>
-          </div>
-          
-          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="{% static 'assets/img/team/ali.jpg' %}"class="img-fluid" alt="">
-
-              </div>
-              <div class="member-info">
-                <h4>Ali Ben Abeljalil</h4>
-              </div>
-            </div>
-          </div> 
-
-
-
-          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="{% static 'assets/img/team/yosra.jpg' %}"class="img-fluid" alt="">
-
-              </div>
-              <div class="member-info">
-                <h4>Yosra Kerkeni</h4>
-              </div>
-            </div>
-          </div>
-          
-          <div class="member-cards col-lg-3 col-md-6 d-flex align-items-stretch1">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="{% static 'assets/img/team/mariem.jpg'  %}" class="img-fluid" alt="">
-
-              </div>
-              <div class="member-info">
-                <h4>Mariem Bzewich</h4>
-              </div>
-            </div>
-          </div>
-
-
-
         </div>
+
         <div class="bton">
-          <a href="team" class="get-started-btnX">check The full Team</a>
+          <a href="/team" class="get-started-btn display">Meet the full team &rarr;</a>
         </div>
       </div>
     </section><!-- End Team Section -->
@@ -1006,7 +1195,6 @@ Prix de l'excellence et selection de top projets</p>
 
   <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js'  %}"></script>
   <script src="{% static 'assets/vendor/aos/aos.js'  %}"></script>
@@ -1018,6 +1206,18 @@ Prix de l'excellence et selection de top projets</p>
 
   <!-- Template Main JS File -->
   <script src="{% static 'assets/js/main.js'  %}"></script>
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    let current = 0;
+
+    function nextSlide() {
+      slides[current].classList.remove("active");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+    }
+
+    setInterval(nextSlide, 3000);
+</script>
 
 </body>
 

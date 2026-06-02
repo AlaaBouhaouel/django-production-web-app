@@ -412,7 +412,7 @@ h6 {
 #hero {
   width: 100%;
   min-height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/hero-bg.ea8fe9f829e7.jpg") top center;
   background-size: cover;
   position: relative;
 }
@@ -757,11 +757,11 @@ section {
     margin-bottom: 20px;
   }
 /*--------------------------------------------------------------
-# Cta         background: url("../img/features.jpg") no-repeat;
+# Cta         background: url("../img/features.70f0304bc53f.jpg") no-repeat;
 
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../img/features.jpg") fixed center center;
+  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../img/features.70f0304bc53f.jpg") fixed center center;
   background-size: cover;
   padding: 60px 0;
 }
@@ -1051,7 +1051,7 @@ section {
 }
 
 .counts .image {
-  background: url("../img/counts-img.jpg") center center no-repeat;
+  background: url("../img/counts-img.e43e5106d321.jpg") center center no-repeat;
   background-size: cover;
   min-height: 400px;
 }
@@ -1077,7 +1077,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/features.jpg") no-repeat;
+  background: url("../img/features.70f0304bc53f.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;

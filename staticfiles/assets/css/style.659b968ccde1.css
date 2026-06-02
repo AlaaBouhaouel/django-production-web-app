@@ -160,7 +160,6 @@ h6 {
 --------------------------------------------------------------*/
 .get-started-btn {
   color: #fff;
-  background-color: #ca2120;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
@@ -171,12 +170,12 @@ h6 {
 }
 
 .get-started-btn:hover {
-  background: transparent;
-  color: #ca2120;
+  background: #ca2120;
+  color: #343a40;
 }
 
 @media (max-width: 992px) {
-  #header .get-started-btn {
+  .get-started-btn {
     display: none;
   }
 }
@@ -412,7 +411,7 @@ h6 {
 #hero {
   width: 100%;
   min-height: 100vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("../img/hero-bg.ea8fe9f829e7.jpg") top center;
   background-size: cover;
   position: relative;
 }
@@ -687,81 +686,53 @@ section {
   }
   .get-started-btnX {
     color: #fff;
-    border-radius: 6px;
-    padding: 7px 18px;
+    border-radius: 4px;
+    padding: 7px 25px 8px 25px;
     white-space: nowrap;
     transition: 0.3s;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14px;
     display: inline-block;
     border: 2px solid #ca2120;
-    background-color: #ca2120;
-    align-self: flex-start;
-    margin-top: auto;
+    background-color: #151515;
   }
   .get-started-btnX:hover {
-    background: transparent;
-    color: #ca2120;
+    background: #ca2120;
+    color: #fff;
   }
   .scrolling-wrapper .card {
-    display: inline-flex;
-    flex-direction: column;
-    width: 260px;
+    display: inline-block;
+    width: 400px; /* or any other fixed width */
+    height: 500px;
     background-color: #fff;
-    margin: 16px 10px;
-    padding: 0;
-    vertical-align: top;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
-    overflow: hidden;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  .scrolling-wrapper .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-  }
-  .scrolling-wrapper .card h2 {
-    font-size: 16px;
-    font-weight: 700;
-    color: #151515;
-    margin: 0 0 8px;
-  }
-  .scrolling-wrapper .card p {
-    font-size: 13px;
-    color: #555;
-    flex: 1;
-    margin: 0 0 14px;
-  }
-  .scrolling-wrapper .card-body {
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+    margin: 20px ;
+    padding: 50px;
+    vertical-align: top; /* Align cards to the top */
+    text-align: center;
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Break long words if needed */
+    word-wrap: break-word; /* IE and Edge */
+    border-color: #ca202065;
   }
   .scrolling-wrapper .imag {
-    width: 100%;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
-    margin: 0;
+    width: 300px; /* or any other fixed width */
+    height: 200px;
+    vertical-align: top; /* Align cards to the top */
+    text-align: center;
+    margin-bottom: 30px;
+
   }
   .scrolling-wrapper .button {
     background-color: #ca2120;
     color: #fff;
-    border: 2px solid #ca2120;
+    border: 2px solid #ca2120; /* Green */
     margin-bottom: 20px;
   }
 /*--------------------------------------------------------------
-# Cta         background: url("../img/features.jpg") no-repeat;
+# Cta         background: url("../img/features.70f0304bc53f.jpg") no-repeat;
 
 --------------------------------------------------------------*/
 .cta {
-  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../img/features.jpg") fixed center center;
+  background: linear-gradient(rgba(2, 2, 2, 0.5), rgba(0, 0, 0, 0.5)), url("../img/features.70f0304bc53f.jpg") fixed center center;
   background-size: cover;
   padding: 60px 0;
 }
@@ -1051,7 +1022,7 @@ section {
 }
 
 .counts .image {
-  background: url("../img/counts-img.jpg") center center no-repeat;
+  background: url("../img/counts-img.e43e5106d321.jpg") center center no-repeat;
   background-size: cover;
   min-height: 400px;
 }
@@ -1077,7 +1048,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/features.jpg") no-repeat;
+  background: url("../img/features.70f0304bc53f.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -1631,4 +1602,3 @@ section {
   font-size: 13px;
   color: #fff;
 }
-

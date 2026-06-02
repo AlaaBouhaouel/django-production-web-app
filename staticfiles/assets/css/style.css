@@ -45,7 +45,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #ca2120;
+  background: #ca2056;
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -160,6 +160,7 @@ h6 {
 --------------------------------------------------------------*/
 .get-started-btn {
   color: #fff;
+  background-color: #ca2120;
   border-radius: 4px;
   padding: 7px 25px 8px 25px;
   white-space: nowrap;
@@ -170,12 +171,12 @@ h6 {
 }
 
 .get-started-btn:hover {
-  background: #ca2120;
-  color: #343a40;
+  background: transparent;
+  color: #ca2120;
 }
 
 @media (max-width: 992px) {
-  .get-started-btn {
+  #header .get-started-btn {
     display: none;
   }
 }
@@ -686,45 +687,73 @@ section {
   }
   .get-started-btnX {
     color: #fff;
-    border-radius: 4px;
-    padding: 7px 25px 8px 25px;
+    border-radius: 6px;
+    padding: 7px 18px;
     white-space: nowrap;
     transition: 0.3s;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
     display: inline-block;
     border: 2px solid #ca2120;
-    background-color: #151515;
+    background-color: #ca2120;
+    align-self: flex-start;
+    margin-top: auto;
   }
   .get-started-btnX:hover {
-    background: #ca2120;
-    color: #fff;
+    background: transparent;
+    color: #ca2120;
   }
   .scrolling-wrapper .card {
-    display: inline-block;
-    width: 400px; /* or any other fixed width */
-    height: 500px;
+    display: inline-flex;
+    flex-direction: column;
+    width: 260px;
     background-color: #fff;
-    margin: 20px ;
-    padding: 50px;
-    vertical-align: top; /* Align cards to the top */
-    text-align: center;
-    white-space: normal; /* Allow text to wrap */
-    overflow-wrap: break-word; /* Break long words if needed */
-    word-wrap: break-word; /* IE and Edge */
-    border-color: #ca202065;
+    margin: 16px 10px;
+    padding: 0;
+    vertical-align: top;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .scrolling-wrapper .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
+  }
+  .scrolling-wrapper .card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #151515;
+    margin: 0 0 8px;
+  }
+  .scrolling-wrapper .card p {
+    font-size: 13px;
+    color: #555;
+    flex: 1;
+    margin: 0 0 14px;
+  }
+  .scrolling-wrapper .card-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
   .scrolling-wrapper .imag {
-    width: 300px; /* or any other fixed width */
-    height: 200px;
-    vertical-align: top; /* Align cards to the top */
-    text-align: center;
-    margin-bottom: 30px;
-
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 0;
+    display: block;
+    margin: 0;
   }
   .scrolling-wrapper .button {
     background-color: #ca2120;
     color: #fff;
-    border: 2px solid #ca2120; /* Green */
+    border: 2px solid #ca2120;
     margin-bottom: 20px;
   }
 /*--------------------------------------------------------------
@@ -1602,3 +1631,4 @@ section {
   font-size: 13px;
   color: #fff;
 }
+
