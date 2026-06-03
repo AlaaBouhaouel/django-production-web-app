@@ -6,6 +6,12 @@ import os
 from importlib.util import find_spec
 from pathlib import Path
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 HAS_CORSHEADERS = find_spec("corsheaders") is not None
@@ -166,7 +172,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 if HAS_WHITENOISE:
     STORAGES = {
         'default': {
-            'BACKEND': 'django.core.files.storage.FileSystemStorage',
+            'BACKEND': 'cloudinary_storage.storage.MediaCloudinaryStorage',
         },
         'staticfiles': {
             'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
