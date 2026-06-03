@@ -225,14 +225,7 @@
 
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="inner">
-      <a href="/news" class="back-link"><i class="bi bi-arrow-left"></i> All Articles</a>
-      <span class="site-logo">A<span>T</span>AST</span>
-    </div>
-  </header>
-
+ 
   <!-- Hero Image -->
   {% if article.image %}
   <div class="article-hero">
@@ -249,7 +242,7 @@
       {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
       <span class="article-date">
         <i class="bi bi-calendar3"></i>
-        {{ article.published_date|date:"F j, Y" }}
+        {{ article.date|date:"F j, Y" }}
       </span>
     </div>
 
