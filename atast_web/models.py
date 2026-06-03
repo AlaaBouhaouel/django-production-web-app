@@ -56,6 +56,21 @@ class GalleryImage(models.Model):
         ordering = ['-uploaded_at']
 
 
+class LatestNews(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    link = models.URLField(blank=True, null=True)
+    date = models.DateField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-date']
+        verbose_name = 'Latest News'
+        verbose_name_plural = 'Latest News'
+
+
 class Gifts(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Video, NewsArticle, Partners_Supporters, GalleryImage, Gifts
+from .models import Video, NewsArticle, Partners_Supporters, GalleryImage, Gifts, LatestNews
 
 
 admin.site.register(Video)
@@ -31,3 +31,10 @@ class GalleryImageAdmin(admin.ModelAdmin):
 class GiftsAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'order')
     ordering = ('order',)
+
+
+@admin.register(LatestNews)
+class LatestNewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date')
+    search_fields = ('title',)
+    ordering = ('-date',)
