@@ -387,7 +387,7 @@
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">International</a></li>
           <li><a class="nav-link scrollto " href="#ne">Events</a></li>
-          <li><a class="nav-link scrollto " href="#achievements">News</a></li>  <!-- make the news part -->
+          <li><a class="nav-link scrollto " href="/news">News</a></li>  <!-- make the news part -->
 
           <li><a class="nav-link scrollto" href="/team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
@@ -732,7 +732,8 @@
         <div class="row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">This year</li>
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-this-year">This Year</li>
               <li data-filter=".filter-app">National</li>
               <li data-filter=".filter-card">International</li>
               <li data-filter=".filter-web">Tunisia Team</li>
@@ -742,118 +743,20 @@
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+          {% for img in gallery_images %}
+          <div class="col-lg-4 col-md-6 portfolio-item {% if img.category == 'this_year' %}filter-this-year{% elif img.category == 'national' %}filter-app{% elif img.category == 'international' %}filter-card{% elif img.category == 'tunisia_team' %}filter-web{% endif %}">
             <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-8.jpg'  %}" class="img-fluid" alt="">
+              <img src="{{ img.image.url }}" class="img-fluid" alt="{{ img.caption }}">
               <div class="portfolio-info">
-                <h4>2024</h4>
-                <p>National</p>
+                <h4>{{ img.caption }}</h4>
+                <p>{{ img.get_category_display }}</p>
                 <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-8.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
+                  <a href="{{ img.image.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ img.caption }}"><i class="bx bx-plus"></i></a>
                 </div>
               </div>
             </div>
           </div>
-
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-3.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>A National Event </h4>
-                <p>National</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-3.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-4.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>International</h4>
-                <p>International</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-4.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-5.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>In the International</h4>
-                <p>International</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-5.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/DSC03836.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>In the International</h4>
-                <p>National</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/DSC03836.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-7.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>International</h4>
-                <p>International</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-7.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-1.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>International</h4>
-                <p>International</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-1.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'assets/img/portfolio/portfolio-9.jpg'  %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>In the rnational</h4>
-                <p>National</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'assets/img/portfolio/portfolio-9.jpg'  %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
 
         </div>
 
