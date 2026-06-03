@@ -11,6 +11,7 @@ class Video(models.Model):
         ordering = ['added']
         
 class NewsArticle(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     category = models.CharField(max_length=100, blank=True, help_text='e.g. International · Competition')
     link = models.URLField(blank=True, null=True)
@@ -57,6 +58,7 @@ class GalleryImage(models.Model):
 
 
 class LatestNews(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='latest_news/', blank=True, null=True)

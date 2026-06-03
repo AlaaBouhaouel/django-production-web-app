@@ -70,6 +70,10 @@ def news(request):
     return render(request, 'news.html', {'featured': featured, 'articles': articles})
 
 
+def news_detail(request, news_id):
+    article = LatestNews.objects.get(id=news_id)
+    return render(request, 'news_detail.html', {'article': article})
+
 
 # ── ORO category pages ──
 def oro_poussins(request):

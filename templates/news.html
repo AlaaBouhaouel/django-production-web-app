@@ -248,6 +248,25 @@
       background: transparent !important;
     }
 
+    /* ── 5-line body clamp ── */
+    .body-clamp {
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      line-clamp: 5;
+      overflow: hidden;
+    }
+
+    /* ── Clickable titles ── */
+    .article-featured a h2,
+    .article-standard a h2 {
+      color: inherit;
+      transition: color .2s;
+    }
+    .article-featured a:hover h2,
+    .article-standard a:hover h2 { color: #ca2120; }
+    .article-featured a, .article-standard a { text-decoration: none; }
+
     /* ── Read-more link ── */
     .read-more {
       display: inline-flex;
@@ -336,11 +355,11 @@
     {% if featured %}
     <article class="article-featured">
       {% if featured.category %}<span class="cat-tag">{{ featured.category }}</span>{% endif %}
-      {% if featured.image %}<img src="{{ featured.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ featured.title }}" class="feat-img">{% endif %}
-      <h2>{{ featured.title }}</h2>
+      {% if featured.image %}<a href="/news/{{ featured.id }}/"><img src="{{ featured.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ featured.title }}" class="feat-img"></a>{% endif %}
+      <a href="/news/{{ featured.id }}/"><h2>{{ featured.title }}</h2></a>
       <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ featured.published_date|date:"F Y" }}</p>
-      <div class="lead-para article-body">{{ featured.body|safe }}</div>
-      {% if featured.link %}<a href="{{ featured.link }}" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>{% endif %}
+      <div class="lead-para article-body body-clamp">{{ featured.body|safe }}</div>
+      <a href="/news/{{ featured.id }}/" class="read-more">Read article <i class="bi bi-arrow-right"></i></a>
     </article>
     {% if articles %}<hr class="article-rule">{% endif %}
     {% endif %}
@@ -351,15 +370,15 @@
       {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
       {% if article.image %}
         {% if forloop.counter|divisibleby:2 %}
-          <img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-right">
+          <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-right"></a>
         {% else %}
-          <img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-left">
+          <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-left"></a>
         {% endif %}
       {% endif %}
-      <h2>{{ article.title }}</h2>
+      <a href="/news/{{ article.id }}/"><h2>{{ article.title }}</h2></a>
       <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ article.published_date|date:"F Y" }}</p>
-      <div class="article-body">{{ article.body|safe }}</div>
-      {% if article.link %}<a href="{{ article.link }}" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>{% endif %}
+      <div class="article-body body-clamp">{{ article.body|safe }}</div>
+      <a href="/news/{{ article.id }}/" class="read-more">Read article <i class="bi bi-arrow-right"></i></a>
     </article>
     {% if not forloop.last %}<hr class="article-rule">{% endif %}
     {% empty %}

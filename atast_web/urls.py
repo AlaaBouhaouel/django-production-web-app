@@ -26,6 +26,8 @@ urlpatterns = [
     path('sss', views.sss, name='sss'),
     path('news', views.news, name='news'),
 
+    path('news/<int:news_id>/', views.news_detail, name='news_detail'),
+
     # ── ORO category pages ──
     path('oro_poussins', views.oro_poussins, name='oro_poussins'),
     path('oro_juniors', views.oro_juniors, name='oro_juniors'),

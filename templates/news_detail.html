@@ -1,0 +1,278 @@
+{% load static cloudinary_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ article.title }} — ATAST</title>
+  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Open+Sans:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      background: #111;
+      color: #d0d0d0;
+      font-family: "Open Sans", sans-serif;
+      font-size: 17px;
+      line-height: 1.85;
+      margin: 0;
+    }
+
+    a { color: #ca2120; text-decoration: none; }
+    a:hover { color: #e03332; }
+
+    /* ── Header ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 14px 0;
+    }
+    .site-header .inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-family: "Raleway", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #888;
+      transition: color .2s;
+    }
+    .back-link:hover { color: #ca2120; }
+    .site-logo {
+      font-family: "Raleway", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .1em;
+    }
+    .site-logo span { color: #ca2120; }
+
+    /* ── Hero Image ── */
+    .article-hero {
+      margin-top: 60px;
+      width: 100%;
+      max-height: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+    .article-hero img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+    }
+    .article-hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 160px;
+      background: linear-gradient(to bottom, transparent, #111);
+    }
+
+    /* ── Article Container ── */
+    .article-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── Meta ── */
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .cat-tag {
+      background: rgba(202,33,32,0.12);
+      color: #ca2120;
+      border: 1px solid rgba(202,33,32,0.3);
+      border-radius: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      font-family: "Raleway", sans-serif;
+    }
+    .article-date {
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── Title ── */
+    .article-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.25;
+      margin: 0 0 32px;
+    }
+
+    /* ── Divider ── */
+    .article-rule {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin: 0 0 36px;
+    }
+
+    /* ── Body ── */
+    .article-body {
+      color: #c8c8c8;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+    .article-body p { margin-bottom: 1.4em; }
+    .article-body h1, .article-body h2, .article-body h3 {
+      font-family: "Playfair Display", Georgia, serif;
+      color: #fff;
+      margin-top: 1.8em;
+      margin-bottom: .6em;
+    }
+    .article-body img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin: 1.5em 0;
+    }
+    .article-body a { color: #ca2120; border-bottom: 1px solid rgba(202,33,32,0.3); }
+    .article-body a:hover { border-bottom-color: #ca2120; }
+
+    /* ── External Link ── */
+    .article-ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 36px;
+      padding: 11px 22px;
+      border: 1px solid rgba(202,33,32,0.5);
+      border-radius: 4px;
+      color: #ca2120;
+      font-family: "Raleway", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      transition: background .2s, color .2s;
+    }
+    .article-ext-link:hover {
+      background: #ca2120;
+      color: #fff;
+    }
+
+    /* ── Footer Nav ── */
+    .article-footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 32px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "Raleway", sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #666;
+      transition: color .2s;
+    }
+    .back-btn:hover { color: #ca2120; }
+
+    /* ── No image fallback ── */
+    .no-hero-spacer { height: 80px; }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      .article-hero img { height: 240px; }
+      .article-wrap { padding: 32px 18px 60px; }
+      .article-title { font-size: 1.6rem; }
+      .article-body { font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="inner">
+      <a href="/news" class="back-link"><i class="bi bi-arrow-left"></i> All Articles</a>
+      <span class="site-logo">A<span>T</span>AST</span>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  {% if article.image %}
+  <div class="article-hero">
+    <img src="{{ article.image.url|cloudinary_optimize }}" alt="{{ article.title }}">
+  </div>
+  {% else %}
+  <div class="no-hero-spacer"></div>
+  {% endif %}
+
+  <!-- Article -->
+  <article class="article-wrap">
+
+    <div class="article-meta">
+      {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
+      <span class="article-date">
+        <i class="bi bi-calendar3"></i>
+        {{ article.published_date|date:"F j, Y" }}
+      </span>
+    </div>
+
+    <h1 class="article-title">{{ article.title }}</h1>
+    <hr class="article-rule">
+
+    <div class="article-body">
+      {{ article.description|safe }}
+    </div>
+
+    {% if article.link %}
+    <a href="{{ article.link }}" class="article-ext-link" target="_blank" rel="noopener">
+      <i class="bi bi-box-arrow-up-right"></i> Read full article
+    </a>
+    {% endif %}
+
+  </article>
+
+  <footer class="article-footer">
+    <a href="/news" class="back-btn"><i class="bi bi-arrow-left"></i> Back to News</a>
+  </footer>
+
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+</body>
+</html>

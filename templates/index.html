@@ -486,13 +486,15 @@
           <div class="col-lg-12 d-flex justify-content-center">
             <div class="news-row">
               {% for item in latest_news %}
-              <div class="news-item">
-                {% if item.image %}<img src="{{ item.image.url|cloudinary_optimize }}" alt="{{ item.title }}" loading="lazy">{% endif %}
-                <div class="news-info">
-                  <h4>{% if item.link %}<a href="{{ item.link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
-                  <p>{{ item.description }}</p>
+              <a href="/news/{{ item.id }}/">
+                <div class="news-item">
+                  {% if item.image %}<img src="{{ item.image.url|cloudinary_optimize }}" alt="{{ item.title }}" loading="lazy">{% endif %}
+                  <div class="news-info">
+                    <h4>{% if item.link %}<a href="{{ item.link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
+                    <p>{{ item.description }}</p>
+                  </div>
                 </div>
-              </div>
+              </a>
               {% if not forloop.last %}<div class="seperator"></div>{% endif %}
               {% endfor %}
             </div>
