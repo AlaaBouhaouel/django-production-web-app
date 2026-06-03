@@ -1,4 +1,4 @@
-{% load static %}
+{% load static cloudinary_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
 
   <!-- Google Fonts — Playfair Display for headlines, Open Sans for body -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:300,400,500,600,700" rel="stylesheet">
 
   <!-- Vendor CSS -->
   <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -336,7 +336,7 @@
     {% if featured %}
     <article class="article-featured">
       {% if featured.category %}<span class="cat-tag">{{ featured.category }}</span>{% endif %}
-      {% if featured.image %}<img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="feat-img">{% endif %}
+      {% if featured.image %}<img src="{{ featured.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ featured.title }}" class="feat-img">{% endif %}
       <h2>{{ featured.title }}</h2>
       <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ featured.published_date|date:"F Y" }}</p>
       <div class="lead-para article-body">{{ featured.body|safe }}</div>
@@ -351,9 +351,9 @@
       {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
       {% if article.image %}
         {% if forloop.counter|divisibleby:2 %}
-          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-img-right">
+          <img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-right">
         {% else %}
-          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-img-left">
+          <img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-left">
         {% endif %}
       {% endif %}
       <h2>{{ article.title }}</h2>

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static cloudinary_tags %}
 <!DOCTYPE html>
 <html lang="en">
     
@@ -15,7 +15,9 @@
   <!-- Favicons -->
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Vendor CSS Files -->
   <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
@@ -485,7 +487,7 @@
             <div class="news-row">
               {% for item in latest_news %}
               <div class="news-item">
-                {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}">{% endif %}
+                {% if item.image %}<img src="{{ item.image.url|cloudinary_optimize }}" alt="{{ item.title }}" loading="lazy">{% endif %}
                 <div class="news-info">
                   <h4>{% if item.link %}<a href="{{ item.link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
                   <p>{{ item.description }}</p>
@@ -544,7 +546,7 @@
           <h2 style="color: #ca2120;font-weight: bold;">Partners & Supporters</h2>
           <div class="swiper-wrapper align-items-center">
             {% for partner in partners_supporters %}
-            <div class="swiper-slideclient"><img src="{{ partner.logo.url }}" class="img-fluid" alt="{{ partner.name }}"></div>
+            <div class="swiper-slideclient"><img src="{{ partner.logo.url|cloudinary_optimize }}" class="img-fluid" loading="lazy" alt="{{ partner.name }}"></div>
             {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
@@ -746,12 +748,12 @@
           {% for img in gallery_images %}
           <div class="col-lg-4 col-md-6 portfolio-item {% if img.category == 'this_year' %}filter-this-year{% elif img.category == 'national' %}filter-app{% elif img.category == 'international' %}filter-card{% elif img.category == 'tunisia_team' %}filter-web{% endif %}">
             <div class="portfolio-wrap">
-              <img src="{{ img.image.url }}" class="img-fluid" alt="{{ img.caption }}">
+              <img src="{{ img.image.url|cloudinary_optimize }}" class="img-fluid" loading="lazy" alt="{{ img.caption }}">
               <div class="portfolio-info">
                 <h4>{{ img.caption }}</h4>
                 <p>{{ img.get_category_display }}</p>
                 <div class="portfolio-links">
-                  <a href="{{ img.image.url }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ img.caption }}"><i class="bx bx-plus"></i></a>
+                  <a href="{{ img.image.url|cloudinary_optimize }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ img.caption }}"><i class="bx bx-plus"></i></a>
                 </div>
               </div>
             </div>

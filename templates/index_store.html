@@ -1,4 +1,4 @@
-{% load static %}
+{% load static cloudinary_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- Vendor CSS -->
   <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
@@ -417,7 +419,7 @@
         <div class="col">
           <div class="product-card">
             <div class="product-img-wrap">
-              {% if gift.image %}<img src="{{ gift.image.url }}" alt="{{ gift.name }}">{% endif %}
+              {% if gift.image %}<img src="{{ gift.image.url|cloudinary_optimize }}" alt="{{ gift.name }}" loading="lazy">{% endif %}
             </div>
             <h3>{{ gift.name }}</h3>
             {% if gift.description %}<p class="product-desc">{{ gift.description }}</p>{% endif %}
