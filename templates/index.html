@@ -474,6 +474,7 @@
 
   <main id="main">
     <!-- ======== News Section ======== -->
+     {% if latest_news %}
      <section class="news">
       <div class="container news-container" data-aos="fade-up">
         <div class="section-title">
@@ -482,41 +483,16 @@
         <div class="news-row" data-aos="fade-up" data-aos-delay="100">
           <div class="col-lg-12 d-flex justify-content-center">
             <div class="news-row">
+              {% for item in latest_news %}
               <div class="news-item">
-                <img src="{% static 'assets/img/news/1.jpg' %}"  alt="">
-                  <div class="news-info">
-                    <h4><a href="/oro"> ORO 2026 - OPEN ROBOTICS OLYMPIAD 🏅🎖</a></h4>
-                  <p>⚔️ The arena is calling… 🤖🔥<br>Registrations for ORO 2026 are NOW OPEN!<br> Step into the world of robotics, innovation, and competition where creativity meets technology. 🚀</p>
-                </div>
-              </div>
-              <div class="seperator"></div>
-                <div class="news-item">
-                <img src="{% static 'assets/img/news/portugal_competition.jpg' %}"  alt="">
+                {% if item.image %}<img src="{{ item.image.url }}" alt="{{ item.title }}">{% endif %}
                 <div class="news-info">
-                  <h4>Atastians Represent Tunisia at Prestigious Competition with Outstanding Results🏅🎖</h4>
-                  <p>برافو بطلات تونس...  🇹🇳 الف مبروك التتويج من #البرتغال
-فخوريييييين... 👏
-#جائزة التميز العام للفريق التونسي مع مرتبة الشرف 🥇 🏅🎖👑.
-Prix de l'excellence et selection de top projets</p>
+                  <h4>{% if item.link %}<a href="{{ item.link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
+                  <p>{{ item.description }}</p>
                 </div>
               </div>
-              <div class="seperator"></div>
-              <div class="news-item">
-                <img src="{% static 'assets/img/news/affiche1.png' %}"  alt="">
-                <div class="news-info">
-                  <h4>Summer Training Session Is Open — Join Now!✨🚀 </h4>
-                  <p>You're interested in building innovative solutions? Join our summer training session and enhance your skills in science and technology! <br>🔬💡🤖 !استعد لاكتشاف عالم العلوم والتكنولوجيا</p>
-                </div>
-              </div>
-              <div class="seperator"></div>
-              <div class="news-item">
-                <img src="{% static 'assets/img/news/affiche3.png' %}"  alt="">
-                <div class="news-info">
-                  <h4>Shape your summer! Be creative!</h4>
-                  <p>Get ready to explore the world of science and technology this summer! <br>🔬💡🤖 !استعد لاكتشاف عالم العلوم والتكنولوجيا</p>
-                </div>
-              </div>
-
+              {% if not forloop.last %}<div class="seperator"></div>{% endif %}
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -525,6 +501,7 @@ Prix de l'excellence et selection de top projets</p>
         </div>
       </div>
     </section>
+    {% endif %}
     <section class="Acheivements">
       <div class="ach-row">
         <h3>Find The Latest <br> <span>News</span> And <span>Achievements</span>!</h3>
@@ -565,13 +542,10 @@ Prix de l'excellence et selection de top projets</p>
 
         <div class="clients-slider swiper">
           <h2 style="color: #ca2120;font-weight: bold;">Partners & Supporters</h2>
-
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-1.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-3.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-4.png' %}" class="img-fluid" alt=""></div>
-            <div class="swiper-slideclient"><img src="{% static 'assets/img/clients/client-5.png' %}" class="img-fluid" alt=""></div>
-
+            {% for partner in partners_supporters %}
+            <div class="swiper-slideclient"><img src="{{ partner.logo.url }}" class="img-fluid" alt="{{ partner.name }}"></div>
+            {% endfor %}
           </div>
           <div class="swiper-pagination"></div>
         </div>

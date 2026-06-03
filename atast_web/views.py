@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from .models import NewsArticle
+from .models import NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts
 
 def index(request):
-    return render(request, 'index.html')
+    latest_news = LatestNews.objects.all()[:4]
+    partners_supporters = Partners_Supporters.objects.all()
+    gallery_images = GalleryImage.objects.all()
+    return render(request, 'index.html', {'latest_news': latest_news, 'partners_supporters': partners_supporters, 'gallery_images': gallery_images})
 
 def index_store(request):
     return render(request, 'index_store.html')
