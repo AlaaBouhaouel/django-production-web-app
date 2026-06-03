@@ -179,6 +179,106 @@
       margin: 0;
     }
 
+    .product-card .product-desc {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .product-card .product-price {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ca2120;
+      margin: 0;
+      margin-top: auto;
+    }
+
+    .btn-order {
+      margin-top: 12px;
+      width: 100%;
+      background: #ca2120;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-order:hover { background: #a31a19; }
+
+    /* Order Modal */
+    .order-modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+    }
+    .order-modal-backdrop.open { display: flex; }
+    .order-modal {
+      background: #1c1c1c;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+    }
+    .order-modal h4 {
+      color: #fff;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .order-modal .modal-product-price {
+      color: #ca2120;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+    .order-modal input,
+    .order-modal textarea {
+      background: #111;
+      border: 1px solid #333;
+      color: #fff;
+      border-radius: 4px;
+      padding: 10px 12px;
+      width: 100%;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+    }
+    .order-modal input::placeholder,
+    .order-modal textarea::placeholder { color: #666; }
+    .order-modal textarea { resize: vertical; min-height: 80px; }
+    .order-modal .btn-submit-modal {
+      width: 100%;
+      background: #ca2120;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 11px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .order-modal .btn-submit-modal:hover { background: #a31a19; }
+    .order-modal .modal-close {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .order-modal .modal-close:hover { color: #fff; }
+
     /* ── Contact Section ── */
     .contact-section {
       padding: 70px 0;
@@ -313,87 +413,20 @@
       </div>
 
       <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-
+        {% for gift in gifts %}
         <div class="col">
           <div class="product-card">
             <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/camp-removebg-preview.png' %}" alt="ATAST STC Camp 2024 T-shirt">
+              {% if gift.image %}<img src="{{ gift.image.url }}" alt="{{ gift.name }}">{% endif %}
             </div>
-            <h3>ATAST STC Camp 2024 T-shirt</h3>
-            <p class="model-tag">Model: 1285</p>
+            <h3>{{ gift.name }}</h3>
+            {% if gift.description %}<p class="product-desc">{{ gift.description }}</p>{% endif %}
+            <button class="btn-order" onclick="openOrder('{{ gift.name|escapejs }}')">Order</button>
           </div>
         </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/Stc20-removebg-preview.png' %}" alt="ATAST STC Camp 2020 T-shirt">
-            </div>
-            <h3>ATAST STC Camp 2020 T-shirt</h3>
-            <p class="model-tag">Model: 7634</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/Stc23-removebg-preview.png' %}" alt="ATAST STC Camp 2023 T-shirt">
-            </div>
-            <h3>ATAST STC Camp 2023 T-shirt</h3>
-            <p class="model-tag">Model: 5897</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/WhatsApp_Image_2024-08-28_at_12.19.18_976e9581-removebg-preview (1).png' %}" alt="ATAST I-Fest 2024 Sweatshirt">
-            </div>
-            <h3>ATAST I-Fest 2024 Sweatshirt</h3>
-            <p class="model-tag">Model: 2911</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/WhatsApp_Image_2024-08-28_at_12.27.11_8dac7bbf-removebg-preview-copy-0.png' %}" alt="Personalized Science Totebag">
-            </div>
-            <h3>Personalized Science Totebag</h3>
-            <p class="model-tag">Model: 0040</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/WhatsApp_Image_2024-08-28_at_12.27.42_40294754-removebg-preview.png' %}" alt="Back Tag">
-            </div>
-            <h3>Back Tag</h3>
-            <p class="model-tag">Model: 8011</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/WhatsApp_Image_2024-08-28_at_12.29.28_1093c1d5-removebg-preview.png' %}" alt="ATAST Pens">
-            </div>
-            <h3>ATAST Pens</h3>
-            <p class="model-tag">Model: 3476</p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="product-card">
-            <div class="product-img-wrap">
-              <img src="{% static 'assets/img/articles/WhatsApp_Image_2024-08-28_at_12.11.49_e623ac5c-removebg-preview.png' %}" alt="ATAST STC Camp Cup">
-            </div>
-            <h3>ATAST STC Camp Cup</h3>
-            <p class="model-tag">Model: 3915</p>
-          </div>
-        </div>
-
+        {% empty %}
+        <p style="text-align:center;color:#888;padding:40px 0;grid-column:1/-1;">No products available yet.</p>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -404,16 +437,17 @@
       <div class="contact-card">
         <div class="row align-items-center g-5">
           <div class="col-lg-6">
-            <h2>Get Your <span>ATAST</span> Gear!</h2>
-            <h3>Send us the model code and we'll sort the rest.</h3>
+            <h2>Contact Us!</h2>
+            <h3>Send us a message</h3>
             <form action="https://api.web3forms.com/submit" method="POST">
               <input type="hidden" name="access_key" value="9eb65bf0-35b2-4c78-b5a7-fcf4b544bad8">
               <input type="checkbox" name="botcheck" style="display:none;">
-              <input type="email" class="form-control" name="email" placeholder="Your Email or Phone Number" required>
+              <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
               <textarea name="name" class="form-control" placeholder="Your Full Name" required></textarea>
-              <textarea name="message" class="form-control" placeholder="Model ID (e.g. 1285)" required></textarea>
+              <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+              
               <button type="submit" class="btn-submit">
-                <i class="bi bi-send me-2"></i>Send Order
+                <i class="bi bi-send me-2"></i>Send Message
               </button>
             </form>
           </div>
@@ -467,6 +501,45 @@
       </div>
     </div>
   </footer>
+
+  <!-- Order Modal -->
+  <div class="order-modal-backdrop" id="orderBackdrop">
+    <div class="order-modal">
+      <button class="modal-close" onclick="closeOrder()">&times;</button>
+      <h4 id="modalProductName"></h4>
+      <p class="modal-product-price" id="modalProductPrice"></p>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="9eb65bf0-35b2-4c78-b5a7-fcf4b544bad8">
+        <input type="hidden" name="subject" value="New Gift Zone Order — ATAST">
+        <input type="hidden" name="botcheck" style="display:none;">
+        <input type="hidden" name="product" id="modalProductInput">
+        <input type="text" name="name" placeholder="Your Full Name" required>
+        <input type="text" name="email" placeholder="Your Email or Phone Number" required>
+        <textarea name="notes" placeholder="Quantity, size, or any notes…"></textarea>
+        <label style="display:flex;align-items:center;gap:10px;color:#ccc;font-size:0.88rem;margin-bottom:14px;cursor:pointer;">
+          <input type="checkbox" name="atast_member" value="Yes" style="width:auto;margin:0;">
+          ATAST member? <span style="color:#ca2120;">(You may get a discount)</span>
+        </label>
+        <button type="submit" class="btn-submit-modal">
+          <i class="bi bi-send me-2"></i>Send Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openOrder(name) {
+      document.getElementById('modalProductName').textContent = name;
+      document.getElementById('modalProductInput').value = name;
+      document.getElementById('orderBackdrop').classList.add('open');
+    }
+    function closeOrder() {
+      document.getElementById('orderBackdrop').classList.remove('open');
+    }
+    document.getElementById('orderBackdrop').addEventListener('click', function(e) {
+      if (e.target === this) closeOrder();
+    });
+  </script>
 
   <!-- Vendor JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

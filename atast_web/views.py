@@ -8,7 +8,8 @@ def index(request):
     return render(request, 'index.html', {'latest_news': latest_news, 'partners_supporters': partners_supporters, 'gallery_images': gallery_images})
 
 def index_store(request):
-    return render(request, 'index_store.html')
+    gifts = Gifts.objects.all()
+    return render(request, 'index_store.html', {'gifts': gifts})
 
 def ifest(request):
     return render(request, 'ifest.html')
