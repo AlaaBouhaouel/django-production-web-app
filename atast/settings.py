@@ -50,6 +50,7 @@ if extra_allowed_hosts:
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -58,6 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'atast_web',
+    'django_summernote',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 if HAS_CORSHEADERS:
@@ -165,7 +169,7 @@ if HAS_WHITENOISE:
             'BACKEND': 'django.core.files.storage.FileSystemStorage',
         },
         'staticfiles': {
-            'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+            'BACKEND': 'whitenoise.storage.CompressedStaticFilesStorage',
         },
     }
 
@@ -173,6 +177,40 @@ if HAS_WHITENOISE:
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+JAZZMIN_SETTINGS = {
+    "site_title": "ATAST Admin",
+    "site_header": "ATAST",
+    "site_brand": "ATAST",
+    "welcome_sign": "Welcome to the ATAST Admin Panel",
+    "show_ui_builder": False,
+}
+
+SUMMERNOTE_CONFIG = {
+    'summernote': {
+        'width': '100%',
+        'height': '400px',
+        'toolbar': [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['insert', ['link', 'picture']],
+            ['view', ['fullscreen', 'codeview']],
+        ],
+    },
+}
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 

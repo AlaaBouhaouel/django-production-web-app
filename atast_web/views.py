@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import NewsArticle
 
 def index(request):
     return render(request, 'index.html')
@@ -57,8 +58,14 @@ def team(request):
 def sss(request):
     return render(request, 'sss.html')
 
+
+
 def news(request):
-    return render(request, 'news.html')
+    featured = NewsArticle.objects.filter(is_featured=True).first()
+    articles = NewsArticle.objects.filter(is_featured=False)
+    return render(request, 'news.html', {'featured': featured, 'articles': articles})
+
+
 
 # ── ORO category pages ──
 def oro_poussins(request):

@@ -242,6 +242,12 @@
 
     .clearfix::after { content: ""; display: table; clear: both; }
 
+    /* Override Summernote inline black styles */
+    .article-body, .article-body * {
+      color: #bbbbbb !important;
+      background: transparent !important;
+    }
+
     /* ── Read-more link ── */
     .read-more {
       display: inline-flex;
@@ -327,145 +333,40 @@
   <div class="bulletin-wrap">
 
     <!-- ── FEATURED ── -->
+    {% if featured %}
     <article class="article-featured">
-      <span class="cat-tag">International · Competition</span>
-      <img src="{% static 'assets/img/news/ioai2026.jpg' %}" alt="IOAI 2026" class="feat-img">
-      <h2>Tunisia Qualifies for the International Olympiad on Artificial Intelligence 2026</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>May 2026 &nbsp;·&nbsp; Ksar Hellal, Tunisia</p>
-      <p class="lead-para">For the first time in its history, ATAST has secured a national qualifier berth at the International Olympiad on Artificial Intelligence (IOAI 2026). Three students from the club network will represent Tunisia on the world stage, competing against teams from over 60 countries.</p>
-      <p>The qualifying process spanned six months of intensive preparation sessions covering machine learning fundamentals, neural network design, and competitive problem-solving. Coaches credit the club's X-Mind advanced training program as the backbone of the team's readiness.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
+      {% if featured.category %}<span class="cat-tag">{{ featured.category }}</span>{% endif %}
+      {% if featured.image %}<img src="{{ featured.image.url }}" alt="{{ featured.title }}" class="feat-img">{% endif %}
+      <h2>{{ featured.title }}</h2>
+      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ featured.published_date|date:"F Y" }}</p>
+      <div class="lead-para article-body">{{ featured.body|safe }}</div>
+      {% if featured.link %}<a href="{{ featured.link }}" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>{% endif %}
     </article>
+    {% if articles %}<hr class="article-rule">{% endif %}
+    {% endif %}
 
-    <hr class="article-rule">
-
-    <!-- ── Article 1 — image LEFT ── -->
+    <!-- ── Standard articles — image alternates left / right ── -->
+    {% for article in articles %}
     <article class="article-standard clearfix">
-      <span class="cat-tag">Competition</span>
-      <img src="{% static 'assets/img/news/ioai2026_1.jpg' %}" alt="IOAI Team" class="article-img-left">
-      <h2>Meet the IOAI 2026 Squad</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>April 2026</p>
-      <p>Three young engineers, selected from a pool of 40 applicants across all four ATAST clubs, will carry the Tunisian flag to IOAI 2026. The team trained on datasets, algorithmic challenges, and real-world AI case studies.</p>
-      <p>Their average age is 16. Their ambition is boundless.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
+      {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
+      {% if article.image %}
+        {% if forloop.counter|divisibleby:2 %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-img-right">
+        {% else %}
+          <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-img-left">
+        {% endif %}
+      {% endif %}
+      <h2>{{ article.title }}</h2>
+      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ article.published_date|date:"F Y" }}</p>
+      <div class="article-body">{{ article.body|safe }}</div>
+      {% if article.link %}<a href="{{ article.link }}" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>{% endif %}
     </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 2 — image RIGHT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Events</span>
-      <img src="{% static 'assets/img/news/ifest.jpg' %}" alt="I-Fest" class="article-img-right">
-      <h2>I-Fest² 2024 — Nine Days, One Science Fair</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>August 2024</p>
-      <p>The biennial International Festival of Science and Technology returned to Monastir this summer. Over 300 students from 14 countries presented projects spanning robotics, renewable energy, and biotechnology.</p>
-      <p>ATAST clubs swept three gold medals and two special jury prizes. The closing ceremony drew an audience of over 1,200.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 3 — image LEFT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">International · Travel</span>
-      <img src="{% static 'assets/img/news/portugal_competition.jpg' %}" alt="Portugal" class="article-img-left">
-      <h2>ATAST Delegation Travels to Portugal for Robotics Championship</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>March 2024</p>
-      <p>A six-member team from the Ksar Hellal and Sousse clubs competed at the International Robotics Open in Lisbon, Portugal — the club's first European competition. They placed 4th in the autonomous navigation category.</p>
-      <p>The trip doubled as a cultural exchange; the delegation met with Portuguese STEM educators and brought back new workshop frameworks that are now being piloted locally.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 4 — image RIGHT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Events · Camp</span>
-      <img src="{% static 'assets/img/news/camp.jpg' %}" alt="STC Camp" class="article-img-right">
-      <h2>STC Summer Camp 2024 — 200 Students, One Week of Pure STEM</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>July 2024</p>
-      <p>The annual Science and Technology Camp hosted over 200 students across five tracks: coding, electronics, 3D printing, IoT, and team engineering. Morning workshops ran alongside evening project showcases.</p>
-      <p>This year introduced a new "junior" track for students aged 8–11, doubling enrolment from the previous edition.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 5 — image LEFT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Training</span>
-      <img src="{% static 'assets/img/news/features.jpg' %}" alt="Training" class="article-img-left">
-      <h2>X-Mind Cohort 3 Graduates — 40 New ATAST Trainers Certified</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>February 2024</p>
-      <p>The third cohort of the X-Mind advanced trainer program completed their 150-hour curriculum, covering C++, AI, 3D design, and CNC machining under the guidance of international expert instructors.</p>
-      <p>Graduates are now deployed as lead trainers across all four clubs, multiplying the organisation's teaching capacity by threefold.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 6 — image RIGHT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Competition</span>
-      <img src="{% static 'assets/img/news/affiche1.png' %}" alt="Genius" class="article-img-right">
-      <h2>Genius 2024 — ATAST Students Dominate Regional Science Quiz</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>November 2023</p>
-      <p>ATAST students claimed first and second place at the Genius regional science competition, outperforming 35 other clubs from across the Sahel. The contest covers physics, chemistry, biology, and computer science.</p>
-      <p>Both winners will advance to the national final in Tunis next spring.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 7 — image LEFT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Workshop · AI</span>
-      <img src="{% static 'assets/img/news/aiyyouth.jpg' %}" alt="AI Workshop" class="article-img-left">
-      <h2>Artificial Intelligence Workshop Series Kicks Off at Four Clubs</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>October 2023</p>
-      <p>A new twelve-session AI workshop series launched simultaneously across all four clubs, walking students through supervised learning, image classification, and simple neural net deployment using Python.</p>
-      <p>Sessions are free and open to members from grade 7 upward. Enrolment filled within 48 hours of announcement.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 8 — image RIGHT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Competition · B-Tech</span>
-      <img src="{% static 'assets/img/news/counts-img.jpg' %}" alt="B-Tech" class="article-img-right">
-      <h2>B-Tech 2023 Wraps Up — Best Engineering Projects Awarded</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>June 2023</p>
-      <p>The B-Tech engineering competition closed its ninth edition with 28 projects on show, ranging from solar-powered irrigation prototypes to smart home automation systems built entirely by students.</p>
-      <p>The jury singled out a smart recycling sorter by a 13-year-old from Moknine as the standout project of the year.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 9 — image LEFT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Workshop · Cyber</span>
-      <img src="{% static 'assets/img/news/cyber.jpg' %}" alt="Cybersecurity" class="article-img-left">
-      <h2>Cybersecurity Awareness Day — Ethical Hacking for Beginners</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>March 2023</p>
-      <p>Sixty students attended a full-day cybersecurity awareness session at the Monastir club. Topics included password security, phishing identification, and an introductory capture-the-flag challenge.</p>
-      <p>The event was hosted in partnership with a Tunisian cybersecurity firm whose engineers ran the afternoon CTF rounds.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
-
-    <hr class="article-rule">
-
-    <!-- ── Article 10 — image RIGHT ── -->
-    <article class="article-standard clearfix">
-      <span class="cat-tag">Competition · ISEF</span>
-      <img src="{% static 'assets/img/news/ifest-bg1.jpg' %}" alt="ISEF" class="article-img-right">
-      <h2>ATAST Project Advances to ISEF International Qualifying Round</h2>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>January 2023</p>
-      <p>A project on low-cost water quality monitoring using Arduino sensors, developed by two students from the Ksar Hellal club, cleared the national science fair and earned a slot in the ISEF regional qualifier — the first time an ATAST project has reached this stage.</p>
-      <p>The team is currently refining the prototype ahead of the April submission deadline.</p>
-      <a href="#" class="read-more">Continue reading <i class="bi bi-arrow-right"></i></a>
-    </article>
+    {% if not forloop.last %}<hr class="article-rule">{% endif %}
+    {% empty %}
+    {% if not featured %}
+    <p style="text-align:center;color:#555;padding:60px 0;">No articles published yet.</p>
+    {% endif %}
+    {% endfor %}
 
   </div><!-- /bulletin-wrap -->
 
