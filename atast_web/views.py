@@ -44,6 +44,18 @@ def camp(request):
 def btech(request):
     return render(request, 'btech.html')
 
+def isef(request):
+    return render(request, 'isef.html')
+
+def vex(request):
+    return render(request, 'vex.html')
+
+def castic(request):
+    return render(request, 'castic.html')
+
+def gwp(request):
+    return render(request, 'gwp.html')
+
 def training(request):
     return render(request, 'training.html')
 

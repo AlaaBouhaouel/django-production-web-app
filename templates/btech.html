@@ -15,7 +15,6 @@
   <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
   <style>
-    {% include 'partials/_subpage_style.html' ignore missing %}
     *,*::before,*::after{box-sizing:border-box}
     body{font-family:"Open Sans",sans-serif;color:#555;margin:0;padding:0;background:#fff}
     h1,h2,h3,h4,h5{font-family:"Raleway",sans-serif;margin:0}
@@ -42,7 +41,13 @@
     .content-img{width:100%;border-radius:14px;object-fit:cover;display:block}
     .cta-btn{display:inline-block;background:#ca2120;color:#fff!important;border:2px solid #ca2120;border-radius:6px;padding:11px 30px;font-weight:700;font-size:15px;transition:.3s;margin-top:20px;margin-right:10px}
     .cta-btn:hover{background:transparent!important;color:#ca2120!important}
-    @media(max-width:768px){.page-hero{height:50vh;min-height:260px;padding-bottom:28px}.hero-inner h1{font-size:1.9rem}.hero-inner p{font-size:.9rem}.content-section h2{font-size:1.35rem}.content-section{padding:32px 0}}
+    .col-lg-6v1{
+      width: 80%;
+    }
+    .col-lg-6v2{
+      width: 20%;
+    }
+    @media(max-width:768px){.page-hero{height:50vh;min-height:260px;padding-bottom:28px}.hero-inner h1{font-size:1.9rem}.hero-inner p{font-size:.9rem}.content-section h2{font-size:1.35rem}.content-section{padding:32px 0}.row{display: flex; justify-content: center;flex-direction: column;}.col-lg-6v1{width: 100%}.col-lg-6v2{width: 60%}}
     #footer{background:#000;padding:0;color:#fff;font-size:14px}
     #footer .footer-top{background:#151515;border-bottom:1px solid #222;padding:50px 0 30px}
     #footer h3{font-size:22px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:14px}
@@ -82,14 +87,14 @@
       <div class="content-section" data-aos="fade-up">
         <span class="section-tag">Junior Track</span>
         <div class="row align-items-center g-5">
-          <div class="col-lg-6">
+          <div class="col-lg-6v1">
             <h2>B-Tech Junior</h2>
             <p class="lead">A premier national competition blending technology and business acumen, designed exclusively for middle and high school students.</p>
             <p>B-TECH Junior provides a platform for young innovators to showcase their talents through two competitive rounds. Participants engage in challenges that require them to combine technical skills with entrepreneurial thinking, crafting innovative projects with viable business models.</p>
             <p>This dynamic event cultivates critical skills in STEM and business while fostering teamwork, creativity, and leadership. Through mentorship and expert guidance, students gain invaluable experience and confidence as they prepare to present their ideas in the finals.</p>
             <a href="https://www.facebook.com/profile.php?id=100089133945891" class="cta-btn" target="_blank">More about B-Tech Junior</a>
           </div>
-          <div class="col-lg-6" data-aos="fade-left">
+          <div class="col-lg-6v2" data-aos="fade-left">
             <img src="{% static 'assets/img/ne/btechh.png' %}" class="content-img" alt="B-Tech Junior">
           </div>
         </div>

@@ -1,0 +1,363 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATAST — CASTIC</title>
+  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    body{font-family:"Open Sans",sans-serif;color:#555;margin:0;padding:0;background:#fff}
+    h1,h2,h3,h4,h5{font-family:"Raleway",sans-serif;margin:0}
+    a{color:#ca2120;text-decoration:none}a:hover{color:#e03030}
+    img{max-width:100%;height:auto}
+    #header{background:rgba(0,0,0,.9);padding:12px 0;position:fixed;top:0;left:0;right:0;z-index:997}
+    .logo img{height:40px;object-fit:contain}
+    .home-btn{color:#fff!important;background:#ca2120;border:2px solid #ca2120;border-radius:4px;padding:7px 20px;font-size:14px;font-weight:600;transition:.3s;display:inline-block;white-space:nowrap}
+    .home-btn:hover{background:transparent!important;color:#ca2120!important}
+    .page-hero{position:relative;height:70vh;min-height:380px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding-bottom:56px}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.80) 100%)}
+    .hero-inner{position:relative;z-index:2}
+    .hero-tag{display:inline-block;background:#ca2120;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:3px;margin-bottom:12px}
+    .hero-inner h1{font-size:3.4rem;font-weight:800;color:#fff;margin:0 0 14px;line-height:1.1}
+    .hero-inner p{font-size:1.1rem;color:rgba(255,255,255,.88);max-width:720px;line-height:1.65;margin:0}
+    .hero-meta{display:flex;gap:28px;margin-top:20px;flex-wrap:wrap}
+    .hero-meta span{color:rgba(255,255,255,.8);font-size:.9rem;display:flex;align-items:center;gap:6px}
+    .hero-meta i{color:#ca2120;font-size:1rem}
+    .page-main{padding:64px 0 60px}
+    .content-section{padding:52px 0;border-bottom:1px solid #f0f0f0}
+    .content-section:last-child{border-bottom:none}
+    .section-tag{display:inline-block;background:#fff3f3;color:#ca2120;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:14px;border:1px solid rgba(202,33,32,.2)}
+    .content-section h2{font-size:1.85rem;font-weight:800;color:#151515;margin-bottom:16px;line-height:1.3}
+    .content-section .lead{font-size:1.05rem;font-weight:600;color:#333;margin-bottom:14px;line-height:1.6}
+    .content-section p{color:#555;line-height:1.9;margin-bottom:14px;font-size:.97rem}
+    .content-img{width:100%;border-radius:14px;object-fit:cover;display:block;max-height:440px}
+    .logo-badge{max-width:140px;height:auto;display:block;margin-bottom:22px}
+    .cta-btn{display:inline-block;background:#ca2120;color:#fff!important;border:2px solid #ca2120;border-radius:6px;padding:11px 30px;font-weight:700;font-size:15px;transition:.3s;margin-top:20px;margin-right:10px}
+    .cta-btn:hover{background:transparent!important;color:#ca2120!important}
+    .cta-btn-outline{display:inline-block;background:transparent;color:#ca2120!important;border:2px solid #ca2120;border-radius:6px;padding:11px 30px;font-weight:700;font-size:15px;transition:.3s;margin-top:20px;margin-right:10px}
+    .cta-btn-outline:hover{background:#ca2120!important;color:#fff!important}
+    .stats-bar{background:#151515;padding:44px 0}
+    .stat-item .stat-num{font-family:"Raleway",sans-serif;font-size:2.6rem;font-weight:800;color:#ca2120;line-height:1;display:block}
+    .stat-item .stat-label{color:#ccc;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;margin-top:6px;display:block}
+    .step-card{position:relative;padding:30px 22px;background:#fff;border:1px solid #f0f0f0;border-radius:14px;height:100%;transition:.3s}
+    .step-card:hover{box-shadow:0 8px 24px rgba(202,33,32,.1);border-color:#ca2120}
+    .step-num{font-family:"Raleway",sans-serif;font-size:3rem;font-weight:800;color:#f5e5e5;line-height:1;position:absolute;top:14px;right:18px}
+    .step-icon{width:50px;height:50px;background:#ca2120;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+    .step-icon i{font-size:1.3rem;color:#fff}
+    .step-card h4{font-size:1rem;font-weight:700;color:#151515;margin-bottom:8px}
+    .step-card p{font-size:.86rem;color:#666;margin:0;line-height:1.65}
+    .category-card{background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:24px 20px;height:100%;transition:.3s;display:flex;align-items:flex-start;gap:14px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    .category-card:hover{border-color:#ca2120;transform:translateY(-3px);box-shadow:0 8px 24px rgba(202,33,32,.11)}
+    .cat-icon-sq{width:44px;height:44px;min-width:44px;background:#fff3f3;border-radius:10px;display:flex;align-items:center;justify-content:center;transition:.3s}
+    .category-card:hover .cat-icon-sq{background:#ca2120}
+    .cat-icon-sq i{font-size:1.25rem;color:#ca2120;transition:.3s}
+    .category-card:hover .cat-icon-sq i{color:#fff}
+    .cat-text h5{font-size:.95rem;font-weight:700;color:#151515;margin-bottom:4px}
+    .cat-text p{font-size:.82rem;color:#777;margin:0;line-height:1.5}
+    .callout-dark{background:#151515;border-radius:16px;padding:40px 36px;color:#fff}
+    .callout-dark h3{font-family:"Raleway",sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:12px}
+    .callout-dark p{color:#bbb;line-height:1.8;margin-bottom:0;font-size:.95rem}
+    .callout-dark .highlight{color:#ca2120;font-weight:700}
+    .check-list{list-style:none;padding:0;margin:0}
+    .check-list li{padding:9px 0 9px 32px;position:relative;color:#555;font-size:.95rem;border-bottom:1px solid #f7f7f7;line-height:1.5}
+    .check-list li:last-child{border-bottom:none}
+    .check-list li::before{content:'\F26E';font-family:"bootstrap-icons";position:absolute;left:0;color:#ca2120;font-size:1.05rem;top:9px}
+    #footer{background:#000;padding:0;color:#fff;font-size:14px}
+    #footer .footer-top{background:#151515;border-bottom:1px solid #222;padding:50px 0 30px}
+    #footer h3{font-size:22px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:14px}
+    #footer h3 span{color:#ca2120}
+    #footer h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:14px}
+    #footer p{font-size:14px;line-height:24px;color:#ccc}
+    #footer .footer-links ul{list-style:none;padding:0;margin:0}
+    #footer .footer-links ul li{padding:6px 0;display:flex;align-items:center}
+    #footer .footer-links ul i{padding-right:6px;color:#ca2120;font-size:16px}
+    #footer .footer-links ul a{color:#ccc;transition:.3s}
+    #footer .footer-links ul a:hover{color:#ca2120}
+    #footer .copyright{text-align:center;padding:22px 0;color:#888}
+    @media(max-width:768px){.page-hero{height:55vh;min-height:280px;padding-bottom:30px}.hero-inner h1{font-size:2rem}.hero-inner p{font-size:.9rem}.hero-meta{gap:14px}.content-section h2{font-size:1.35rem}.content-section{padding:36px 0}.stat-item .stat-num{font-size:2rem}.callout-dark{padding:28px 20px}}
+  </style>
+</head>
+<body>
+
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="/" class="logo"><img src="{% static 'assets/img/atast.png' %}" alt="ATAST"></a>
+      <a href="/" class="home-btn">&#8592; Home</a>
+    </div>
+  </header>
+
+  <section class="page-hero" id="pageHero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-tag">National Events</span>
+        <h1>CASTIC</h1>
+        <p>China Adolescents Science &amp; Technology Innovation Contest — one of the world's largest youth science competitions, connecting Tunisia's brightest innovators to a global stage.</p>
+        <div class="hero-meta">
+          <span><i class="bi bi-people-fill"></i> 10 Million+ Student Entries</span>
+          <span><i class="bi bi-globe2"></i> International Tracks</span>
+          <span><i class="bi bi-calendar-event"></i> Annual Competition</span>
+          <span><i class="bi bi-trophy-fill"></i> Gateway to ISEF &amp; EU Contest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <div class="content-section" data-aos="fade-up">
+        <span class="section-tag">About the Competition</span>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img src="{% static 'assets/img/castic/castic.png' %}" class="logo-badge" alt="CASTIC logo">
+            <h2>One of the World's Largest Youth Science Competitions</h2>
+            <p class="lead">CASTIC — the China Adolescents Science and Technology Innovation Contest — is organised by the China Association for Science and Technology and the Ministry of Education of China.</p>
+            <p>With roots dating back to 1982, CASTIC has grown into a massive multi-tiered competition in which <strong>more than 10 million students</strong> participate through local and provincial rounds each year, with approximately <strong>500 of the strongest projects</strong> advancing to the national finals.</p>
+            <p>Top performers at CASTIC earn direct pathways to prestigious international competitions including the <strong>Regeneron ISEF</strong>, the <strong>EU Contest for Young Scientists</strong>, and <strong>Broadcom Masters International</strong> — making CASTIC one of the most powerful launchpads in global youth science.</p>
+            <a href="https://www.castic.org.cn/" class="cta-btn" target="_blank">Official Website</a>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <img src="{% static 'assets/img/castic/castic-team.jpg' %}" class="content-img" alt="CASTIC competition">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <section class="stats-bar" data-aos="fade-up">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">10M+</span>
+            <span class="stat-label">Student Entries</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">~500</span>
+            <span class="stat-label">National Finalists</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">40+</span>
+            <span class="stat-label">Years of History</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">3</span>
+            <span class="stat-label">Intl. Pathways</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <div class="content-section" data-aos="fade-up">
+        <span class="section-tag">ATAST's Role</span>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 order-lg-2">
+            <h2>Tunisia's Pathway to CASTIC</h2>
+            <p class="lead">ATAST coordinates Tunisia's participation in CASTIC — identifying, preparing, and officially representing Tunisian student projects in the international tracks of the competition.</p>
+            <p>Through ATAST's national selection process, the most innovative Tunisian student projects are identified and prepared for submission to CASTIC's international category. ATAST provides mentorship, presentation coaching, and logistical support so that Tunisian teams arrive ready to compete at the highest level.</p>
+            <p>For Tunisian students, CASTIC is also a direct gateway: outstanding performance can earn qualification for the <strong>Regeneron ISEF</strong> and the <strong>EU Contest for Young Scientists</strong> — two of the most prestigious international science competitions in the world.</p>
+            <a href="/#contact" class="cta-btn">Apply to Participate</a>
+            <a href="https://www.castic.org.cn/" class="cta-btn-outline" target="_blank">Learn More</a>
+          </div>
+          <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+            <img src="{% static 'assets/img/castic/team.jpg' %}" class="content-img" alt="ATAST CASTIC team">
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <span class="section-tag">Project Categories</span>
+          <h2 class="mt-2">What Can You Submit?</h2>
+          <p class="mt-3" style="max-width:620px;margin:0 auto;color:#666;">CASTIC welcomes projects across the full spectrum of science, technology, engineering, and innovation — with a strong emphasis on practical problem-solving and original research.</p>
+        </div>
+        <div class="row g-3">
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="40">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-flask"></i></div>
+              <div class="cat-text"><h5>Natural Sciences</h5><p>Biology, chemistry, physics, earth science, and environmental research projects based on original experimentation.</p></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-gear-wide-connected"></i></div>
+              <div class="cat-text"><h5>Engineering &amp; Technology</h5><p>Innovative devices, systems, or processes that solve real-world technical problems through creative engineering.</p></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="120">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-lightbulb"></i></div>
+              <div class="cat-text"><h5>Science &amp; Technology Innovation</h5><p>Projects that combine scientific knowledge with technological application to deliver a novel, impactful innovation.</p></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-calculator"></i></div>
+              <div class="cat-text"><h5>Mathematics &amp; Computer Science</h5><p>Mathematical modelling, algorithms, data science, AI, and software solutions to scientific or social challenges.</p></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-tree"></i></div>
+              <div class="cat-text"><h5>Biology &amp; Environmental Science</h5><p>Research on living systems, ecology, sustainability, and environmental protection with a practical conservation angle.</p></div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="240">
+            <div class="category-card">
+              <div class="cat-icon-sq"><i class="bi bi-tools"></i></div>
+              <div class="cat-text"><h5>Creative Invention</h5><p>Original inventions and practical devices — judged on novelty, feasibility, and the significance of the problem addressed.</p></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="content-section" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <span class="section-tag">How It Works</span>
+          <h2 class="mt-2">From Idea to the International Stage</h2>
+        </div>
+        <div class="row g-4">
+
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="50">
+            <div class="step-card">
+              <span class="step-num">01</span>
+              <div class="step-icon"><i class="bi bi-lightbulb"></i></div>
+              <h4>Develop Your Project</h4>
+              <p>Conduct original research or develop an innovative product in any CASTIC category. Document your process, methodology, and results thoroughly.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="step-card">
+              <span class="step-num">02</span>
+              <div class="step-icon"><i class="bi bi-send"></i></div>
+              <h4>ATAST National Selection</h4>
+              <p>Submit your project through ATAST's national process. Judges evaluate scientific merit, originality, and practical value.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="step-card">
+              <span class="step-num">03</span>
+              <div class="step-icon"><i class="bi bi-globe2"></i></div>
+              <h4>International CASTIC</h4>
+              <p>Selected projects represent Tunisia in CASTIC's international track — competing alongside the best young scientists from China and partner countries.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="step-card">
+              <span class="step-num">04</span>
+              <div class="step-icon"><i class="bi bi-award"></i></div>
+              <h4>Global Pathways</h4>
+              <p>Top performers at CASTIC earn direct invitations to Regeneron ISEF, the EU Contest for Young Scientists, and Broadcom Masters International.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="content-section" data-aos="fade-up">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-6">
+            <span class="section-tag">Eligibility &amp; Requirements</span>
+            <h2 class="mt-2">Who Can Apply?</h2>
+            <p class="mt-3">CASTIC is open to high school and pre-university students. Through ATAST, Tunisian students can participate in the international tracks of the competition.</p>
+            <ul class="check-list mt-4">
+              <li>Pre-university / high school student</li>
+              <li>Original, independently conducted research or innovation project</li>
+              <li>Project must be in one of the accepted scientific or technological categories</li>
+              <li>Must go through ATAST's national selection process</li>
+              <li>Individual and team projects accepted</li>
+              <li>Strong documentation and presentation are essential</li>
+            </ul>
+          </div>
+          <div class="col-lg-6" data-aos="fade-left">
+            <div class="callout-dark">
+              <h3>CASTIC — Your Gateway to the World</h3>
+              <p>Competing at CASTIC as a Tunisian student is rare and prestigious. Top CASTIC projects receive direct invitations to <span class="highlight">Regeneron ISEF</span> (the world's largest pre-college science fair), the <span class="highlight">EU Contest for Young Scientists</span> in Europe, and <span class="highlight">Broadcom Masters International</span> — giving CASTIC participants an unparalleled set of doors to open through a single strong project.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section" style="border-bottom:none" data-aos="fade-up">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <span class="section-tag">Get Involved</span>
+            <h2 class="mt-2">Represent Tunisia at CASTIC</h2>
+            <p class="mt-3" style="color:#666;max-width:560px;margin:0 auto;">Contact ATAST to learn about the selection timeline and how to submit your project. Spots are extremely limited — start developing your project early.</p>
+            <a href="/#contact" class="cta-btn mt-4">Get in Touch with ATAST</a>
+            <a href="https://www.castic.org.cn/" class="cta-btn-outline mt-4" target="_blank">Visit CASTIC</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <h3>ATAST<span>.</span></h3>
+            <p>Maison des associations, PB 42, Moknine 5050<br><strong>Phone:</strong> +21629535631<br><strong>Email:</strong> info.atast@gmail.com</p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links mb-4 mb-lg-0">
+            <h4>Our Clubs</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" alt="" style="max-width:200px">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong>ATAST</strong>. All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    document.getElementById('pageHero').style.backgroundImage="url('{% static 'assets/img/castic/castic.png' %}')";
+    AOS.init({duration:600,easing:'ease-in-out',once:true,offset:60});
+  </script>
+</body>
+</html>

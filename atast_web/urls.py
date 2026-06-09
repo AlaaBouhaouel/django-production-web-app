@@ -25,7 +25,10 @@ urlpatterns = [
     path('btech', views.btech, name='btech'),
     path('sss', views.sss, name='sss'),
     path('news', views.news, name='news'),
-
+    path('isef', views.isef, name='isef'),
+    path('vex', views.vex, name='vex'),
+    path('castic', views.castic, name='castic'),
+    path('gwp', views.gwp, name='gwp'),
     path('news/<int:news_id>/', views.news_detail, name='news_detail'),
 
     # ── ORO category pages ──

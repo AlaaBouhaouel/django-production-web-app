@@ -669,21 +669,25 @@ section {
 
 
   .scrolling-wrapper {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 8px 0;
+  }
+  @media (max-width: 1199px) {
+    .scrolling-wrapper { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 767px) {
+    .scrolling-wrapper { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 479px) {
+    .scrolling-wrapper { grid-template-columns: 1fr; }
   }
   .scrolling-wrapper h2{
     font-weight: 700;
     font-size: 18px;
     margin-bottom: 10px;
     color: #151515;
-  }
-
-  .scrolling-wrapper::-webkit-scrollbar {
-    display: none;  /* Hide scrollbar for Webkit-based browsers */
   }
   .get-started-btnX {
     color: #fff;
@@ -704,16 +708,12 @@ section {
     color: #ca2120;
   }
   .scrolling-wrapper .card {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    width: 260px;
+    width: 100%;
     background-color: #fff;
-    margin: 16px 10px;
+    margin: 0;
     padding: 0;
-    vertical-align: top;
-    white-space: normal;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
     border: none;
     border-radius: 12px;
     box-shadow: 0 4px 18px rgba(0,0,0,0.10);
@@ -756,6 +756,310 @@ section {
     border: 2px solid #ca2120;
     margin-bottom: 20px;
   }
+
+/*--------------------------------------------------------------
+# Events Section Redesign
+--------------------------------------------------------------*/
+#ne { padding: 70px 0; background: #f8f9fa; }
+
+.ne-header { margin-bottom: 52px; }
+.ne-overline {
+  display: inline-block;
+  color: #ca2120;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ne-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #151515;
+  margin-bottom: 14px;
+}
+.ne-subtitle {
+  font-size: .97rem;
+  color: #888;
+  max-width: 560px;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.ne-tier { margin-bottom: 60px; }
+.ne-tier--last { margin-bottom: 0; }
+.ne-tier-head { margin-bottom: 28px; }
+
+.ne-tier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+.ne-badge-intl { background: #ca2120; color: #fff; }
+.ne-badge-national { background: #151515; color: #fff; }
+.ne-badge-program { background: #ebebeb; color: #555; }
+
+.ne-tier-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #151515;
+  margin-bottom: 7px;
+}
+.ne-tier-sub {
+  font-size: .88rem;
+  color: #999;
+  max-width: 500px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* International Pathway Cards */
+.ne-intl-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.ne-intl-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 320px;
+  display: block;
+  text-decoration: none;
+}
+.ne-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease;
+}
+.ne-intl-card:hover .ne-card-bg { transform: scale(1.05); }
+.ne-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.06) 20%, rgba(0,0,0,.88) 100%);
+  transition: .3s;
+}
+.ne-intl-card:hover .ne-card-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,.1) 20%, rgba(0,0,0,.93) 100%);
+}
+.ne-dest-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 20px;
+  padding: 4px 12px;
+  color: #fff;
+  font-size: .7rem;
+  font-weight: 600;
+  z-index: 2;
+  letter-spacing: .03em;
+}
+.ne-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 22px;
+  z-index: 2;
+}
+.ne-qualifies-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(202,33,32,.9);
+  color: #fff;
+  font-size: .67rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.ne-intl-card h4 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 5px;
+}
+.ne-intl-card p {
+  font-size: .8rem;
+  color: rgba(255,255,255,.7);
+  margin-bottom: 12px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ne-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,.88);
+  font-size: .79rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,.35);
+  padding-bottom: 1px;
+  transition: .2s;
+}
+.ne-intl-card:hover .ne-card-link { gap: 10px; border-color: rgba(255,255,255,.75); color: #fff; }
+
+/* National Competition Cards */
+.ne-national-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.ne-nat-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+  border: 1px solid #eee;
+  transition: .25s;
+  text-decoration: none;
+}
+.ne-nat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  border-color: #e0e0e0;
+}
+.ne-nat-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+.ne-nat-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ne-nat-body h4 {
+  font-family: "Raleway", sans-serif;
+  font-size: .98rem;
+  font-weight: 800;
+  color: #151515;
+  margin-bottom: 7px;
+}
+.ne-nat-body p {
+  font-size: .81rem;
+  color: #777;
+  line-height: 1.6;
+  flex: 1;
+  margin-bottom: 12px;
+}
+.ne-nat-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .78rem;
+  font-weight: 700;
+  color: #ca2120;
+  transition: .2s;
+}
+.ne-nat-card:hover .ne-nat-link { gap: 9px; }
+
+/* Program Cards */
+.ne-programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.ne-prog-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fff;
+  border-radius: 13px;
+  padding: 20px;
+  border: 1px solid #eee;
+  text-decoration: none;
+  transition: .25s;
+  box-shadow: 0 1px 8px rgba(0,0,0,.05);
+}
+.ne-prog-card:hover {
+  background: #fff8f8;
+  border-color: rgba(202,33,32,.22);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(202,33,32,.08);
+}
+.ne-prog-icon {
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  background: #fff3f3;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .25s;
+}
+.ne-prog-card:hover .ne-prog-icon { background: #ca2120; }
+.ne-prog-icon i { font-size: 1.25rem; color: #ca2120; transition: .25s; }
+.ne-prog-card:hover .ne-prog-icon i { color: #fff; }
+.ne-prog-body { flex: 1; min-width: 0; }
+.ne-prog-body h5 {
+  font-family: "Raleway", sans-serif;
+  font-size: .93rem;
+  font-weight: 800;
+  color: #151515;
+  margin-bottom: 4px;
+}
+.ne-prog-body p {
+  font-size: .79rem;
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ne-prog-arrow {
+  font-size: .95rem;
+  color: #ca2120;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: .2s;
+}
+.ne-prog-card:hover .ne-prog-arrow { opacity: 1; transform: translateX(0); }
+
+/* Events Responsive */
+@media (max-width: 991px) {
+  .ne-intl-grid { grid-template-columns: repeat(2, 1fr); }
+  .ne-national-grid { grid-template-columns: repeat(2, 1fr); }
+  .ne-programs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 575px) {
+  .ne-intl-grid { grid-template-columns: 1fr; }
+  .ne-national-grid { grid-template-columns: 1fr; }
+  .ne-programs-grid { grid-template-columns: 1fr; }
+  .ne-title { font-size: 1.65rem; }
+  .ne-tier-title { font-size: 1.2rem; }
+}
+
 /*--------------------------------------------------------------
 # Cta         background: url("../img/features.jpg") no-repeat;
 

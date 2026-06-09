@@ -590,124 +590,195 @@
     </section><!-- End Features Section -->
 
     <!-- ======= National events Section ======= -->
-     <section id="ne">
-    <div class="container" data-aos="fade-up">
-      <h2 style="color: #ca2120;font-weight: bold;">National Events</h2>
-      <h3 style="color: #151515;font-weight: bold; font-size: large;">You want to know more?</h3>
-      <div class="scrolling-wrapper">
-        <div class="card">
-          <img src="{% static 'assets/img/ne/oro-ind.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>ORO</h2>
-            <p>Participate in ORO, the Olympiad of Robotics organized by ATAS in Tunisia, where innovation and robotics expertise shine.</p>
-            <a href="oro" class="get-started-btnX">learn more</a>
-          </div>
+    <section id="ne">
+      <div class="container">
+
+        <div class="ne-header" data-aos="fade-up">
+          <span class="ne-overline">Events &amp; Competitions</span>
+          <h2 class="ne-title">From Tunisia to the World</h2>
+          <p class="ne-subtitle">National competitions, international qualifiers, and training programs — every opportunity ATAST opens for you.</p>
         </div>
-        
-        <div class="card">
-          <img src="{% static 'assets/img/ne/btech.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>B-tech</h2>
-            <p>B-Tech: Where Business Meets Technology. Compete in two rounds with innovative projects with business models to win!</p>
-            <a href="btech" class="get-started-btnX">learn more</a>
+
+        <!-- Tier 1: International Pathways -->
+        <div class="ne-tier" data-aos="fade-up">
+          <div class="ne-tier-head">
+            <div class="ne-tier-badge ne-badge-intl"><i class="bi bi-globe2"></i>&nbsp; International Pathways</div>
+            <h3 class="ne-tier-title">Earn Your Place on the World Stage</h3>
+            <p class="ne-tier-sub">Win the national qualifier — Represent Tunisia internationally. These five competitions are ATAST's elite track.</p>
+          </div>
+          <div class="ne-intl-grid">
+
+            <a href="/genius" class="ne-intl-card">
+              <img src="{% static 'assets/img/ne/genius.jpg' %}" class="ne-card-bg" alt="Genius Olympiad Tunisia">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127482;&#127480; Rochester, NY &middot; USA</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: Genius Olympiad International</span>
+                <h4>Genius Olympiad Tunisia</h4>
+                <p>National qualifier for the world's leading environmental science &amp; arts competition.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/isef" class="ne-intl-card">
+              <img src="{% static 'assets/img/ne/isef.jpg' %}" class="ne-card-bg" alt="ISEF Tunisia">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127482;&#127480; USA &middot; Annual</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: Regeneron ISEF</span>
+                <h4>ISEF Tunisia</h4>
+                <p>The national qualifier for the world's largest pre-college science fair — $7M+ in prizes.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/vex" class="ne-intl-card">
+              <img src="{% static 'assets/img/ne/vex.jpg' %}" class="ne-card-bg" alt="VEX Robotics National">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127482;&#127480; St. Louis, MO &middot; USA</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: VEX World Championship</span>
+                <h4>VEX Robotics National</h4>
+                <p>Tunisia's gateway to the Guinness World Record–holding robotics championship.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/castic" class="ne-intl-card">
+              <img src="{% static 'assets/img/castic/castic-team.jpg' %}" class="ne-card-bg" alt="CASTIC">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127464;&#127475; China &middot; International</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: CASTIC + ISEF pathway</span>
+                <h4>CASTIC</h4>
+                <p>China's largest youth science contest — top performers earn ISEF &amp; EU Contest invitations.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/gwp" class="ne-intl-card">
+              <img src="{% static 'assets/img/water-prize/water-prize.jpg' %}" class="ne-card-bg" alt="General Water Prize">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127480;&#127466; Stockholm &middot; Sweden</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: Stockholm Junior Water Prize</span>
+                <h4>General Water Prize</h4>
+                <p>National qualifier for the world's leading youth water research competition — $15,000 prize.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
           </div>
         </div>
 
-        <div class="card">
-          <img src="{% static 'assets/img/ne/camp.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>ATAST Camps</h2>
-            <p>ATAST camps is a journey of world exploration and intellectual growth amidst the beauty of STEM and nature.</p>
-            <a href="camp" class="get-started-btnX">learn more</a>
+        <!-- Tier 2: National Competitions -->
+        <div class="ne-tier" data-aos="fade-up">
+          <div class="ne-tier-head">
+            <div class="ne-tier-badge ne-badge-national"><i class="bi bi-flag"></i>&nbsp; National Competitions</div>
+            <h3 class="ne-tier-title">Tunisia's Premier STEM Contests</h3>
+            <p class="ne-tier-sub">Compete, innovate, and prove your skills at the national level.</p>
+          </div>
+          <div class="ne-national-grid">
+
+            <a href="/oro" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/oro-ind.jpg' %}" alt="ORO">
+              <div class="ne-nat-body">
+                <h4>ORO</h4>
+                <p>The Olympiad of Robotics — ATAST's flagship national robotics tournament spanning four age categories.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/btech" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/btech.jpg' %}" alt="B-Tech">
+              <div class="ne-nat-body">
+                <h4>B-Tech</h4>
+                <p>Where business meets technology — compete with innovative projects backed by solid business models.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/tunibrico" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/tunibrico1.jpg' %}" alt="Tunibrico">
+              <div class="ne-nat-body">
+                <h4>Tunibrico</h4>
+                <p>A national linguistic showdown where words become weapons in a battle of wit and vocabulary.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/ai" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/ai.jpg' %}" alt="IA Youth Challenge">
+              <div class="ne-nat-body">
+                <h4>IA Youth Challenge</h4>
+                <p>Tunisia's premier AI competition — showcase machine learning and artificial intelligence skills.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/photocontest" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/photocontest0.jpg' %}" alt="Photo Contest">
+              <div class="ne-nat-body">
+                <h4>Photo Contest</h4>
+                <p>Showcase scientific creativity through compelling visual storytelling and photography.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/spell" class="ne-nat-card">
+              <img src="{% static 'assets/img/ne/spell.jpg' %}" alt="Spell">
+              <div class="ne-nat-body">
+                <h4>Spell</h4>
+                <p>A prestigious national competition where participants showcase linguistic skills in a battle of words.</p>
+                <span class="ne-nat-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
           </div>
         </div>
 
-        <div class="card">
-          <img src="{% static 'assets/img/ne/genius.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Genius Olympiad Tunisia</h2>
-            <p>The National Genius Olympiad Tunisia showcases top young STEM talents, serving as a qualifier for the international finals in the USA.</p>
-            <a href="/genius" class="get-started-btnX">learn more</a>
+        <!-- Tier 3: Programs & Training -->
+        <div class="ne-tier ne-tier--last" data-aos="fade-up">
+          <div class="ne-tier-head">
+            <div class="ne-tier-badge ne-badge-program"><i class="bi bi-mortarboard"></i>&nbsp; Programs &amp; Training</div>
+            <h3 class="ne-tier-title">Build Your Skills</h3>
+            <p class="ne-tier-sub">Camps, workshops, and training days that build the foundation for competition success.</p>
+          </div>
+          <div class="ne-programs-grid">
+
+            <a href="/camp" class="ne-prog-card">
+              <div class="ne-prog-icon"><i class="bi bi-stars"></i></div>
+              <div class="ne-prog-body">
+                <h5>ATAST Camps</h5>
+                <p>Immersive summer &amp; winter STEM camps — robotics, coding, engineering, and hands-on science over 3–7 days.</p>
+              </div>
+              <i class="bi bi-arrow-right ne-prog-arrow"></i>
+            </a>
+
+            <a href="/training" class="ne-prog-card">
+              <div class="ne-prog-icon"><i class="bi bi-people"></i></div>
+              <div class="ne-prog-body">
+                <h5>Training Day</h5>
+                <p>Expert-led, hands-on STEM training days designed to boost technical skills and competition readiness.</p>
+              </div>
+              <i class="bi bi-arrow-right ne-prog-arrow"></i>
+            </a>
+
+            <a href="/cyber" class="ne-prog-card">
+              <div class="ne-prog-icon"><i class="bi bi-shield-lock"></i></div>
+              <div class="ne-prog-body">
+                <h5>Cyber Day</h5>
+                <p>A deep dive into cybersecurity — workshops, challenges, and competitions covering the world of digital security.</p>
+              </div>
+              <i class="bi bi-arrow-right ne-prog-arrow"></i>
+            </a>
+
           </div>
         </div>
 
-        <div class="card">
-          <img src="{% static 'assets/img/ne/tunibrico.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Tunibrico</h2>
-            <p>In Tunibrico words become weapons as contestants vie for victory through their linguistic prowess.</p>
-            <a href="/tunibrico" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/ai.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>IA Youth Challenge</h2>
-            <p>The first national competition, invites wordsmiths to demonstrate their linguistic prowess in an exhilarating battle of wits.</p>
-            <a href="/ai" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/isef.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>ISEF Tunisia</h2>
-            <p>Join the National ISEF Competition, where top young scientists present their projects before advancing to the USA finals.</p>
-            <a href="https://www.societyforscience.org/isef/" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/vex.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>VEX national</h2>
-            <p>The VEX Tunisia Nationals highlights the best young robotics talents, acting as a gateway to the global VEX Robotics competition.</p>
-            <a href="https://www.vexrobotics.com/competition" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/training.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Training day</h2>
-            <p>Join the ATAS National Training Day for expert-led, hands-on STEM training that boosts skills and knowledge.</p>
-            <a href="training" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/cyber.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Cyber day</h2>
-            <p>Join us for Cyber Day, where participants compete, learn, and delve into the world of cybersecurity.</p>
-            <a href="cyber" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/photocontest0.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Photocontest</h2>
-            <p>Enter the ATAST PhotoContest to showcase your scientific creativity through captivating visual storytelling.</p>
-            <a href="photocontest" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <img src="{% static 'assets/img/ne/spell.jpg' %}" class="imag" alt="">
-          <div class="card-body">
-            <h2>Spell</h2>
-            <p>Spell, a prestigious national competition, invites participants to showcase their linguistic skills in a thrilling battle of words.</p>
-            <a href="/spell" class="get-started-btnX">learn more</a>
-          </div>
-        </div>
       </div>
-    </div>
-  </section>
-     <!-- ======= End National events Section ======= -->
+    </section>
+    <!-- ======= End National events Section ======= -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
