@@ -300,6 +300,9 @@
   .swiper-slideclient{
     padding: 10px;
   }
+  .disappear-phone{
+    display: none;
+  }
   }
 
   /* ---- Team sneak-peek ---- */
@@ -374,7 +377,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between">
-      <a href="index.html" class="logo me-auto me-lg-0">
+      <a href="#" class="logo me-auto me-lg-0">
         <div>
         <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" >
         </div> 
@@ -423,18 +426,21 @@
 
     </div>
     <div class="container" data-aos="fade-up">
-      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
-        <div class="col-xl-6 col-lg-8">
-          <h1>ATAST<span>.</span></h1>
-
-          <h2 style="font-weight: bold;"  >The Tunisien Association For The Future Of Science And Technology</h2>
-          <h5 style="
-            font-weight: bold;
-            color: #ca2120;
-
-
-          ">Think again .. Be different!</h5>
-
+      <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-10 px-4 px-lg-5">
+          <div class="hero-overline" style="text-align: center;">Tunisia's Leading STEM Association</div>
+          <h1 style="text-align: center;">Think Again<span>.</span><br>Be Different<span>.</span></h1>
+          <h3 class="disappear-phone" style="font-size: 20px; color: #d7d2d2; padding: 10px ;">ATAST trains, inspires, and sends Tunisia's brightest students to compete on the world stage.</h3>
+          <div class="hero-ctas disappear-phone">
+            <a href="#ne" class="hero-btn-primary scrollto">Explore Events &nbsp;<i class="bi bi-arrow-down"></i></a>
+            <a href="https://atast.org/" class="hero-btn-secondary">ATAST Platform &nbsp;<i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="hero-stats-bar disappear-phone">
+            <div class="hero-stat"><strong>4,000+</strong><span>Members</span></div>
+            <div class="hero-stat"><strong>20+</strong><span>Clubs</span></div>
+            <div class="hero-stat"><strong>17</strong><span>Years</span></div>
+            <div class="hero-stat"><strong>622</strong><span>Awards</span></div>
+          </div>
         </div>
       </div>
 
@@ -477,37 +483,35 @@
   <main id="main">
     <!-- ======== News Section ======== -->
      {% if latest_news %}
-     <section class="news">
-      <div class="container news-container" data-aos="fade-up">
-        <div class="section-title">
-          <h1 style="color: #ca2120;font-weight: bold;">Latest News!</h1>
+     <section class="news-section">
+      <div class="container" data-aos="fade-up">
+        <div class="mb-4">
+          <span class="s-label">Latest Updates</span>
+          <h2 class="s-title">News &amp; Achievements</h2>
         </div>
-        <div class="news-row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <div class="news-row">
-              {% for item in latest_news %}
-              <a href="/news/{{ item.id }}/">
-                <div class="news-item">
-                  {% if item.image %}<img src="{{ item.image.url|cloudinary_optimize }}" alt="{{ item.title }}" loading="lazy">{% endif %}
-                  <div class="news-info">
-                    <h4>{% if item.link %}<a href="{{ item.link }}">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h4>
-                    <p>{{ item.description }}</p>
-                  </div>
-                </div>
-              </a>
-              {% if not forloop.last %}<div class="seperator"></div>{% endif %}
-              {% endfor %}
-            </div>
+        <div class="news-scroll-outer">
+          <div class="news-cards-row">
+            {% for item in latest_news %}
+            <a href="/news/{{ item.id }}/" class="news-card-item">
+              {% if item.image %}<img src="{{ item.image.url|cloudinary_optimize }}" alt="{{ item.title }}" loading="lazy">{% endif %}
+              <div class="news-card-body">
+                <h4>{{ item.title }}</h4>
+                <p>{{ item.description }}</p>
+                <span class="news-read-link">Read more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+            {% endfor %}
           </div>
         </div>
-
       </div>
     </section>
     {% endif %}
-    <section class="Acheivements">
-      <div class="ach-row">
-        <h3>Find The Latest <br> <span>News</span> And <span>Achievements</span>!</h3>
-        <a href="/news" class="get-started-btn ach">Find More</a>
+    <section class="impact-banner">
+      <div class="container">
+        <div class="impact-inner" data-aos="fade-up">
+          <h3>Find the Latest <span>News</span> &amp; <span>Achievements</span></h3>
+          <a href="/news" class="hero-btn-primary">Explore All &nbsp;<i class="bi bi-arrow-right"></i></a>
+        </div>
       </div>
     </section>
     <!-- ======= About Section ======= -->
@@ -519,20 +523,16 @@
             <img src="{% static 'assets/img/about.jpg' %}"class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-              <h2 style="color: #ca2120;font-weight: bold;">About Us</h2>
-              <h3 style="color: #151515;font-weight: bold; font-size: large;">Join the community of excellence!</h3>
-              <p class="fst-italic">
-                ATAST is a Tunisian association dedicated to science and technology, inspiring young minds and nurturing the next
-            generation of STEM leaders.</p>
-              <ul>
-                <li><i class="ri-check-double-line"></i> Comprehensive programs in robotics, coding, and emerging technologies to
-            equip students with future-ready skills.</li>
-                <li><i class="ri-check-double-line"></i> Experienced mentors who develop analytical thinking and problem-solving
-            abilities.</li>
-                <li><i class="ri-check-double-line"></i> Hands-on support to turn creative ideas into tangible results.</li>
-              </ul>
-              <p>Join us where the future of science and technology begins.</p>
-            </div>
+            <span class="s-label">About Us</span>
+            <h2 class="s-title">Join the Community<br>of Excellence</h2>
+            <p class="fst-italic">ATAST is a Tunisian association dedicated to science and technology, inspiring young minds and nurturing the next generation of STEM leaders.</p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Comprehensive programs in robotics, coding, and emerging technologies to equip students with future-ready skills.</li>
+              <li><i class="ri-check-double-line"></i> Experienced mentors who develop analytical thinking and problem-solving abilities.</li>
+              <li><i class="ri-check-double-line"></i> Hands-on support to turn creative ideas into tangible results.</li>
+            </ul>
+            <p>Join us where the future of science and technology begins.</p>
+          </div>
         </div>
 
       </div>
@@ -540,10 +540,12 @@
 
     <!-- ======= Clients Section ======= -->
     <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
-
+      <div class="container" data-aos="fade-up">
+        <div class="text-center mb-4">
+          <span class="s-label">Our Network</span>
+          <h2 class="s-title">Partners &amp; Supporters</h2>
+        </div>
         <div class="clients-slider swiper">
-          <h2 style="color: #ca2120;font-weight: bold;">Partners & Supporters</h2>
           <div class="swiper-wrapper align-items-center">
             {% for partner in partners_supporters %}
             <div class="swiper-slideclient"><img src="{{ partner.logo.url|cloudinary_optimize }}" class="img-fluid" loading="lazy" alt="{{ partner.name }}"></div>
@@ -554,40 +556,54 @@
       </div>
     </section><!-- End Clients Section -->
 
-    <!-- ======= Features Section ======= -->
-    <section id="services" class="features">
+    <!-- ======= Global Reach Section ======= -->
+    <section id="services" class="reach-split">
       <div class="container" data-aos="fade-up">
-
-        <div class="row">
-          <div class="image col-lg-6 border" style='background-image: url("{% static "assets/img/features.jpg" %}");' data-aos="fade-right"></div>
-          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-            <h2 style="color: #ca2120;font-weight: bold; margin-top: 15px;">International Affiliations</h2>
-            <h3 style="color: #151515;font-weight: bold; font-size: large;">Join the community of excellence!</h3>
-            <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-receipt"></i>
-              <h4 style="color: #202124">VEX</h4>
-              <p>Our students excel in the international VEX competition, showcasing their innovative robotics skills on a global stage.
-              </p>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5" data-aos="fade-right">
+            <span class="s-label">International Affiliations</span>
+            <h2 class="s-title">We Compete on the World Stage</h2>
+            <p class="s-subtitle">ATAST coordinates Tunisia's national qualifiers and sends the nation's best students to international competitions across four continents.</p>
+          </div>
+          <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
+            <div class="reach-grid">
+              <div class="reach-card">
+                <div class="reach-icon">🤖</div>
+                <div class="reach-body">
+                  <h4>VEX Robotics</h4>
+                  <p>Tunisia's qualifier sends teams to the VEX World Championship — the Guinness World Record's largest robotics event.</p>
+                  <span class="reach-dest">&#127482;&#127480; St. Louis, MO &middot; USA</span>
+                </div>
+              </div>
+              <div class="reach-card">
+                <div class="reach-icon">🔬</div>
+                <div class="reach-body">
+                  <h4>Regeneron ISEF</h4>
+                  <p>The world's largest pre-college science fair — $7M+ in prizes. Tunisia's finalists compete against 1,700+ students.</p>
+                  <span class="reach-dest">&#127482;&#127480; USA &middot; Annual</span>
+                </div>
+              </div>
+              <div class="reach-card">
+                <div class="reach-icon">🌿</div>
+                <div class="reach-body">
+                  <h4>Genius Olympiad</h4>
+                  <p>International environmental science, business &amp; arts competition — Tunisia's delegation grows every year.</p>
+                  <span class="reach-dest">&#127482;&#127480; Rochester, NY &middot; USA</span>
+                </div>
+              </div>
+              <div class="reach-card">
+                <div class="reach-icon">🏛</div>
+                <div class="reach-body">
+                  <h4>I-Fest²</h4>
+                  <p>Africa's largest science fair — organized by ATAST in Tunisia, bridging local talent with international recognition.</p>
+                  <span class="reach-dest">&#127481;&#127475; Moknine &middot; Tunisia</span>
+                </div>
+              </div>
             </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-cube-alt"></i>
-              <h4 style="color: #202124">Code Over</h4>
-              <p>
-                The Code Over competition is an international event where students showcase their exceptional coding abilities through various challenging programming tasks.</p>
-            </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-images"></i>
-              <h4 style="color: #202124">ISEF</h4>
-              <p>ISEF is a renowned global science competition where high school students present original research projects for recognition and awards.</p>
-            </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-shield"></i>
-              <h4 style="color: #202124">I-Fest²</h4>
-              <p>
-                The iFEST (International Fair of Science and Technology) is a prominent science fair competition held in Tunisia, recognized as the largest of its kind in Africa.</p>
-            </div>
-
-    </section><!-- End Features Section -->
+          </div>
+        </div>
+      </div>
+    </section><!-- End Global Reach Section -->
 
     <!-- ======= National events Section ======= -->
     <section id="ne">
@@ -785,9 +801,9 @@
       <div class="container" data-aos="zoom-in">
 
         <div class="text-center">
-          <h3>Join Atast Training Platform Now</h3>
-          <p>Join ATAST's Training Platform now to embark on an exciting journey of learning, mentorship, and support in robotics, coding, deep thinking, and creative vision.</p>
-          <a class="cta-btn" href="https://atast.org">join</a>
+          <h3>Ready to Start Your STEM Journey?</h3>
+          <p>Join ATAST's Training Platform — robotics, coding, critical thinking, and creative vision. Build your future today.</p>
+          <a class="cta-btn" href="https://atast.org">Join ATAST Platform &nbsp;&rarr;</a>
         </div>
 
       </div>
@@ -797,9 +813,10 @@
     <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h3 style="color: #151515;font-weight: bold; font-size: large;">You want to explore more?</h3>
-          <h1 style="color: #ca2120;font-weight: bold;">News and Achievements!</h1>
+        <div class="mb-4">
+          <span class="s-label">Gallery</span>
+          <h2 class="s-title">News &amp; Achievements</h2>
+          <p class="s-subtitle">Competition highlights, team photos, and international event coverage.</p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -844,10 +861,9 @@
           <div class="image border col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start" data-aos="fade-right" data-aos-delay="100"></div>
           <div class="col-xl-7 ps-4 ps-lg-5 pe-4 pe-lg-1 d-flex align-items-stretch" data-aos="fade-left" data-aos-delay="100">
             <div class="content d-flex flex-column justify-content-center">
+              <span class="s-label">Impact</span>
               <h3>ATAST With Numbers</h3>
-              <p>
-              Embark on a transformative journey with ATAST, where we empower young minds with cutting-edge education in robotics, coding, and critical thinking, reaching students across Tunisia annually.
-              </p>
+              <p>Empowering young minds with cutting-edge education in robotics, coding, and critical thinking — reaching students across Tunisia annually.</p>
               <div class="row">
                 <div class="col-md-6 d-md-flex align-items-md-stretch">
                   <div class="count-box">
@@ -947,9 +963,10 @@
     <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2 style="color: #ca2120;">Meet the Team</h2>
-          <p style="color: #555;">The people behind ATAST — dedicated, passionate, and driven.</p>
+        <div class="mb-4">
+          <span class="s-label">The People</span>
+          <h2 class="s-title">Meet the Team</h2>
+          <p class="s-subtitle">The dedicated, passionate people driving ATAST forward every day.</p>
         </div>
 
         <div class="row-team-wrapper">
@@ -1023,9 +1040,10 @@
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Contact Us</p>
+        <div class="mb-4">
+          <span class="s-label">Get in Touch</span>
+          <h2 class="s-title">Contact Us</h2>
+          <p class="s-subtitle">Reach out for partnerships, participation queries, or any questions about ATAST.</p>
         </div>
 
         <div>
