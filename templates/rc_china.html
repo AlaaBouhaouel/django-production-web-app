@@ -1,0 +1,420 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ATAST — RC China International</title>
+  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box}
+    body{font-family:"Open Sans",sans-serif;color:#555;margin:0;padding:0;background:#fff}
+    h1,h2,h3,h4,h5{font-family:"Raleway",sans-serif;margin:0}
+    a{color:#ca2120;text-decoration:none}a:hover{color:#e03030}
+    img{max-width:100%;height:auto}
+
+    /* ── Header ── */
+    #header{background:rgba(0,0,0,.9);padding:12px 0;position:fixed;top:0;left:0;right:0;z-index:997}
+    .logo img{height:40px;object-fit:contain}
+    .home-btn{color:#fff!important;background:#ca2120;border:2px solid #ca2120;border-radius:4px;padding:7px 20px;font-size:14px;font-weight:600;transition:.3s;display:inline-block;white-space:nowrap}
+    .home-btn:hover{background:transparent!important;color:#ca2120!important}
+
+    /* ── Hero ── */
+    .page-hero{position:relative;height:70vh;min-height:380px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding-bottom:56px}
+    .page-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.82) 100%)}
+    .hero-inner{position:relative;z-index:2}
+    .hero-tag{display:inline-block;background:#ca2120;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:3px;margin-bottom:12px}
+    .hero-inner h1{font-size:3.4rem;font-weight:800;color:#fff;margin:0 0 14px;line-height:1.1}
+    .hero-inner p{font-size:1.1rem;color:rgba(255,255,255,.88);max-width:720px;line-height:1.65;margin:0}
+    .hero-meta{display:flex;gap:28px;margin-top:20px;flex-wrap:wrap}
+    .hero-meta span{color:rgba(255,255,255,.8);font-size:.9rem;display:flex;align-items:center;gap:6px}
+    .hero-meta i{color:#ca2120;font-size:1rem}
+
+    /* ── Shared section styles ── */
+    .page-main{padding:64px 0 0px}
+    .content-section{padding:52px 0;border-bottom:1px solid #f0f0f0}
+    .content-section:last-child{border-bottom:none}
+    .section-tag{display:inline-block;background:#fff3f3;color:#ca2120;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:3px;margin-bottom:14px;border:1px solid rgba(202,33,32,.2)}
+    .content-section h2{font-size:1.85rem;font-weight:800;color:#151515;margin-bottom:16px;line-height:1.3}
+    .content-section .lead{font-size:1.05rem;font-weight:600;color:#333;margin-bottom:14px;line-height:1.6}
+    .content-section p{color:#555;line-height:1.9;margin-bottom:14px;font-size:.97rem}
+    .content-img{width:100%;border-radius:14px;object-fit:cover;display:block;max-height:440px}
+    .cta-btn{display:inline-block;background:#ca2120;color:#fff!important;border:2px solid #ca2120;border-radius:6px;padding:11px 30px;font-weight:700;font-size:15px;transition:.3s;margin-top:20px;margin-right:10px}
+    .cta-btn:hover{background:transparent!important;color:#ca2120!important}
+    .cta-btn-outline{display:inline-block;background:transparent;color:#ca2120!important;border:2px solid #ca2120;border-radius:6px;padding:11px 30px;font-weight:700;font-size:15px;transition:.3s;margin-top:20px;margin-right:10px}
+    .cta-btn-outline:hover{background:#ca2120!important;color:#fff!important}
+
+    /* ── Stats bar ── */
+    .stats-bar{background:#151515;padding:44px 0}
+    .stat-item .stat-num{font-family:"Raleway",sans-serif;font-size:2.6rem;font-weight:800;color:#ca2120;line-height:1;display:block}
+    .stat-item .stat-label{color:#ccc;font-size:.85rem;letter-spacing:.05em;text-transform:uppercase;margin-top:6px;display:block}
+
+    /* ── Program cards ── */
+    .program-card{background:#fff;border:1px solid #f0f0f0;border-radius:14px;padding:28px 22px;height:100%;transition:.3s;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    .program-card:hover{border-color:#ca2120;transform:translateY(-4px);box-shadow:0 10px 28px rgba(202,33,32,.12)}
+    .program-card .p-icon{width:56px;height:56px;background:#fff3f3;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:.3s}
+    .program-card:hover .p-icon{background:#ca2120}
+    .program-card .p-icon i{font-size:1.6rem;color:#ca2120;transition:.3s}
+    .program-card:hover .p-icon i{color:#fff}
+    .program-card h4{font-size:1.05rem;font-weight:800;color:#151515;margin-bottom:8px}
+    .program-card p{font-size:.88rem;color:#666;margin:0;line-height:1.65}
+
+    /* ── Pathway strip ── */
+    .pathway{display:flex;align-items:center;flex-wrap:wrap;gap:0;margin:24px 0}
+    .pathway-step{background:#fff3f3;border:1px solid rgba(202,33,32,.2);border-radius:10px;padding:14px 18px;text-align:center;flex:1;min-width:120px}
+    .pathway-step h5{font-family:"Raleway",sans-serif;font-size:.88rem;font-weight:800;color:#151515;margin-bottom:4px}
+    .pathway-step p{font-size:.78rem;color:#777;margin:0}
+    .pathway-arrow{color:#ca2120;font-size:1.4rem;padding:0 6px;flex-shrink:0}
+
+    /* ── Dark callout ── */
+    .callout-dark{background:#151515;border-radius:16px;padding:40px 36px;color:#fff}
+    .callout-dark h3{font-family:"Raleway",sans-serif;font-size:1.5rem;font-weight:800;color:#fff;margin-bottom:12px}
+    .callout-dark p{color:#bbb;line-height:1.8;margin-bottom:0;font-size:.95rem}
+    .callout-dark .highlight{color:#ca2120;font-weight:700}
+
+    /* ── Check list ── */
+    .check-list{list-style:none;padding:0;margin:0}
+    .check-list li{padding:9px 0 9px 32px;position:relative;color:#555;font-size:.95rem;border-bottom:1px solid #f7f7f7;line-height:1.5}
+    .check-list li:last-child{border-bottom:none}
+    .check-list li::before{content:'\F26E';font-family:"bootstrap-icons";position:absolute;left:0;color:#ca2120;font-size:1.05rem;top:9px}
+
+    /* ── Full-width image ── */
+    .full-img{width:100%;border-radius:16px;object-fit:cover;display:block;max-height:500px}
+
+    /* ── Full-bleed image ── */
+    .screen-wide{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:220px;overflow:hidden;margin-top:32px}
+    .screen-wide img{position:absolute;top:0;left:0;width:100%;}
+
+    /* ── Official logos ── */
+    .official-logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;padding:20px 0 8px}
+    .official-logos img{height:80px;object-fit:contain;transition:.3s}
+    .official-logos img:hover{transform:scale(1.06)}
+
+    /* ── Footer ── */
+    #footer{background:#000;padding:0;color:#fff;font-size:14px}
+    #footer .footer-top{background:#151515;border-bottom:1px solid #222;padding:50px 0 30px}
+    #footer h3{font-size:22px;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:14px}
+    #footer h3 span{color:#ca2120}
+    #footer h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:14px}
+    #footer p{font-size:14px;line-height:24px;color:#ccc}
+    #footer .footer-links ul{list-style:none;padding:0;margin:0}
+    #footer .footer-links ul li{padding:6px 0;display:flex;align-items:center}
+    #footer .footer-links ul i{padding-right:6px;color:#ca2120;font-size:16px}
+    #footer .footer-links ul a{color:#ccc;transition:.3s}
+    #footer .footer-links ul a:hover{color:#ca2120}
+    #footer .copyright{text-align:center;padding:22px 0;color:#888}
+
+    @media(max-width:768px){
+      .page-hero{height:55vh;min-height:280px;padding-bottom:30px}
+      .hero-inner h1{font-size:2rem}
+      .hero-inner p{font-size:.9rem}
+      .hero-meta{gap:14px}
+      .content-section h2{font-size:1.35rem}
+      .content-section{padding:36px 0}
+      .stat-item .stat-num{font-size:2rem}
+      .pathway{flex-direction:column}
+      .pathway-arrow{transform:rotate(90deg)}
+      .callout-dark{padding:28px 20px}
+      .logos-row{gap:20px}
+      .logos-row img{height:50px}
+      .screen-wide{height:90px;}
+
+    }
+  </style>
+</head>
+<body>
+
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="/" class="logo"><img src="{% static 'assets/img/atast.png' %}" alt="ATAST"></a>
+      <a href="/" class="home-btn">&#8592; Home</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO ══ -->
+  <section class="page-hero" id="pageHero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="hero-tag">International Pathways</span>
+        <h1>RobotChallenge</h1>
+        <p>One of the world's largest AI robotics championships — where Tunisia's engineers compete with self-made, autonomous robots on the global stage in China.</p>
+        <div class="hero-meta">
+          <span><i class="bi bi-globe2"></i> 88 Countries Since 2004</span>
+          <span><i class="bi bi-people-fill"></i> 5,000+ Contestants</span>
+          <span><i class="bi bi-robot"></i> Self-Made Autonomous Robots</span>
+          <span><i class="bi bi-geo-alt-fill"></i> China</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="page-main">
+    <div class="container">
+
+      <!-- ══ ABOUT ══ -->
+      <div class="content-section" data-aos="fade-up">
+        <span class="section-tag">About the Competition</span>
+        <div class="official-logos mb-4">
+          <img src="{% static 'assets/img/rc-china/logo-1.png' %}" alt="RC China Logo">
+          <img src="{% static 'assets/img/rc-china/logo-2.png' %}" alt="RC China Logo">
+        </div>
+        <h2>One of the World's Largest AI Robotics Championships</h2>
+        <p class="lead mt-3">RobotChallenge is an international championship for self-made, autonomous, and mobile robots held annually in China. Since its founding in 2004, teams from 88 countries have competed — making it one of the most inclusive and prestigious robotics events on the planet.</p>
+        <p>Every year, RobotChallenge brings together people from all over the world who compete with robots they designed and built themselves, across a wide variety of disciplines. The competition stands by a simple ethos: <strong>Cool. Justice. Equality.</strong> — every team, regardless of origin, competes on the same floor under the same rules.</p>
+        <p>In 2025, the event ran from <strong>August 15–17</strong>, drawing <strong>5,000+ contestants</strong>, <strong>660+ coaches</strong>, <strong>2,300+ teams</strong>, and <strong>300+ institutions</strong> from <strong>42 countries</strong> — a testament to its global reach and enduring appeal.</p>
+        <div class="screen-wide" data-aos="fade-up">
+          <img src="{% static 'assets/img/rc-china/large-display.jpg' %}" alt="RobotChallenge International">
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ══ STATS BAR ══ -->
+  <section class="stats-bar" data-aos="fade-up">
+    <div class="container">
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">88</span>
+            <span class="stat-label">Countries Since 2004</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">5,000+</span>
+            <span class="stat-label">Contestants (2025)</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">2,300+</span>
+            <span class="stat-label">Teams (2025)</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="stat-item">
+            <span class="stat-num">2004</span>
+            <span class="stat-label">Founded</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="container">
+
+      <!-- ══ ALL CHALLENGES ══ -->
+      <div class="content-section" data-aos="fade-up">
+        <div class="text-center mb-4">
+          <span class="section-tag">Competition Format</span>
+          <h2 class="mt-2">Diverse Challenges, One Stage</h2>
+          <p class="mt-3" style="max-width:620px;margin:0 auto;color:#666;">RobotChallenge features over a dozen distinct competition categories — from autonomous hardware challenges to coding disciplines — each testing a different dimension of engineering skill.</p>
+        </div>
+        <img src="{% static 'assets/img/rc-china/all-challenges.jpg' %}" class="full-img" alt="RC China — All Challenges" data-aos="fade-up">
+      </div>
+
+      <!-- ══ ATAST'S ROLE ══ -->
+      <div class="content-section" data-aos="fade-up">
+        <span class="section-tag">ATAST's Role</span>
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 order-lg-2">
+            <h2>Building Tunisia's Pathway to China</h2>
+            <p class="lead">ATAST organises Tunisia's national qualifier for RC China — identifying top student teams, providing technical preparation, and coordinating Tunisia's official delegation to the international event.</p>
+            <p>Through ATAST's programme, students receive mentorship, workshops, and competition preparation tailored to RC China's specific challenge categories. ATAST handles team registration, travel logistics, and ensures every Tunisian team arrives ready to compete.</p>
+            <p>Representing Tunisia at an international competition in China is a career-defining milestone — and ATAST is the gateway that makes it possible.</p>
+            <a href="/#contact" class="cta-btn">Join the RC China Programme</a>
+          </div>
+          <div class="col-lg-6 order-lg-1" data-aos="fade-right">
+            <img src="{% static 'assets/img/rc-china/all-challenges.jpg' %}" class="content-img" alt="RC China competition challenges">
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ CHALLENGE CATEGORIES ══ -->
+      <div class="content-section" data-aos="fade-up">
+        <div class="text-center mb-5">
+          <span class="section-tag">Challenge Categories</span>
+          <h2 class="mt-2">Something for Every Engineer</h2>
+          <p class="mt-3" style="max-width:620px;margin:0 auto;color:#666;">RobotChallenge's multi-discipline format lets teams compete in the category that best matches their strengths — all robots must be self-made and fully autonomous.</p>
+        </div>
+        <div class="row g-4">
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="50">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-shield-shaded"></i></div>
+              <h4>RoboSumo</h4>
+              <p>Two autonomous robots battle to push each other out of a circular ring. The robot must detect its opponent and react — no human input allowed during the match.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-wind"></i></div>
+              <h4>Air Race</h4>
+              <p>Autonomous flying robots race through a defined aerial course at speed. Precision navigation, stability control, and fast autonomous flight are key to winning.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-sign-turn-right"></i></div>
+              <h4>Line Follower</h4>
+              <p>Robots follow a black line on a white surface as fast as possible. Speed, sensor precision, and tuned PID control separate the winners from the rest.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-circle"></i></div>
+              <h4>Puck Collect</h4>
+              <p>Robots autonomously collect pucks scattered on a field and bring them to a target zone — testing object detection, pathfinding, and mechanical design.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="250">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-person-walking"></i></div>
+              <h4>Humanoid Sprint</h4>
+              <p>Bipedal robots race autonomously in a straight sprint. Building a humanoid that walks fast without falling is a complex balance of mechanics and control software.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-stars"></i></div>
+              <h4>Freestyle</h4>
+              <p>Teams showcase original autonomous creations judged on creativity, engineering quality, and real-world impact — the category that rewards thinking beyond the rulebook.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="350">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-trophy"></i></div>
+              <h4>Robot Bowling</h4>
+              <p>Autonomous robots aim and launch a ball to knock down as many pins as possible. Accuracy, targeting algorithms, and launch timing determine the score.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-question-circle"></i></div>
+              <h4>Unknown Mission</h4>
+              <p>The challenge is revealed only at the event. Teams must rapidly design a solution on-site — testing adaptability, problem-solving under pressure, and engineering versatility.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="450">
+            <div class="program-card">
+              <div class="p-icon"><i class="bi bi-code-slash"></i></div>
+              <h4>RC.CODE — Scratch / Python / C++</h4>
+              <p>Dedicated programming competitions in Scratch, Python, and C++. Students solve challenges through code alone — no hardware required, pure software engineering.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ QUALIFICATION PATH ══ -->
+      <div class="content-section" data-aos="fade-up">
+        <div class="row g-5 align-items-start">
+          <div class="col-lg-6">
+            <span class="section-tag">How to Qualify</span>
+            <h2 class="mt-2">From Tunisia to China</h2>
+            <p class="mt-3">ATAST's selection process is designed to identify and prepare the strongest Tunisian teams for the international stage.</p>
+
+            <div class="pathway mb-4">
+              <div class="pathway-step">
+                <h5>Apply &amp; Build</h5>
+                <p>Register with ATAST</p>
+              </div>
+              <div class="pathway-arrow"><i class="bi bi-chevron-right"></i></div>
+              <div class="pathway-step">
+                <h5>National Qualifier</h5>
+                <p>ATAST selection event</p>
+              </div>
+              <div class="pathway-arrow"><i class="bi bi-chevron-right"></i></div>
+              <div class="pathway-step" style="background:#fff3f3;border-color:#ca2120">
+                <h5 style="color:#ca2120">RC China</h5>
+                <p>International competition</p>
+              </div>
+            </div>
+
+            <ul class="check-list mt-3">
+              <li>Open to student teams registered through ATAST</li>
+              <li>ATAST runs the national qualifier to select Tunisia's delegation</li>
+              <li>Technical workshops and coaching provided before departure</li>
+              <li>ATAST coordinates all logistics, registration, and official documentation</li>
+              <li>Selected teams compete under the Tunisian flag internationally</li>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="callout-dark">
+              <h3>Why Compete in China?</h3>
+              <p>China hosts some of the world's most advanced robotics and engineering competitions. Competing there gives Tunisian students rare exposure to <span class="highlight">cutting-edge technology, global engineering culture</span>, and the high standards of international STEM competition — experience that stands out on any university or professional application.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ CTA ══ -->
+      <div class="content-section" style="border-bottom:none" data-aos="fade-up">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <span class="section-tag">Get Involved</span>
+            <h2 class="mt-2">Represent Tunisia at RC China</h2>
+            <p class="mt-3" style="color:#666;max-width:560px;margin:0 auto;">Ready to compete on the world stage in China? Contact ATAST to find out about registration, upcoming qualifiers, and how to join Tunisia's delegation.</p>
+            <a href="/#contact" class="cta-btn mt-4">Get in Touch with ATAST</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+            <h3>ATAST<span>.</span></h3>
+            <p>Maison des associations, PB 42, Moknine 5050<br><strong>Phone:</strong> +21629535631<br><strong>Email:</strong> info.atast@gmail.com</p>
+          </div>
+          <div class="col-lg-3 col-md-6 footer-links mb-4 mb-lg-0">
+            <h4>Our Clubs</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/profile.php?id=100064846292216">Moknine</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ClubAtastSousse">Sousse</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/atast.ksarhelal">Ksar Hlel</a></li>
+              <li><i class="bx bx-chevron-right"></i><a href="https://www.facebook.com/ATAST.MONASTIR">Monastir</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <img src="{% static 'assets/img/atast.png' %}" class="img-fluid" alt="" style="max-width:200px">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="copyright">&copy; Copyright <strong>ATAST</strong>. All Rights Reserved</div>
+    </div>
+  </footer>
+
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <script>
+    document.getElementById('pageHero').style.backgroundImage="url('{% static 'assets/img/rc-china/hero.png' %}')";
+    AOS.init({duration:600,easing:'ease-in-out',once:true,offset:60});
+  </script>
+</body>
+</html>

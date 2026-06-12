@@ -57,6 +57,12 @@ def castic(request):
 def gwp(request):
     return render(request, 'gwp.html')
 
+def robotex(request):
+    return render(request, 'robotex.html')
+
+def rc_china(request):
+    return render(request, 'rc_china.html')
+
 def training(request):
     return render(request, 'training.html')
 

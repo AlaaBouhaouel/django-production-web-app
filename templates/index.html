@@ -675,8 +675,32 @@
               <span class="ne-dest-badge">&#127480;&#127466; Stockholm &middot; Sweden</span>
               <div class="ne-card-content">
                 <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: Stockholm Junior Water Prize</span>
-                <h4>General Water Prize</h4>
+                <h4>Junior Water Prize</h4>
                 <p>National qualifier for the world's leading youth water research competition — $15,000 prize.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/rc-china" class="ne-intl-card">
+              <img src="{% static 'assets/img/rc-china/hero.png' %}" class="ne-card-bg" alt="RC China International">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127464;&#127475; China &middot; International</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: RobotChallenge International</span>
+                <h4>RobotChallenge</h4>
+                <p>One of the world's largest AI robotics championships — 88 countries, 5,000+ contestants, self-made autonomous robots only.</p>
+                <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
+              </div>
+            </a>
+
+            <a href="/robotex" class="ne-intl-card">
+              <img src="{% static 'assets/img/robotex/hero.jpg' %}" class="ne-card-bg" alt="Robotex International">
+              <div class="ne-card-overlay"></div>
+              <span class="ne-dest-badge">&#127466;&#127466; Tallinn &middot; Estonia</span>
+              <div class="ne-card-content">
+                <span class="ne-qualifies-tag"><i class="bi bi-arrow-up-right"></i>&nbsp; Qualifies for: Robotex International</span>
+                <h4>Robotex Tunisia</h4>
+                <p>National qualifier for the world's largest autonomous robotics competition — 17+ countries, 150,000+ participants worldwide.</p>
                 <span class="ne-card-link">Learn more <i class="bi bi-arrow-right"></i></span>
               </div>
             </a>
@@ -828,7 +852,7 @@
           </div>
         </div>
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200" style="height: 100%;">
 
           {% for img in gallery_images %}
           <div class="col-lg-4 col-md-6 portfolio-item {% if img.category == 'this_year' %}filter-this-year{% elif img.category == 'national' %}filter-app{% elif img.category == 'international' %}filter-card{% elif img.category == 'tunisia_team' %}filter-web{% endif %}">

@@ -29,6 +29,8 @@ urlpatterns = [
     path('vex', views.vex, name='vex'),
     path('castic', views.castic, name='castic'),
     path('gwp', views.gwp, name='gwp'),
+    path('robotex', views.robotex, name='robotex'),
+    path('rc-china', views.rc_china, name='rc_china'),
     path('news/<int:news_id>/', views.news_detail, name='news_detail'),
 
     # ── ORO category pages ──
