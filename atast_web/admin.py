@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import Video, NewsArticle, Partners_Supporters, GalleryImage, Gifts, LatestNews
+from .models import ifestVideo, NewsArticle, Partners_Supporters, GalleryImage, Gifts, LatestNews
 
 
-admin.site.register(Video)
+admin.site.register(ifestVideo)
 
 
 @admin.register(NewsArticle)

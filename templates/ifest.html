@@ -265,9 +265,12 @@
 
   <!-- Hero -->
   <div class="page-hero">
+    {% if video %}
      <video autoplay muted loop playsinline class="hero-bg-vid">
-        <source src="{% static 'assets/img/vid/ifest-vid.mp4' %}" type="video/mp4">
+        <source src="{{ video.video.url }}" type="video/mp4">
       </video>
+    {% endif %}
+
     <div class="hero-content">
       <h1>I-Fest<span>²</span></h1>
       <p>The International Festival for Engineering, Science and Technology in Tunisia</p>
