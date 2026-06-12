@@ -1,1 +1,1 @@
-web: python manage.py migrate && python manage.py createsuperuser --no-input || true && gunicorn atast.wsgi:application --bind 0.0.0.0:$PORT
+web: python manage.py migrate && python manage.py shell -c "from django.contrib.auth.models import User; u, _ = User.objects.get_or_create(username='admin'); u.is_superuser=True; u.is_staff=True; u.set_password('Atast2024!'); u.save()" && gunicorn atast.wsgi:application --bind 0.0.0.0:$PORT
