@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ifestVideo, NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts
+from .models import ifestImage, NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts
 
 def index(request):
     latest_news = LatestNews.objects.all()[:4]
@@ -12,8 +12,8 @@ def index_store(request):
     return render(request, 'index_store.html', {'gifts': gifts})
 
 def ifest(request):
-    video = ifestVideo.objects.first()
-    return render(request, 'ifest.html', {'video' : video })
+    bg_image = ifestImage.objects.first()
+    return render(request, 'ifest.html', {'bg_image': bg_image})
 
 def maker_space(request):
     return render(request, 'maker_space.html')

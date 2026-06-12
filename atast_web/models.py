@@ -2,8 +2,8 @@ from django.utils import timezone
 from django.db import models
 
 # Create your models here.
-class ifestVideo(models.Model):
-    video = models.FileField(upload_to='ifest_video/')
+class ifestImage(models.Model):
+    image = models.ImageField(upload_to='ifest_bg/')
 
         
 class NewsArticle(models.Model):

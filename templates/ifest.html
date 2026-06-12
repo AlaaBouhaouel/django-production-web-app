@@ -108,13 +108,11 @@
     background-position: center;
     filter: brightness(0.35);
   }
-  .hero-bg-vid{
+  .hero-bg-img {
     position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     filter: brightness(0.35);
     z-index: 0;
@@ -265,10 +263,10 @@
 
   <!-- Hero -->
   <div class="page-hero">
-    {% if video %}
-     <video autoplay muted loop playsinline class="hero-bg-vid">
-        <source src="{{ video.video.url }}" type="video/mp4">
-      </video>
+    {% if bg_image %}
+      <img src="{{ bg_image.image.url }}" class="hero-bg-img" alt="">
+    {% else %}
+      <img src="{% static 'assets/img/ifest-bg.jpg' %}" class="hero-bg-img" alt="">
     {% endif %}
 
     <div class="hero-content">
