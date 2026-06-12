@@ -104,10 +104,20 @@
   .page-hero .hero-bg {
     position: absolute;
     inset: 0;
-    background-image: url("{% static 'assets/img/ifest-bg1.jpg' %}");
     background-size: cover;
     background-position: center;
     filter: brightness(0.35);
+  }
+  .hero-bg-vid{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    filter: brightness(0.35);
+    z-index: 0;
   }
   .page-hero .hero-content {
     position: relative;
@@ -255,7 +265,9 @@
 
   <!-- Hero -->
   <div class="page-hero">
-    <div class="hero-bg"></div>
+     <video autoplay muted loop playsinline class="hero-bg-vid">
+        <source src="{% static 'assets/vid/ifest-vid.mp4' %}" type="video/mp4">
+      </video>
     <div class="hero-content">
       <h1>I-Fest<span>²</span></h1>
       <p>The International Festival for Engineering, Science and Technology in Tunisia</p>

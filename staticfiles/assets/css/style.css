@@ -451,6 +451,15 @@ h6 {
   margin: 10px 0 0 0;
   font-size: 24px;
 }
+#hero h3 {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1rem;
+  font-weight: 400;
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.7;
+  margin: 12px auto 36px;
+  max-width: 520px;
+}
 #hero h5 {
   color: #fff;
 }
