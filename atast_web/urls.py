@@ -66,6 +66,10 @@ urlpatterns = [
     path('oro_seniors_roborace', views.oro_seniors_roborace, name='oro_seniors_roborace'),
     path('oro_seniors_maze', views.oro_seniors_maze, name='oro_seniors_maze'),
     path('oro_seniors_firefighting', views.oro_seniors_firefighting, name='oro_seniors_firefighting'),
+
+
+    path('registration', views.registration, name='registration'),
+
 ]
 
 if settings.DEBUG:

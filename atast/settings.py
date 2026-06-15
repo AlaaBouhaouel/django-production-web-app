@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'cloudinary',
     'cloudinary_storage',
+    'import_export',
 ]
 
 if HAS_CORSHEADERS:

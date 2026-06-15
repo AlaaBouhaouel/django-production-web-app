@@ -1,0 +1,201 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — ATAST Internationals</title>
+    <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <style>
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:"Open Sans",sans-serif;background:#f4f5f7;color:#444;min-height:100vh}
+
+        /* header */
+        .reg-header{background:rgba(0,0,0,.92);padding:14px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+        .reg-header img{height:38px}
+        .back-btn{color:#fff;font-size:.85rem;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;opacity:.8;transition:.2s}
+        .back-btn:hover{opacity:1;color:#ca2120}
+
+        /* hero strip */
+        .reg-hero{background:linear-gradient(135deg,#151515 0%,#2a0a0a 100%);padding:48px 24px 40px;text-align:center}
+        .reg-hero .badge{display:inline-block;background:#ca2120;color:#fff;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:3px;margin-bottom:14px}
+        .reg-hero h1{font-family:"Raleway",sans-serif;font-size:2rem;font-weight:800;color:#fff;margin-bottom:6px}
+        .reg-hero p{color:rgba(255,255,255,.6);font-size:.9rem}
+
+        /* layout */
+        .reg-wrapper{max-width:780px;margin:40px auto;padding:0 20px 60px}
+
+        /* card */
+        .reg-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.07);overflow:hidden;margin-bottom:24px}
+        .reg-card-header{background:#f9f9f9;border-bottom:1px solid #f0f0f0;padding:18px 28px;display:flex;align-items:center;gap:10px}
+        .reg-card-header i{color:#ca2120;font-size:1.1rem}
+        .reg-card-header h3{font-family:"Raleway",sans-serif;font-size:1rem;font-weight:700;color:#151515}
+        .reg-card-body{padding:28px}
+
+        /* form fields */
+        .field-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+        .field-row.single{grid-template-columns:1fr}
+        .field{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+        .field:last-child{margin-bottom:0}
+        label{font-size:.82rem;font-weight:600;color:#333;text-transform:uppercase;letter-spacing:.05em}
+        input[type=text],input[type=email],input[type=number],select,textarea{width:100%;border:1.5px solid #e5e5e5;border-radius:8px;padding:10px 14px;font-size:.93rem;font-family:"Open Sans",sans-serif;color:#333;background:#fafafa;transition:.2s;outline:none}
+        input:focus,select:focus,textarea:focus{border-color:#ca2120;background:#fff;box-shadow:0 0 0 3px rgba(202,33,32,.08)}
+        textarea{resize:vertical;min-height:90px}
+        select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+
+        /* checkbox */
+        .check-field{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1.5px solid #e5e5e5;border-radius:8px;background:#fafafa;cursor:pointer;transition:.2s}
+        .check-field:hover{border-color:#ca2120;background:#fff}
+        .check-field input[type=checkbox]{width:17px;height:17px;accent-color:#ca2120;cursor:pointer;flex-shrink:0}
+        .check-field span{font-size:.9rem;color:#444}
+
+        /* teammates (hidden until checked) */
+        #teammates-field{display:none}
+
+        /* submit */
+        .reg-footer{text-align:center;margin-top:8px}
+        .submit-btn{display:inline-block;background:#ca2120;color:#fff;border:none;border-radius:8px;padding:13px 48px;font-family:"Raleway",sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:.3s;letter-spacing:.03em}
+        .submit-btn:hover{background:#a81a19;transform:translateY(-1px);box-shadow:0 6px 20px rgba(202,33,32,.3)}
+
+        /* success banner */
+        .success-banner{background:#edfaf1;border:1.5px solid #4caf50;border-radius:10px;padding:18px 24px;display:flex;align-items:center;gap:12px;margin-bottom:24px}
+        .success-banner i{color:#4caf50;font-size:1.4rem}
+        .success-banner p{color:#2e7d32;font-weight:600;font-size:.95rem;margin:0}
+
+        @media(max-width:600px){
+            .field-row{grid-template-columns:1fr}
+            .reg-hero h1{font-size:1.5rem}
+            .reg-card-body{padding:20px}
+        }
+    </style>
+</head>
+<body>
+
+    <header class="reg-header">
+        <img src="{% static 'assets/img/atast.png' %}" alt="ATAST">
+        <a href="javascript:history.back()" class="back-btn"><i class="bi bi-arrow-left"></i> Go Back</a>
+    </header>
+
+    <div class="reg-hero">
+        <div class="badge">This form is to show interest</div>
+        <h1>{% if competition %}{{ competition|upper }}{% else %}Apply to Participate{% endif %}</h1>
+        <p>Fill in the form below — our team will get back to you shortly.</p>
+    </div>
+
+    <div class="reg-wrapper">
+
+        {% if success %}
+        <div class="success-banner">
+            <i class="bi bi-check-circle-fill"></i>
+            <p>Your registration was submitted successfully! We'll be in touch soon.</p>
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="competition" value="{{ competition }}">
+
+            <!-- Personal Info -->
+            <div class="reg-card">
+                <div class="reg-card-header">
+                    <i class="bi bi-person-fill"></i>
+                    <h3>Personal Information</h3>
+                </div>
+                <div class="reg-card-body">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. Ahmed Ben Ali" required>
+                        </div>
+                        <div class="field">
+                            <label for="mail">Email Address</label>
+                            <input type="email" id="mail" name="mail" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" min="5" max="99" placeholder="e.g. 17" required>
+                        </div>
+                        <div class="field">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="e.g. Tunis" required>
+                        </div>
+                    </div>
+                    <div class="field-row">
+                        <div class="field">
+                            <label>Membership</label>
+                            <label class="check-field">
+                                <input type="checkbox" id="atastian" name="atastian" onchange="document.getElementById('club-field').style.display=this.checked?'flex':'none'">
+                                <span>I am an ATASTian</span>
+                            </label>
+                        </div>
+                        <div class="field" id="club-field" style="display:none">
+                            <label for="club">ATAST Club</label>
+                            <select id="club" name="club">
+                                <option value="">— Select your club —</option>
+                                <option value="sousse">Sousse</option>
+                                <option value="monastir">Monastir</option>
+                                <option value="moknine">Moknine</option>
+                                <option value="ksarhlel">Ksar Hellel</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Info -->
+            {% if competition != 'vex' %}
+            <div class="reg-card">
+                <div class="reg-card-header">
+                    <i class="bi bi-lightbulb-fill"></i>
+                    <h3>Project Details</h3>
+                </div>
+                <div class="reg-card-body">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="categorie">Category</label>
+                            <select id="categorie" name="categorie">
+                                <option value="">— Select a category —</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="energy">Energy</option>
+                                <option value="env">Environment</option>
+                                <option value="art">Arts & Humanities</option>
+                                <option value="software">Softwares & AI</option>
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="project_title">Project Title</label>
+                            <input type="text" id="project_title" name="project_title" placeholder="e.g. Smart Water Purification">
+                        </div>
+                    </div>
+                    <div class="field field-row single">
+                        <label for="project_desc">Project Description</label>
+                        <textarea id="project_desc" name="project_desc" placeholder="Briefly describe your project, its goals, and methodology..."></textarea>
+                    </div>
+                    <div class="field-row single">
+                        <label>Team</label>
+                        <label class="check-field" id="team-toggle">
+                            <input type="checkbox" id="team" name="team" onchange="document.getElementById('teammates-field').style.display=this.checked?'flex':'none'">
+                            <span>This is a team project</span>
+                        </label>
+                    </div>
+                    <div class="field field-row single" id="teammates-field" style="display:none;margin-top:14px">
+                        <label for="teammates">Teammates</label>
+                        <textarea id="teammates" name="teammates" placeholder="Enter teammate names separated by commas" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <div class="reg-footer">
+                <button type="submit" class="submit-btn">Submit &rarr;</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

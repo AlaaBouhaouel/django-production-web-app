@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ifestImage, NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts
+from .models import Registration,  ifestImage, NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts, Registration
 
 def index(request):
     latest_news = LatestNews.objects.all()[:4]
@@ -170,3 +170,26 @@ def oro_seniors_maze(request):
 
 def oro_seniors_firefighting(request):
     return render(request, 'oro_seniors_firefighting.html')
+
+
+def registration(request):
+    competition = request.GET.get('competition', '')
+
+    if request.method == 'POST':
+        Registration.objects.create(
+            competition=request.POST.get('competition', ''),
+            name=request.POST.get('name'),
+            mail=request.POST.get('mail'),
+            age=request.POST.get('age'),
+            city=request.POST.get('city'),
+            atastian=request.POST.get('atastian') == 'on',
+            club=request.POST.get('club', ''),
+            categorie=request.POST.get('categorie', ''),
+            project_title=request.POST.get('project_title', ''),
+            project_desc=request.POST.get('project_desc', ''),
+            team=request.POST.get('team') == 'on',
+            teammates=request.POST.get('teammates', ''),
+        )
+        return render(request, 'registration.html', {'success': True, 'competition': request.POST.get('competition', '')})
+
+    return render(request, 'registration.html',{'competition': competition})
