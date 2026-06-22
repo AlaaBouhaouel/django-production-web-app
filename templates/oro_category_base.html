@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block page_title %}ORO Category{% endblock %}</title>
+  <link rel="icon" href="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --line: rgba(25, 182, 182, 0.4);
+      --line-soft: rgba(245, 184, 0, 0.22);
+      --text: #f4f5ff;
+      --muted: rgba(244, 245, 255, 0.72);
+      --primary: #f5b800;
+      --primary-bright: #19b6b6;
+      --accent-red: #c8281e;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      background:
+        radial-gradient(circle at 16% -4%, rgba(25, 182, 182, 0.25), transparent 38%),
+        radial-gradient(circle at 94% 14%, rgba(200, 40, 30, 0.2), transparent 30%),
+        linear-gradient(180deg, #07080d 0%, #05060c 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(1160px, calc(100% - 2.5rem)); margin: 0 auto; }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 10, 18, 0.82);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .top-nav-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(25, 182, 182, 0.33));
+    }
+    .brand span { color: var(--primary-bright); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.65rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: linear-gradient(140deg, rgba(200, 40, 30, 0.95), rgba(245, 184, 0, 0.95));
+      color: #111;
+      box-shadow: 0 18px 45px rgba(200, 40, 30, 0.28);
+    }
+
+    .hero {
+      position: relative;
+      border-bottom: 1px solid var(--line-soft);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 10, 17, 0.76), rgba(7, 10, 17, 0.9)), url('{% static "assets/img/oro/headline.png" %}') center/cover no-repeat;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      min-height: 320px;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      padding: 3rem 0;
+    }
+    .hero-kicker {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.82rem;
+      color: var(--primary);
+      background: rgba(245, 184, 0, 0.12);
+    }
+    .hero h1 {
+      margin: 0.9rem 0 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .hero p { margin: 0.9rem 0 0; color: var(--muted); max-width: 64ch; }
+    .hero-sticker {
+      width: 120px;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      0%,100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(-2deg); }
+    }
+
+    .content { padding: 3rem 0 4rem; }
+    .section-top { display: flex; justify-content: space-between; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+    .section-title {
+      margin: 0;
+      font-size: clamp(1.6rem, 3vw, 2.5rem);
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.02em;
+    }
+    .back-link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      color: var(--primary-bright);
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+    .comp-card {
+      background: linear-gradient(180deg, rgba(20, 24, 44, 0.78), rgba(11, 14, 25, 0.88));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .2s ease, border-color .2s ease;
+    }
+    .comp-card:hover { transform: translateY(-5px); border-color: var(--line); }
+    .comp-thumb {
+      aspect-ratio: 4/3;
+      width: 100%;
+      object-fit: cover;
+    }
+    .comp-body { padding: 0.9rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+    .comp-name {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.02rem;
+    }
+    .comp-btn {
+      margin-top: auto;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(245, 184, 0, 0.18);
+      width: fit-content;
+      padding: 0.45rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line-soft);
+      padding: 1.6rem 0 2.2rem;
+      background: rgba(8, 10, 18, 0.84);
+    }
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      color: rgba(244, 245, 255, 0.75);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1000px) {
+      .comp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px) {
+      .top-nav-inner { min-height: 74px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-sticker { width: 86px; }
+      .comp-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container top-nav-inner">
+      <a class="brand" href="{% url 'oro_home' %}">
+        <img class="brand-logo" src="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" alt="ORO logo">
+        <div><span>ORO</span> Subdomain</div>
+      </a>
+      <a class="nav-cta" href="{% url 'oro_registration' %}">Register Now</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+      <div>
+        <span class="hero-kicker">Open Robotic Olympiad 2026</span>
+        <h1>{% block hero_title %}Category{% endblock %}</h1>
+        <p>{% block hero_copy %}Choose a competition to view rules and register.{% endblock %}</p>
+      </div>
+      <img class="hero-sticker" src="{% block hero_sticker %}{% static 'assets/img/oro/stickers/hero-removebg-preview.png' %}{% endblock %}" alt="Category sticker">
+    </div>
+  </section>
+
+  <main class="container content">
+    <div class="section-top">
+      <h2 class="section-title">Competitions</h2>
+      <a class="back-link" href="{% url 'oro_home' %}">Back To All Categories</a>
+    </div>
+
+    <div class="comp-grid">
+      {% block competition_cards %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div>Open Robotic Olympiad by ATAST</div>
+      <div><a href="https://www.facebook.com/atast.ksarhelal" target="_blank" rel="noopener">Facebook</a></div>
+      <div>&copy; 2026 ORO</div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -32,7 +32,6 @@ ALLOWED_HOSTS = [
     'localhost',
     'atast.org',
     'www.atast.org',
-    'sss.atast.org',
     '.railway.app',
     '.up.railway.app',
 ]
@@ -62,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'atast_web',
+    'oro',
     'django_summernote',
     'cloudinary',
     'cloudinary_storage',
@@ -73,10 +73,8 @@ if HAS_CORSHEADERS:
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'atast.middleware.SubdomainMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',

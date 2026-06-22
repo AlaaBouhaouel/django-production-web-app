@@ -1,125 +1,18 @@
-﻿{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORO — Juniors — Smart City</title>
-  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <style>
-    *,*::before,*::after{box-sizing:border-box}
-    :root{--gold:#F5B800;--dark:#0d0d0d;--dark2:#181818}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--dark);color:#fff;font-family:'Inter',sans-serif}
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;height:auto}
-    #oro-nav{background:rgba(13,13,13,1);border-bottom:1px solid rgba(245,184,0,.18);padding:11px 0;position:relative}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
-    .nav-links a{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
-    .nav-links a:hover{color:#C8281E}
-    .nav-home{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.65);transition:color .2s;white-space:nowrap}
-    .nav-home:hover{color:#C8281E}
-    .nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
-    @media(max-width:768px){.nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,13,13,.98);padding:20px;gap:16px;border-bottom:1px solid rgba(245,184,0,.15);z-index:10}.nav-links.open{display:flex}.nav-mobile-toggle{display:block}}
-    .comp-hero{position:relative;height:60vh;min-height:320px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding-bottom:44px;overflow:hidden}
-    .comp-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.82) 100%)}
-    .comp-hero-inner{position:relative;z-index:2}
-    .section-label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:#C8281E;display:block;margin-bottom:8px}
-    .comp-hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,12vw,8rem);color:#fff;line-height:.9;letter-spacing:.05em;margin:0;text-shadow:0 4px 40px rgba(0,0,0,.6)}
-    .comp-content{padding:64px 0 80px}
-    .back-link{display:inline-flex;align-items:center;gap:6px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:36px;transition:color .2s}
-    .back-link:hover{color:#C8281E}
-    .comp-desc-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#fff;letter-spacing:.04em;margin:0 0 16px;border-left:3px solid #C8281E;padding-left:12px}
-    .comp-desc{font-size:1rem;line-height:1.9;color:rgba(255,255,255,.6);max-width:680px;margin-bottom:40px}
-    .btn-row{display:flex;gap:14px;flex-wrap:wrap}
-    .btn-gold{display:inline-flex;align-items:center;gap:8px;background:#C8281E;color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:3px;transition:.2s;border:2px solid #C8281E}
-    .btn-gold:hover{background:#a31e16;border-color:#a31e16;color:#fff}
-    .btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#C8281E;border:2px solid rgba(200,40,30,.55);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:12px 28px;border-radius:3px;transition:.2s}
-    .btn-outline:hover{background:#C8281E;border-color:#C8281E;color:#fff}
-    @media(max-width:576px){.comp-hero{height:50vh}.comp-hero-title{font-size:3rem}.btn-row{flex-direction:column}.btn-gold,.btn-outline{justify-content:center}}
-    .oro-footer{background:var(--dark2);border-top:1px solid rgba(245,184,0,.15);padding:50px 0 24px}
-    .footer-desc{color:rgba(255,255,255,.4);font-size:13px;line-height:1.7;max-width:280px}
-    .footer-head{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
-    .footer-contact-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;color:rgba(255,255,255,.5);font-size:13px}
-    .footer-contact-row i{color:var(--gold);font-size:15px;flex-shrink:0;margin-top:1px}
-    .footer-links-list{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:0}
-    .footer-links-list a{color:rgba(255,255,255,.4);font-size:13px;transition:.2s}
-    .footer-links-list a:hover{color:#C8281E}
-    .footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center;color:rgba(255,255,255,.25);font-size:12px}
-    .footer-bottom span{color:#C8281E}
-  </style>
-</head>
-<body>
-
-  <section class="comp-hero" style="background-image:url('{% static 'assets/img/oro/f_smartcity.jpg' %}')">
-    <div class="container">
-      <div class="comp-hero-inner">
-        <span class="section-label">Juniors &bull; 10–12 ans</span>
-        <h1 class="comp-hero-title">Smart City</h1>
-      </div>
-    </div>
-  </section>
-
-  <nav id="oro-nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="/oro" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.1em;color:#fff"><span style="color:#106c7b;">O</span><span style="color:#C8281E;">RO</span></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="/oro#categories">Categories</a></li>
-          <li><a href="/oro#edition">1st Edition</a></li>
-          <li><a href="/oro#gallery">Gallery</a></li>
-          <li><a href="/oro#contact">Contact</a></li>
-        </ul>
-        <a href="/" class="nav-home">&#8592; Home</a>
-        <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')"><i class="bi bi-list"></i></button>
-      </div>
-    </div>
-  </nav>
-
-  <section class="comp-content">
-    <div class="container">
-      <a href="/oro_juniors" class="back-link"><i class="bi bi-arrow-left"></i> Back</a>
-      <h2 class="comp-desc-title">About the Competition</h2>
-      <p class="comp-desc">The Smart City Teleoperated competition is a robotics challenge where teams control robots remotely to complete missions in a simulated city environment. The goal is to collect objects, deliver them to the correct zones, and maximize points through speed, strategy, and precision control.
+{% extends 'oro_competition_base.html' %}
+{% load static %}
+{% block page_title %}ORO � Juniors � Smart City{% endblock %}
+{% block hero_label %}Juniors &bull; 10�12 ans{% endblock %}
+{% block hero_title %}Smart City{% endblock %}
+{% block hero_image %}{% static 'assets/img/oro/f_smartcity.jpg' %}{% endblock %}
+{% block hero_sticker %}{% static 'assets/img/oro/stickers/jumping-removebg-preview.png' %}{% endblock %}
+{% block back_href %}/oro_juniors{% endblock %}
+{% block about_html %}
+<p >The Smart City Teleoperated competition is a robotics challenge where teams control robots remotely to complete missions in a simulated city environment. The goal is to collect objects, deliver them to the correct zones, and maximize points through speed, strategy, and precision control.
 <br> Smart city (30x30x30 cm, 2kg)</p>
-      <div class="btn-row">
-        <a href="{% static 'assets/img/oro/cahiercharge/oro_junior/ORO_Junior_2026.pdf' %}" class="btn-gold" target="_blank"><i class="bi bi-file-earmark-pdf"></i> View Rulebook</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScjoApTgsOZN4H6pWMxR3aUhhVkxdwrVfIzsvEYquvg2GlPmQ/viewform?usp=publish-editor" class="btn-outline" target="_blank"><i class="bi bi-pencil-square"></i> Register Now</a>
-      </div>
-      
-    </div>
-  </section>
+{% endblock %}
+{% block action_buttons %}
+<a href="{% static 'assets/img/oro/cahiercharge/oro_junior/ORO_Junior_2026.pdf' %}" class="btn-main" target="_blank"><i class="bi bi-file-earmark-pdf"></i> View Rulebook</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScjoApTgsOZN4H6pWMxR3aUhhVkxdwrVfIzsvEYquvg2GlPmQ/viewform?usp=publish-editor" class="btn-alt" target="_blank"><i class="bi bi-pencil-square"></i> Register Now</a>
+{% endblock %}
 
-  <footer class="oro-footer">
-    <div class="container">
-      <div class="row g-5">
-        <div class="col-lg-4 col-md-6">
-          <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.1em;margin:0 0 12px"><span style="color:#106c7b;">O</span><span style="color:#C8281E;">RO</span></p>
-          <p class="footer-desc">Open Robotic Olympiad — organized by ATAST.</p>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <p class="footer-head">Contact</p>
-          <div class="footer-contact-row"><i class="bi bi-envelope-fill"></i><span>info.atast@gmail.com</span></div>
-          <div class="footer-contact-row"><i class="bi bi-telephone-fill"></i><span>+216 29 535 631</span></div>
-        </div>
-        <div class="col-lg-4 col-md-12">
-          <p class="footer-head">Other Competitions</p>
-          <ul class="footer-links-list">
-            <li><a href="/oro_comp_linefollower">Line Follower</a></li>
-            <li><a href="/oro_comp_maze">Maze</a></li>
-            <li><a href="/oro_comp_roborace">RoboRace</a></li>
-            <li><a href="/oro#categories">All Categories</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">&copy; 2025 <span>ORO</span> — Organized by <span>ATAST</span>.</div>
-    </div>
-  </footer>
 
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-</body>
-</html>

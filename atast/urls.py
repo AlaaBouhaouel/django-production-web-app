@@ -24,4 +24,5 @@ urlpatterns = [
     path('summernote/', include('django_summernote.urls')),
     path('sss/', include('atast.sss_urls')),
     path('', include('atast_web.urls')),
+    path('', include('oro.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

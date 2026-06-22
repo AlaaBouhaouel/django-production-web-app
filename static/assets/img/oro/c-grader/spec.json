@@ -1,0 +1,59 @@
+{
+  "timeout_sec": 1.0,
+  "use_clang_tidy": false,
+  "use_cppcheck": false,
+  "functions": [
+    {
+      "name": "add",
+      "return_type": "int",
+      "arg_types": [
+        "int",
+        "int"
+      ],
+      "tests": [
+        {
+          "args": [
+            1,
+            2
+          ],
+          "weight": 1
+        },
+        {
+          "args": [
+            0,
+            0
+          ],
+          "weight": 1
+        },
+        {
+          "args": [
+            -5,
+            9
+          ],
+          "weight": 1
+        }
+      ]
+    },
+    {
+      "name": "is_even",
+      "return_type": "bool",
+      "arg_types": [
+        "int"
+      ],
+      "tests": [
+        {
+          "args": [
+            2
+          ],
+          "weight": 1
+        },
+        {
+          "args": [
+            3
+          ],
+          "weight": 1
+        }
+      ]
+    }
+  ]
+}

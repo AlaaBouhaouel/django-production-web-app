@@ -1,0 +1,600 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORO Dashboard | Live Scores</title>
+  <link rel="icon" href="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --line: rgba(25, 182, 182, 0.4);
+      --line-soft: rgba(245, 184, 0, 0.22);
+      --text: #f4f5ff;
+      --muted: rgba(244, 245, 255, 0.72);
+      --primary: #f5b800;
+      --primary-bright: #19b6b6;
+      --radius-lg: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      background:
+        radial-gradient(circle at 16% -4%, rgba(25, 182, 182, 0.25), transparent 38%),
+        radial-gradient(circle at 94% 14%, rgba(200, 40, 30, 0.2), transparent 30%),
+        linear-gradient(180deg, #07080d 0%, #05060c 100%);
+      min-height: 100vh;
+    }
+
+    .container { width: min(1240px, calc(100% - 2.5rem)); margin: 0 auto; }
+    a { color: inherit; text-decoration: none; }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 10, 18, 0.82);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .top-nav-inner {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.24rem;
+    }
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(25, 182, 182, 0.33));
+    }
+    .brand span { color: var(--primary-bright); }
+    .top-link,
+    .top-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.86rem;
+      color: var(--primary);
+      background: rgba(245, 184, 0, 0.12);
+    }
+    .top-btn {
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .hero {
+      border-bottom: 1px solid var(--line-soft);
+      padding: 2rem 0 1.45rem;
+    }
+    .hero h1 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
+    }
+    .hero p {
+      margin: 0.6rem 0 0;
+      color: var(--muted);
+    }
+    .status {
+      margin-top: 0.7rem;
+      font-size: 0.88rem;
+      color: #ffd978;
+    }
+    .admin-tools {
+      margin-top: 0.8rem;
+      color: #ffdf95;
+      font-size: 0.84rem;
+    }
+    .release-bar {
+      margin-top: 0.72rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    .release-state {
+      font-size: 0.83rem;
+      color: #aef6ea;
+      border: 1px solid rgba(25, 182, 182, 0.35);
+      border-radius: 999px;
+      padding: 0.34rem 0.68rem;
+      background: rgba(25, 182, 182, 0.12);
+    }
+    .release-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.48rem 0.88rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #09131d;
+      background: linear-gradient(120deg, #f5b800, #19b6b6);
+      cursor: pointer;
+    }
+    .release-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .add-team-bar {
+      margin-top: 0.75rem;
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .add-team-input {
+      border: 1px solid rgba(245, 184, 0, 0.35);
+      border-radius: 9px;
+      background: rgba(4, 7, 16, 0.82);
+      color: #f6f8ff;
+      font: inherit;
+      padding: 0.46rem 0.58rem;
+    }
+    .add-team-input.name { min-width: 210px; }
+    .add-team-input.members { width: 95px; }
+    .add-team-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.48rem 0.88rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #09131d;
+      background: linear-gradient(120deg, #f5b800, #19b6b6);
+      cursor: pointer;
+    }
+    .add-team-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .admin-status {
+      margin-top: 0.55rem;
+      font-size: 0.83rem;
+      color: #b8f3e7;
+      min-height: 1.1rem;
+    }
+
+    .category-tabs {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.48rem 0.9rem;
+      font-size: 0.84rem;
+      color: #f8f5d8;
+      background: rgba(245, 184, 0, 0.1);
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: linear-gradient(140deg, rgba(200, 40, 30, 0.95), rgba(245, 184, 0, 0.95));
+      color: #111;
+      font-weight: 700;
+    }
+
+    .table-wrap {
+      margin: 1.2rem 0 2.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(20, 24, 44, 0.8), rgba(11, 14, 25, 0.9));
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 780px;
+    }
+    th, td {
+      padding: 0.72rem 0.65rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.86rem;
+    }
+    th {
+      background: rgba(245, 184, 0, 0.08);
+      color: #ffe39e;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    td.team {
+      text-align: left;
+      font-weight: 600;
+      color: #f7fbff;
+      min-width: 190px;
+    }
+    td.rank {
+      font-weight: 700;
+      color: #9ff6f1;
+      width: 58px;
+    }
+    td.total {
+      font-weight: 800;
+      color: #ffd978;
+    }
+    tr:first-child td.total,
+    tr:first-child td.rank,
+    tr:first-child td.team {
+      color: #ffb3a8;
+    }
+
+    .team-name-input,
+    .score-input {
+      width: 100%;
+      border: 1px solid rgba(245, 184, 0, 0.35);
+      border-radius: 8px;
+      background: rgba(4, 7, 16, 0.8);
+      color: #f6f8ff;
+      font: inherit;
+      padding: 0.36rem 0.45rem;
+    }
+    .score-input {
+      text-align: center;
+      min-width: 76px;
+    }
+    .save-team-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.38rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #09131d;
+      background: linear-gradient(120deg, #f5b800, #19b6b6);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .save-team-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .empty {
+      padding: 1.4rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    @media (max-width: 700px) {
+      .top-nav-inner { min-height: 72px; }
+      .container { width: calc(100% - 1.1rem); }
+      .top-link, .top-btn { display: none; }
+      .add-team-input.name { min-width: 160px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top-nav">
+    <div class="container top-nav-inner">
+      <a class="brand" href="{% url 'oro_home' %}">
+        <img class="brand-logo" src="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" alt="ORO logo">
+        <div><span>ORO</span> Live Dashboard</div>
+      </a>
+      <div class="nav-actions">
+        {% if user.is_authenticated and user.is_staff %}
+        <form method="post" action="{% url 'oro_dashboard_logout' %}">
+          {% csrf_token %}
+          <button class="top-btn" type="submit">Staff Logout</button>
+        </form>
+        {% else %}
+        <a class="top-link" href="{% url 'oro_dashboard_login' %}?next={% url 'oro_dashboard' %}">Staff Login</a>
+        {% endif %}
+        <a class="top-link" href="{% url 'oro_home' %}">Back To ORO</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Team Scoreboard</h1>
+      <p>Live ranking by total score. Refreshes every 3 seconds.</p>
+      <div class="status">COMPETITION STARTS IN FEW DAYS!</div>
+      {% if is_staff %}
+      <div class="admin-tools">Staff mode: edit team name and category scores, then click Save.</div>
+      <div class="release-bar">
+        <div class="release-state">
+          Coding grader:
+          {% if coding_grader_released %}
+          Released
+          {% else %}
+          Closed
+          {% endif %}
+        </div>
+        <form method="post" action="{% url 'oro_release_coding_grader' %}">
+          {% csrf_token %}
+          {% if coding_grader_released %}
+          <button class="release-btn" type="submit">Close Coding Mission Grader</button>
+          {% else %}
+          <button class="release-btn" type="submit">Release Coding Mission Grader</button>
+          {% endif %}
+        </form>
+      </div>
+      <div class="add-team-bar">
+        <input id="add-team-name" class="add-team-input name" type="text" placeholder="New team name">
+        <input id="add-team-members" class="add-team-input members" type="number" min="1" value="1" placeholder="Members">
+        <button id="add-team-btn" class="add-team-btn" type="button">Add Team</button>
+      </div>
+      {% endif %}
+      <div class="admin-status" id="admin-status"></div>
+      <div class="category-tabs" id="category-tabs"></div>
+    </section>
+
+    <section class="table-wrap" id="table-wrap"></section>
+  </main>
+
+  {{ dashboard_data|json_script:"dashboard-data" }}
+
+  <script>
+    const dataScript = document.getElementById("dashboard-data");
+    const tabsEl = document.getElementById("category-tabs");
+    const tableWrapEl = document.getElementById("table-wrap");
+    const adminStatusEl = document.getElementById("admin-status");
+    const addTeamNameEl = document.getElementById("add-team-name");
+    const addTeamMembersEl = document.getElementById("add-team-members");
+    const addTeamBtnEl = document.getElementById("add-team-btn");
+    const isStaff = {{ is_staff|yesno:"true,false" }};
+    const teamUpdateUrl = "{% url 'oro_team_update' %}";
+    const teamAddUrl = "{% url 'oro_team_add' %}";
+    const dashboardDataUrl = "{% url 'oro_dashboard_data' %}";
+
+    let dashboard = JSON.parse(dataScript.textContent);
+    let activeCategory = dashboard.categories[0] ? dashboard.categories[0].key : null;
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    
+
+    function renderTabs() {
+      tabsEl.innerHTML = "";
+      dashboard.categories.forEach((cat) => {
+        const btn = document.createElement("button");
+        btn.className = "tab-btn" + (cat.key === activeCategory ? " active" : "");
+        btn.textContent = cat.label;
+        btn.addEventListener("click", () => {
+          activeCategory = cat.key;
+          renderTabs();
+          renderTable();
+        });
+        tabsEl.appendChild(btn);
+      });
+    }
+
+    function renderTable() {
+      const category = dashboard.categories.find((c) => c.key === activeCategory) || dashboard.categories[0];
+      if (!category) {
+        tableWrapEl.innerHTML = '<div class="empty">No categories available yet.</div>';
+        updatedEl.textContent = `Last updated: ${formatTime(dashboard.updated_at)}`;
+        return;
+      }
+
+      const categoryCompetitions = category.competitions || [];
+      let html = "<table><thead><tr>";
+      html += "<th>Rank</th><th>Team</th>";
+      categoryCompetitions.forEach((comp) => {
+        html += `<th>${escapeHtml(comp.label)}</th>`;
+      });
+      if (isStaff) {
+        html += "<th>Actions</th>";
+      }
+      html += "<th>Total</th></tr></thead><tbody>";
+
+      if (!category.teams.length) {
+        html += `<tr><td colspan="${categoryCompetitions.length + (isStaff ? 4 : 3)}" class="empty">No scores yet for ${escapeHtml(category.label)}.</td></tr>`;
+      } else {
+        category.teams.forEach((team) => {
+          html += `<tr data-team="${escapeHtml(team.team_name)}" data-category="${escapeHtml(category.key)}">`;
+          html += `<td class="rank">${team.rank}</td>`;
+          if (isStaff) {
+            html += `<td class="team"><input class="team-name-input" type="text" value="${escapeHtml(team.team_name)}"></td>`;
+          } else {
+            html += `<td class="team">${escapeHtml(team.team_name)}</td>`;
+          }
+          categoryCompetitions.forEach((comp) => {
+            const v = team.scores && typeof team.scores[comp.key] !== "undefined" ? team.scores[comp.key] : 0;
+            if (isStaff) {
+              html += `<td><input class="score-input" type="number" min="0" data-comp="${escapeHtml(comp.key)}" value="${v}"></td>`;
+            } else {
+              html += `<td>${v}</td>`;
+            }
+          });
+          const totalPoints = categoryCompetitions.reduce((sum, comp) => {
+            const raw = team.scores && typeof team.scores[comp.key] !== "undefined" ? team.scores[comp.key] : 0;
+            const value = Number.parseInt(raw, 10);
+            return sum + (Number.isNaN(value) ? 0 : value);
+          }, 0);
+          if (isStaff) {
+            html += '<td><button class="save-team-btn" type="button">Save</button></td>';
+          }
+          html += `<td class="total">${totalPoints}</td></tr>`;
+        });
+      }
+
+      html += "</tbody></table>";
+      tableWrapEl.innerHTML = html;
+      updatedEl.textContent = `Last updated: ${formatTime(dashboard.updated_at)}`;
+    }
+
+    function getCookie(name) {
+      const match = document.cookie
+        .split(";")
+        .map((item) => item.trim())
+        .find((item) => item.startsWith(`${name}=`));
+      return match ? decodeURIComponent(match.split("=").slice(1).join("=")) : "";
+    }
+
+    async function addTeam() {
+      if (!isStaff) return;
+      const name = addTeamNameEl ? addTeamNameEl.value.trim() : "";
+      const members = addTeamMembersEl ? Number.parseInt(addTeamMembersEl.value, 10) : 1;
+      if (!name) {
+        adminStatusEl.textContent = "Enter a team name first.";
+        return;
+      }
+      if (Number.isNaN(members) || members < 1) {
+        adminStatusEl.textContent = "Members must be at least 1.";
+        return;
+      }
+
+      addTeamBtnEl.disabled = true;
+      adminStatusEl.textContent = "Adding team...";
+      try {
+        const res = await fetch(teamAddUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify({
+            category: activeCategory,
+            team_name: name,
+            members,
+          }),
+        });
+        const payload = await res.json();
+        if (!res.ok) {
+          adminStatusEl.textContent = payload.error || "Failed to add team.";
+          return;
+        }
+
+        dashboard = payload;
+        if (addTeamNameEl) addTeamNameEl.value = "";
+        if (addTeamMembersEl) addTeamMembersEl.value = "1";
+        renderTabs();
+        renderTable();
+        adminStatusEl.textContent = "Team added.";
+      } catch (err) {
+        adminStatusEl.textContent = "Unable to add team right now. Try again.";
+      } finally {
+        addTeamBtnEl.disabled = false;
+      }
+    }
+
+    async function saveTeamRow(buttonEl) {
+      const row = buttonEl.closest("tr[data-team][data-category]");
+      if (!row) return;
+
+      const category = row.dataset.category || "";
+      const originalTeamName = row.dataset.team || "";
+      const teamNameInput = row.querySelector(".team-name-input");
+      const newTeamName = teamNameInput ? teamNameInput.value.trim() : "";
+      const scoreInputs = row.querySelectorAll(".score-input");
+      const scores = {};
+
+      for (const input of scoreInputs) {
+        const key = input.dataset.comp;
+        const value = Number.parseInt(input.value, 10);
+        if (!key || Number.isNaN(value) || value < 0) {
+          adminStatusEl.textContent = "Scores must be whole numbers greater than or equal to zero.";
+          return;
+        }
+        scores[key] = value;
+      }
+
+      if (!newTeamName) {
+        adminStatusEl.textContent = "Team name is required.";
+        return;
+      }
+
+      buttonEl.disabled = true;
+      adminStatusEl.textContent = "Saving team update...";
+      try {
+        const res = await fetch(teamUpdateUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify({
+            category,
+            team_name: originalTeamName,
+            new_team_name: newTeamName,
+            scores,
+          }),
+        });
+        const payload = await res.json();
+        if (!res.ok) {
+          adminStatusEl.textContent = payload.error || "Failed to save team update.";
+          return;
+        }
+
+        dashboard = payload;
+        if (!dashboard.categories.some((c) => c.key === activeCategory)) {
+          activeCategory = dashboard.categories[0] ? dashboard.categories[0].key : null;
+        }
+        renderTabs();
+        renderTable();
+        adminStatusEl.textContent = "Team updated.";
+      } catch (err) {
+        adminStatusEl.textContent = "Unable to save right now. Try again.";
+      } finally {
+        buttonEl.disabled = false;
+      }
+    }
+
+    async function refreshScores() {
+      try {
+        const res = await fetch(dashboardDataUrl, { cache: "no-store" });
+        if (!res.ok) return;
+        const fresh = await res.json();
+        dashboard = fresh;
+
+        if (!dashboard.categories.some((c) => c.key === activeCategory)) {
+          activeCategory = dashboard.categories[0] ? dashboard.categories[0].key : null;
+        }
+
+        renderTabs();
+        renderTable();
+      } catch (err) {
+        // Keep current table visible on transient fetch issues.
+      }
+    }
+
+    tableWrapEl.addEventListener("click", (event) => {
+      const button = event.target.closest(".save-team-btn");
+      if (!button || !isStaff) return;
+      saveTeamRow(button);
+    });
+    if (isStaff && addTeamBtnEl) {
+      addTeamBtnEl.addEventListener("click", addTeam);
+    }
+
+    renderTabs();
+    renderTable();
+    if (!isStaff) {
+      setInterval(refreshScores, 3000);
+    }
+  </script>
+</body>
+</html>

@@ -1,2 +1,5 @@
+[phases.setup]
+aptPkgs = ["gcc", "build-essential"]
+
 [phases.build]
 cmds = ["python manage.py collectstatic --noinput"]

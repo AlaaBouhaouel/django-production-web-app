@@ -1,405 +1,821 @@
-﻿{% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORO — Open Robotic Olympiad</title>
-  <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <title>ORO | Open Robotic Olympiad</title>
+  <link rel="icon" href="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    *,*::before,*::after{box-sizing:border-box}
-    :root{
-      --gold:#F5B800;
-      --teal:#106c7b;
-      --red:#C8281E;
-      --dark:#0d0d0d;
-      --dark2:#181818;
-      --dark3:#222;
-    }
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--dark);color:#fff;font-family:'Inter',sans-serif}
-    a{text-decoration:none;color:inherit}
-    img{max-width:100%;height:auto}
-
-    /* ── NAV ── */
-    #oro-nav{
-      background:rgba(13,13,13,1);
-      border-bottom:1px solid rgba(245,184,0,.18);
-      padding:11px 0;
-    }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .nav-logo img{height:34px;object-fit:contain}
-    .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
-    .nav-links a{
-      font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;
-      color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;
-      transition:color .2s;
-    }
-    .nav-links a:hover{color:var(--gold)}
-    .nav-home{
-      font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;
-      letter-spacing:.08em;text-transform:uppercase;
-      color:rgba(255,255,255,.65);transition:color .2s;white-space:nowrap;
-    }
-    .nav-home:hover{color:var(--gold)}
-    .nav-mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
-    @media(max-width:768px){
-      .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(13,13,13,.98);padding:20px;gap:16px;border-bottom:1px solid rgba(245,184,0,.15)}
-      .nav-links.open{display:flex}
-      .nav-mobile-toggle{display:block}
+    :root {
+      --bg: #07080d;
+      --bg-soft: #0d1020;
+      --bg-card: #101426;
+      --line: rgba(25, 182, 182, 0.4);
+      --line-soft: rgba(245, 184, 0, 0.22);
+      --text: #f4f5ff;
+      --muted: rgba(244, 245, 255, 0.72);
+      --primary: #f5b800;
+      --primary-bright: #19b6b6;
+      --accent-red: #c8281e;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
     }
 
-    /* ── HERO ── */
-    .oro-hero{
-      position:relative;height:70vh;min-height:340px;
-      background-image:url('{% static "assets/img/oro/headline.png" %}');
-      background-size:cover;background-position:center top;
-      display:flex;align-items:center;justify-content:center;
-      text-align:center;overflow:hidden;
-    }
-    .oro-hero::before{
-      content:'';position:absolute;inset:0;
-      background:rgba(0,0,0,.78);
-    }
-    .hero-inner{position:relative;z-index:2;padding:0 20px}
-    .hero-eyebrow{
-      font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;
-      letter-spacing:.35em;text-transform:uppercase;
-      color:var(--gold);margin-bottom:6px;
-    }
-    .hero-big{
-      font-family:'Bebas Neue',sans-serif;
-      font-size:clamp(6rem,20vw,13rem);
-      line-height:.85;letter-spacing:.06em;color:#fff;
-      text-shadow:0 0 80px rgba(245,184,0,.25),0 4px 60px rgba(0,0,0,.8);
-    }
-    .hero-big span{color:var(--red)}
-    .turqu{color:var(--teal) !important}
-    .hero-sub{
-      font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:600;
-      letter-spacing:.2em;text-transform:uppercase;
-      color:rgba(255,255,255,.6);margin-top:14px;
-    }
-    .hero-pills{display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap}
-    .hero-pill{
-      background:rgba(245,184,0,.1);border:1px solid rgba(245,184,0,.4);
-      color:var(--gold);font-family:'Rajdhani',sans-serif;
-      font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-      padding:5px 14px;border-radius:2px;
+    * {
+      box-sizing: border-box;
     }
 
-    /* ── CATEGORIES ── */
-    .cat-section{padding:70px 0 90px}
-    .section-label{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:10px}
-    .section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);color:#fff;letter-spacing:.05em;margin:0 0 6px}
-    .section-rule{width:50px;height:3px;background:var(--gold);margin:14px 0 40px}
-    .cat-grid{display:grid;grid-template-columns:repeat(4,1fr);height:640px;gap:8px;margin-top:40px}
-    .cat-card{position:relative;overflow:hidden;border-radius:6px;background-size:contain;background-repeat:no-repeat;background-position:center 16px;background-color:#111;display:flex;align-items:flex-end;text-decoration:none;transition:transform .3s ease}
-    .cat-card:hover{transform:scale(1.015)}
-    .cat-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.05) 0%,rgba(0,0,0,.78) 100%);transition:background .3s}
-    .cat-card:hover .cat-overlay{background:linear-gradient(to bottom,rgba(0,0,0,.05) 0%,rgba(0,0,0,.58) 100%)}
-    .cat-inner{position:relative;z-index:2;padding:24px 20px;width:100%}
-    .cat-age{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:6px}
-    .cat-name{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:#fff;letter-spacing:.04em;margin:0 0 4px;line-height:1}
-    .cat-count{display:block;font-size:12px;color:rgba(255,255,255,.5);margin-bottom:16px}
-    .cat-cta{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(245,184,0,.55);color:var(--gold);font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;transition:.2s}
-    .cat-card:hover .cat-cta{background:var(--red);border-color:var(--red);color:#000}
-    @media(max-width:768px){.cat-grid{grid-template-columns:repeat(2,1fr);height:auto}.cat-card{min-height:320px}}
-
-    /* ── POSTER STRIP ── */
-    .poster-strip{
-      padding:60px 0;
-      background:var(--dark2);
-      border-top:1px solid rgba(255,255,255,.05);
-      border-bottom:1px solid rgba(255,255,255,.05);
-    }
-    .poster-inner{display:flex;align-items:center;gap:40px}
-    .poster-img{width:260px;flex-shrink:0;border-radius:6px}
-    .poster-text .section-label{margin-bottom:10px}
-    .poster-text h2{
-      font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:#fff;letter-spacing:.05em;margin:0 0 14px;
-    }
-    .poster-text p{color:rgba(255,255,255,.55);font-size:.95rem;line-height:1.75;margin:0 0 22px;max-width:500px}
-    .poster-btn{
-      display:inline-flex;align-items:center;gap:8px;
-      background:var(--red);color:#000;
-      font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;
-      letter-spacing:.1em;text-transform:uppercase;
-      padding:10px 24px;border-radius:2px;border:none;cursor:pointer;transition:.2s;
-    }
-    .poster-btn:hover{background:#e0a800}
-    @media(max-width:768px){
-      .poster-inner{flex-direction:column}
-      .poster-img{width:100%;max-width:300px;margin:0 auto}
-    }
-     span{
-      color: #106c7b;
-    }
-        /* ── GALLERY ── */
-    .gallery-section{padding:70px 0 80px}
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:10px;margin-top:40px}
-    .g-wide{grid-column:span 2}
-    .g-tall{grid-row:span 2}
-    .g-item{overflow:hidden;border-radius:6px;cursor:pointer;position:relative}
-    .g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-    .g-item:hover img{transform:scale(1.06)}
-    .g-item::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .3s}
-    .g-item:hover::after{background:rgba(245,184,0,.08)}
-    @media(max-width:768px){.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:160px}.g-tall{grid-row:span 1}}
-
-    /* ── FOOTER ── *//* ── FOOTER ── */
-    .oro-footer{
-      background:var(--dark2);
-      border-top:1px solid rgba(245,184,0,.15);
-      padding:56px 0 28px;
-    }
-    .footer-logo img{height:32px;margin-bottom:14px;display:block}
-    .footer-desc{color:rgba(255,255,255,.4);font-size:13px;line-height:1.7;max-width:280px}
-    .footer-head{
-      font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;
-      letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;
-    }
-    .footer-contact-row{margin-bottom:11px;color:rgba(255,255,255,.5);font-size:13px}
-    .footer-contact-row i{color:var(--gold);font-size:15px;flex-shrink:0;margin-top:1px}
-    .footer-social{display:flex;gap:10px;margin-top:18px}
-    .footer-social a{
-      width:34px;height:34px;
-      border:1px solid rgba(245,184,0,.25);border-radius:3px;
-      display:flex;align-items:center;justify-content:center;
-      color:rgba(255,255,255,.4);font-size:15px;transition:.2s;
-    }
-    .footer-social a:hover{border-color:var(--gold);color:var(--gold)}
-    .footer-links-list{display:flex;flex-direction:column;gap:8px;list-style:none;padding:0;margin:0}
-    .footer-links-list a{color:rgba(255,255,255,.4);font-size:13px;transition:.2s}
-    .footer-links-list a:hover{color:var(--gold)}
-    .footer-bottom{
-      margin-top:44px;padding-top:22px;
-      border-top:1px solid rgba(255,255,255,.06);
-      text-align:center;color:rgba(255,255,255,.25);font-size:12px;
-    }
-    .footer-bottom span{color:var(--gold)}
-
-    .red{
-      background:rgba(200,40,30,.1);
-      border:1px solid rgba(200,40,30,.4);
-      color:#C8281E;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      margin: 0;
+      font-family: "Outfit", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 16% -4%, rgba(25, 182, 182, 0.25), transparent 38%),
+        radial-gradient(circle at 94% 14%, rgba(200, 40, 30, 0.2), transparent 30%),
+        linear-gradient(180deg, #07080d 0%, #05060c 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 2.5rem));
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1.04;
+      margin: 0;
+      letter-spacing: -0.03em;
+    }
+
+    .section-copy {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.5vw, 1.1rem);
+      line-height: 1.65;
+      max-width: 72ch;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.36rem 0.88rem;
+      font-size: 0.82rem;
+      color: var(--primary);
+      letter-spacing: 0.04em;
+      background: rgba(245, 184, 0, 0.12);
+    }
+
+    .top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(10px);
+      background: rgba(8, 10, 18, 0.82);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .top-nav-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.72rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.38rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 16px rgba(25, 182, 182, 0.33));
+    }
+
+    .brand span {
+      color: var(--primary-bright);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.45rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.95rem;
+      color: rgba(244, 245, 255, 0.86);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-bright);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--line);
+      background: linear-gradient(140deg, rgba(200, 40, 30, 0.95), rgba(245, 184, 0, 0.95));
+      color: #111;
+      border-radius: 999px;
+      padding: 0.65rem 1rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      box-shadow: 0 18px 45px rgba(200, 40, 30, 0.28);
+    }
+
+    .hero {
+      position: relative;
+      padding: 5.6rem 0 4rem;
+      border-bottom: 1px solid var(--line-soft);
+      overflow: clip;
+    }
+
+    .grid-lines {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(circle at center, black 45%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-layout {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      margin: 1rem 0 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.3rem, 5vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+    }
+
+    .hero h1 .accent {
+      color: var(--primary-bright);
+    }
+
+    .hero p {
+      margin: 1.2rem 0 0;
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.3vw, 1.14rem);
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.6rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0.72rem 1.2rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(140deg, rgba(200, 40, 30, 0.98), rgba(245, 184, 0, 0.98));
+      border-color: var(--line);
+      box-shadow: 0 18px 45px rgba(200, 40, 30, 0.32);
+      color: #111;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: rgba(244, 245, 255, 0.92);
+    }
+
+    .hero-stats {
+      margin-top: 1.6rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.7rem;
+      max-width: 550px;
+    }
+
+    .stat {
+      border: 1px solid var(--line-soft);
+      background: rgba(16, 20, 38, 0.72);
+      border-radius: 14px;
+      padding: 0.85rem;
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.14rem;
+      color: #fff;
+    }
+
+    .stat span {
+      color: rgba(244, 245, 255, 0.67);
+      font-size: 0.83rem;
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: 430px;
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 78% 20%, rgba(25, 182, 182, 0.2), transparent 45%),
+        linear-gradient(180deg, rgba(17, 21, 39, 0.85), rgba(11, 14, 25, 0.95));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4, 6, 12, 0.12) 0%, rgba(4, 6, 12, 0.48) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .sticker {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      animation: drift 7s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    .sticker.s-1 { width: 140px; right: 18px; top: 12px; animation-delay: 0.2s; }
+    .sticker.s-2 { width: 160px; left: 24px; bottom: 10px; animation-delay: 1.2s; }
+    .sticker.s-3 { width: 128px; right: 28%; bottom: 36px; animation-delay: 0.8s; }
+    .sticker.s-4 { width: 104px; left: 28px; top: 32px; animation-delay: 1.6s; }
+
+    @keyframes drift {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-9px) rotate(-2deg); }
+    }
+
+    .ticker {
+      border-top: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(255, 255, 255, 0.035);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 2.5rem;
+      padding: 0.9rem 0;
+      animation: slide 22s linear infinite;
+      font-family: "Space Grotesk", sans-serif;
+      color: rgba(244, 245, 255, 0.58);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.84rem;
+    }
+
+    @keyframes slide {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .content {
+      padding: 4.6rem 0;
+      display: grid;
+      gap: 4.2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .feature {
+      position: relative;
+      padding: 1.15rem 1.15rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-soft);
+      background: linear-gradient(180deg, rgba(20, 24, 44, 0.78), rgba(11, 14, 25, 0.88));
+      min-height: 210px;
+      overflow: hidden;
+    }
+
+    .feature h3 {
+      margin: 0.95rem 0 0.45rem;
+      font-size: 1.2rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .feature p {
+      margin: 0;
+      color: rgba(244, 245, 255, 0.72);
+      line-height: 1.62;
+      font-size: 0.95rem;
+    }
+
+    .feature .mini {
+      width: 84px;
+      margin-left: auto;
+    }
+
+    .section-block {
+      position: relative;
+    }
+
+    .section-sticker {
+      position: absolute;
+      width: 112px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 3;
+      filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+      animation: drift 7s ease-in-out infinite;
+    }
+
+    .section-features .feature-sticker-1 { right: -14px; top: 16px; }
+    .section-features .feature-sticker-2 { left: -18px; top: 148px; width: 98px; }
+    .section-categories .categories-sticker-1 { right: -14px; top: -12px; width: 102px; }
+    .section-categories .categories-sticker-2 { left: -20px; bottom: 24px; width: 100px; }
+    .section-gallery .gallery-sticker-1 { right: -12px; top: -6px; width: 104px; }
+    .section-gallery .gallery-sticker-2 { left: -16px; bottom: 10px; width: 98px; }
+    .section-faq .faq-sticker-1 { right: 12px; top: -56px; width: 90px; }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .cat-card {
+      position: relative;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line-soft);
+      min-height: 300px;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+    }
+
+    .cat-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(6, 8, 16, 0.18) 25%, rgba(6, 8, 16, 0.92) 100%);
+    }
+
+    .cat-card > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cat-card h3 {
+      margin: 0.35rem 0;
+      font-size: 1.45rem;
+      font-family: "Space Grotesk", sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .cat-card p {
+      margin: 0;
+      color: rgba(244, 245, 255, 0.76);
+      font-size: 0.95rem;
+    }
+
+    .cat-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      border: 1px solid var(--line);
+      background: rgba(25, 182, 182, 0.18);
+      color: #9ff6f1;
+      border-radius: 999px;
+      padding: 0.28rem 0.72rem;
+      font-size: 0.76rem;
+      letter-spacing: 0.03em;
+    }
+
+    .cat-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.5rem 0.85rem;
+      width: fit-content;
+      background: rgba(245, 184, 0, 0.18);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .cat-sticker {
+      position: absolute;
+      width: 82px;
+      right: 8px;
+      top: 10px;
+      z-index: 3;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.5));
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-auto-rows: 160px;
+      gap: 0.9rem;
+    }
+
+    .gallery-card {
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #12172a;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-card.wide {
+      grid-column: span 2;
+    }
+
+    .gallery-card.tall {
+      grid-row: span 2;
+    }
+
+    .faq {
+      border: 1px solid var(--line-soft);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(16, 20, 38, 0.75), rgba(9, 12, 21, 0.9));
+      padding: 1.4rem;
+    }
+
+    details {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.95rem 0;
+    }
+
+    details:last-child {
+      border-bottom: none;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1rem;
+      color: rgba(244, 245, 255, 0.95);
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details p {
+      margin: 0.7rem 0 0;
+      color: rgba(244, 245, 255, 0.72);
+      line-height: 1.6;
+    }
+
+    .footer {
+      margin-top: 3.6rem;
+      border-top: 1px solid var(--line-soft);
+      padding: 2rem 0 2.4rem;
+      background: rgba(8, 10, 18, 0.84);
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-meta {
+      color: rgba(244, 245, 255, 0.65);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: inline-flex;
+      gap: 1rem;
+      color: rgba(244, 245, 255, 0.82);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 1050px) {
+      .hero-layout,
+      .feature-grid,
+      .categories {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-stage {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .top-nav-inner {
+        min-height: 74px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 4rem;
+      }
+
+      .hero-layout,
+      .feature-grid,
+      .categories,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stage {
+        min-height: 300px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-card.wide,
+      .gallery-card.tall {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 200px;
+      }
+
+      .sticker.s-4 {
+        display: none;
+      }
+
+      .section-sticker {
+        display: none;
+      }
+    }
+    .gallery-card {
+
+      margin: 0px !important;
+    }
   </style>
 </head>
 <body>
+  <header class="top-nav">
+    <div class="container top-nav-inner">
+      <a class="brand" href="{% url 'oro_home' %}">
+        <img class="brand-logo" src="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" alt="ORO head sticker logo">
+        <div style="color: turquoise;">O<span style="color: #c8281e;">RO</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="{% url 'oro_dashboard' %}">Live Scores</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a class="nav-cta" href="{% url 'oro_registration' %}">Register Now</a>
+    </div>
+  </header>
 
-  <!-- ── HERO ── -->
-  <section class="oro-hero">
-    <div class="hero-inner">
-      <p class="hero-eyebrow">Open Robotic Olympiad &bull; 1st Edition &bull; Tunisia</p>
-      <div class="hero-big"><span class="turqu" style="color: #106c7b;">O</span><span style="color: #C8281E;">RO</span></div>
-      <p class="hero-sub">Where robots compete. Champions are born.</p>
-      <div class="hero-pills">
-        <span class="hero-pill">28 June 2026</span>
-        <span class="hero-pill">8 Challenges</span>
-        <span class="hero-pill red">Organized by ATAST</span>
+  <section class="hero" id="about">
+    <div class="grid-lines"></div>
+    <div class="container hero-layout">
+      <div>
+        <span class="pill">Open Robotic Olympiad 2026</span>
+        <h1>Build, battle, and <span class="accent">bring your robot</span> to the arena.</h1>
+        <p>Inspired by the design language you shared, this ORO homepage now follows the black, yellow, red, and turquoise palette while remixing it with your sticker characters so the subdomain feels unique and alive.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="{% url 'oro_registration' %}">Join The Competition</a>
+          <a class="btn btn-secondary" href="#categories">Explore Categories</a>
+          <a class="btn btn-secondary" href="{% url 'oro_dashboard' %}">Live Dashboard</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><strong>20+</strong><span>Cities represented</span></div>
+          <div class="stat"><strong>4</strong><span>Age divisions</span></div>
+          <div class="stat"><strong>20+</strong><span>Challenges</span></div>
+        </div>
+      </div>
+      <div class="hero-stage">
+        <video class="hero-video" autoplay muted loop playsinline>
+          <source src="{% static 'assets/img/oro/stickers/oro promotion.mp4' %}" type="video/mp4">
+        </video>
       </div>
     </div>
   </section>
 
-  <!-- ── NAV ── -->
-  <nav id="oro-nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a href="/" class="nav-logo" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.1em;color:var(--teal)">O<span style="color:var(--red)">RO</span></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#categories">Competition</a></li>
-          <li><a href="#edition">1st Edition</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScjoApTgsOZN4H6pWMxR3aUhhVkxdwrVfIzsvEYquvg2GlPmQ/viewform?usp=publish-editor" target="_blank">Registration</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="/" class="nav-home">&#8592; Home</a>
-        <button class="nav-mobile-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">
-          <i class="bi bi-list"></i>
-        </button>
-      </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>line follower</span>
+      <span>robofoot</span>
+      <span>smart city</span>
+      <span>maze</span>
+      <span>sumo</span>
+      <span>roborace</span>
+      <span>coding mission</span>
+      <span>firefighting</span>
+      <span>line follower</span>
+      <span>robofoot</span>
+      <span>smart city</span>
+      <span>maze</span>
+      <span>sumo</span>
+      <span>roborace</span>
+      <span>coding mission</span>
+      <span>firefighting</span>
     </div>
-  </nav>
+  </div>
 
-  <!-- ── CATEGORIES ── -->
-  <section class="cat-section" id="categories">
-    <div class="container">
-      <span class="section-label">Choose your category</span>
-      <h2 class="section-title">Age <span style="color: var(--red);">Categories</span></h2>
-      <div class="section-rule"></div>
-      <div class="cat-grid">
+  <main class="container content">
+    <section class="section-block section-features">
+      <span class="pill">Competition DNA</span>
+      <h2 class="section-title">One arena, many robot personalities.</h2>
+      <p class="section-copy">The sticker system now drives the visual storytelling across the page. Every section gets a different character pose so the brand feels consistent but never static.</p>
+      <img class="section-sticker feature-sticker-1" src="{% static 'assets/img/oro/stickers/saluting-removebg-preview.png' %}" alt="hero sticker">
+      <div class="feature-grid" style="margin-top: 1.25rem;">
+        <article class="feature">
+          <img class="mini" src="{% static 'assets/img/oro/stickers/attacking-removebg-preview.png' %}" alt="attacking sticker">
+          <h3>Fast tactical rounds</h3>
+          <p>Short, high-energy tasks where strategy, speed, and build quality decide who stays on top.</p>
+        </article>
+        <article class="feature">
+          <img class="mini" src="{% static 'assets/img/oro/stickers/sleeping-removebg-preview.png' %}" alt="sleeping sticker">
+          <h3>Smart autonomous logic</h3>
+          <p>From line tracking to maze solving, teams are rewarded for reliable code and clever sensor use.</p>
+        </article>
+        <article class="feature">
+          <img class="mini" src="{% static 'assets/img/oro/stickers/celebrating-removebg-preview.png' %}" alt="celebrating sticker">
+          <h3>Showcase and celebration</h3>
+          <p>Teams present, perform, and celebrate innovation in front of mentors, judges, and peers.</p>
+        </article>
+      </div>
+    </section>
 
-        <a href="/oro_poussins" class="cat-card" style="background-image:url('{% static 'assets/img/oro/poussins.jpg' %}')">
-          <div class="cat-overlay"></div>
-          <div class="cat-inner">
-            <span class="cat-age">7 – 9 ans</span>
-            <div class="cat-name">Poussins</div>
-            <span class="cat-count">3 competitions</span>
-            <span class="cat-cta">See competitions <i class="bi bi-arrow-right"></i></span>
+    <section id="categories" class="section-block section-categories">
+      <span class="pill">Age Groups</span>
+      <h2 class="section-title">Pick your division and launch.</h2>
+      <p class="section-copy">Each category is linked to its dedicated subpage. Stickers are pinned on cards so each group feels like a character squad.</p>
+      <img class="section-sticker categories-sticker-1" src="{% static 'assets/img/oro/stickers/jumping-removebg-preview.png' %}" alt="jumping sticker">
+      <div class="categories" style="margin-top: 1.25rem;">
+        <a class="cat-card" href="{% url 'oro_poussins' %}" style="background-image:url('{% static 'assets/img/oro/poussins.jpg' %}')">
+          <span class="cat-tag">7-9 years</span>
+          <div>
+            <h3>Poussins</h3>
+            <p>Perfect first competitive robotics experience.</p>
+            <span class="cat-btn">Open Category</span>
           </div>
         </a>
-
-        <a href="/oro_juniors" class="cat-card" style="background-image:url('{% static 'assets/img/oro/juniors.jpg' %}')">
-          <div class="cat-overlay"></div>
-          <div class="cat-inner">
-            <span class="cat-age">10 – 12 ans</span>
-            <div class="cat-name">Juniors</div>
-            <span class="cat-count">3 competitions</span>
-            <span class="cat-cta">See competitions <i class="bi bi-arrow-right"></i></span>
+        <a class="cat-card" href="{% url 'oro_juniors' %}" style="background-image:url('{% static 'assets/img/oro/juniors.jpg' %}')">
+          <span class="cat-tag">10-12 years</span>
+          <div>
+            <h3>Juniors</h3>
+            <p>Build confidence with creative and technical missions.</p>
+            <span class="cat-btn">Open Category</span>
           </div>
         </a>
-
-        <a href="/oro_colleges" class="cat-card" style="background-image:url('{% static 'assets/img/oro/colleges.jpg' %}')">
-          <div class="cat-overlay"></div>
-          <div class="cat-inner">
-            <span class="cat-age">13 – 15 ans</span>
-            <div class="cat-name">Collèges</div>
-            <span class="cat-count">7 competitions</span>
-            <span class="cat-cta">See competitions <i class="bi bi-arrow-right"></i></span>
+        <a class="cat-card" href="{% url 'oro_colleges' %}" style="background-image:url('{% static 'assets/img/oro/colleges.jpg' %}')">
+          <span class="cat-tag">13-15 years</span>
+          <div>
+            <h3>Colleges</h3>
+            <p>More tactical tracks with richer hardware constraints.</p>
+            <span class="cat-btn">Open Category</span>
           </div>
         </a>
-
-        <a href="/oro_seniors" class="cat-card" style="background-image:url('{% static 'assets/img/oro/seniors.jpg' %}')">
-          <div class="cat-overlay"></div>
-          <div class="cat-inner">
-            <span class="cat-age">16 – 20 ans</span>
-            <div class="cat-name">Seniors</div>
-            <span class="cat-count">7 competitions</span>
-            <span class="cat-cta">See competitions <i class="bi bi-arrow-right"></i></span>
+        <a class="cat-card" href="{% url 'oro_seniors' %}" style="background-image:url('{% static 'assets/img/oro/seniors.jpg' %}')">
+          <span class="cat-tag">16-20 years</span>
+          <div>
+            <h3>Seniors</h3>
+            <p>Advanced tasks for robust design and engineering depth.</p>
+            <span class="cat-btn">Open Category</span>
           </div>
         </a>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── POSTER STRIP ── -->
-  <section class="poster-strip" id="edition">
-    <div class="container">
-      <div class="poster-inner">
-        <img src="{% static 'assets/img/oro/cta.jpg' %}" class="poster-img" alt="ORO Poster">
-        <div class="poster-text">
-          <span class="section-label">1st Edition</span>
-          <h2>Open Robotic Olympiad 2026</h2>
-          <p>The first edition of ORO brings together young robotics talents from across Tunisia for a day of competition, learning, and innovation. Eight unique challenges. One championship.</p>
-          <a href="https://www.facebook.com" target="_blank" class="poster-btn">Follow the page <i class="bi bi-arrow-right"></i></a>
-        </div>
+    <section id="gallery" class="section-block section-gallery">
+      <span class="pill">Highlights</span>
+      <h2 class="section-title">From first sketch to final battle.</h2>
+      <p class="section-copy">A visual wall inspired by your reference style, adapted with ORO content and sticker-driven accents.</p>
+      <img class="section-sticker gallery-sticker-1" src="{% static 'assets/img/oro/stickers/sitting-relax-removebg-preview.png' %}" alt="sitting relax sticker">
+      <img class="section-sticker gallery-sticker-2" src="{% static 'assets/img/oro/stickers/sitting-looking-down-removebg-preview.png' %}" alt="sitting sticker">
+      <div class="gallery-grid" style="margin-top: 1.25rem;">
+        <figure class="gallery-card wide tall"><img src="{% static 'assets/img/oro/1stedition/0.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/1.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/2.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card wide"><img src="{% static 'assets/img/oro/1stedition/3.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/4.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/5.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card wide"><img src="{% static 'assets/img/oro/1stedition/6.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/7.jpg' %}" alt="ORO gallery image"></figure>
+        <figure class="gallery-card"><img src="{% static 'assets/img/oro/1stedition/8.jpg' %}" alt="ORO gallery image"></figure>
       </div>
-    </div>
-  </section>
-  <!-- ── GALLERY ── -->
-  <section class="gallery-section" id="gallery">
-    <div class="container">
-      <span class="section-label">Moments</span>
-      <h2 class="section-title">1st Edition Gallery</h2>
-      <div class="section-rule"></div>
+    </section>
 
-      <div class="gallery-grid">
-        <div class="g-item g-wide g-tall">
-          <img src="{% static 'assets/img/oro/1stedition/0.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/1.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/2.jpg' %}" alt="">
-        </div>
-        <div class="g-item g-wide">
-          <img src="{% static 'assets/img/oro/1stedition/3.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/4.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/5.jpg' %}" alt="">
-        </div>
-        <div class="g-item g-wide">
-          <img src="{% static 'assets/img/oro/1stedition/6.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/7.jpg' %}" alt="">
-        </div>
-        <div class="g-item">
-          <img src="{% static 'assets/img/oro/1stedition/8.jpg' %}" alt="">
-        </div>
-        <div class="g-item g-wide">
-          <img src="{% static 'assets/img/oro/1stedition/00.jpg' %}" alt="">
-        </div>
+    <section id="faq" class="faq section-block section-faq">
+      <span class="pill">FAQ</span>
+      <h2 class="section-title" style="margin-top: 0.8rem;">Before your team deploys</h2>
+      <img class="section-sticker faq-sticker-1" src="{% static 'assets/img/oro/stickers/sleeping-removebg-preview.png' %}" alt="sleeping sticker">
+      <details>
+        <summary>How do we register for ORO competitions?</summary>
+        <p>Use the Register Now button on top. You can also enter through each category page and submit team details from there.</p>
+      </details>
+      <details>
+        <summary>Do teams need prior competition experience?</summary>
+        <p>No. ORO has divisions for different levels. Beginners can start in Poussins or Juniors and grow from season to season.</p>
+      </details>
+      <details>
+        <summary>Can one school register multiple teams?</summary>
+        <p>Yes. Many schools register multiple teams as long as each team follows its category rules and challenge constraints.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <div class="brand">
+        <img class="brand-logo" src="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" alt="ORO logo">
+        <div><span>ORO</span> by ATAST</div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-
-  <!-- ── FOOTER ── -->
-  <footer class="oro-footer" id="contact">
-    <div class="container">
-      <div class="row g-5">
-
-        <div class="col-lg-4 col-md-6">
-          <div class="footer-logo">
-            <img src="{% static 'assets/img/atast.png' %}" alt="ATAST">
-          </div>
-          <p class="footer-desc">Open Robotic Olympiad — organized by ATAST, inspiring the next generation of robotics engineers in Tunisia.</p>
-          <div class="footer-social">
-            <a href="https://www.facebook.com/atast.ksarhelal" target="_blank"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-          <p class="footer-head">Contact</p>
-          <div class="footer-contact-row">
-            <i class="bi bi-geo-alt-fill"></i>
-            <span>Maison des associations, PB 42, Moknine 5050</span>
-          </div>
-          <div class="footer-contact-row">
-            <i class="bi bi-envelope-fill"></i>
-            <span>info.atast@gmail.com</span>
-          </div>
-          <div class="footer-contact-row">
-            <i class="bi bi-telephone-fill"></i>
-            <span>For general inquiries or collaborations:</span>
-            <span>+216 29 535 631</span>
-          </div>
-          <div class="footer-contact-row">
-            <i class="bi bi-whatsapp"></i>
-            <span>For technical inquiries:</span>
-            <span>+216 21 663 249</span>
-          </div>
-          <div class="footer-contact-row">
-            <i class="bi bi-whatsapp"></i>
-            <span>For registration inquiries:</span>
-            <span>+216 21 663 249</span>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-12">
-          <p class="footer-head">Quick Links</p>
-          <ul class="footer-links-list">
-            <li><a href="#competitions">Competitions</a></li>
-            <li><a href="#edition">1st Edition</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="/">ATAST Website</a></li>
-          </ul>
-        </div>
-
+      <div class="footer-links">
+        <a href="{% url 'oro_home' %}">Home</a>
+        <a href="{% url 'oro_registration' %}">Registration</a>
+        <a href="https://www.facebook.com/atast.ksarhelal" target="_blank" rel="noopener">Facebook</a>
       </div>
-
-      <div class="footer-bottom">
-        &copy; 2026 <span>ORO</span> — Open Robotic Olympiad. Organized by <span>ATAST</span>.
-      </div>
+      <div class="footer-meta">Open Robotic Olympiad 2026. Built for the ORO subdomain.</div>
     </div>
   </footer>
-
-  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>

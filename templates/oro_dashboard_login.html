@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORO Dashboard Login</title>
+  <link rel="icon" href="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #f4f5ff;
+      --muted: rgba(244, 245, 255, 0.76);
+      --line: rgba(25, 182, 182, 0.35);
+      --gold: #f5b800;
+      --cyan: #19b6b6;
+      --danger: #ff9a8f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Outfit", sans-serif;
+      background:
+        radial-gradient(circle at 18% -8%, rgba(25, 182, 182, 0.24), transparent 36%),
+        radial-gradient(circle at 91% 12%, rgba(200, 40, 30, 0.2), transparent 28%),
+        linear-gradient(180deg, #07080d 0%, #05060c 100%);
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+    .card {
+      width: min(460px, 100%);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(22, 27, 49, 0.86), rgba(10, 14, 27, 0.92));
+      padding: 1.3rem 1.2rem 1.2rem;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .brand img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+    .brand span { color: var(--cyan); }
+    .hint {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    label {
+      display: block;
+      margin: 0.7rem 0 0.35rem;
+      font-size: 0.88rem;
+      color: #fbe8b3;
+    }
+    input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(4, 7, 16, 0.82);
+      color: var(--text);
+      font: inherit;
+      padding: 0.55rem 0.65rem;
+    }
+    .error {
+      margin-top: 0.8rem;
+      color: var(--danger);
+      font-size: 0.87rem;
+    }
+    .actions {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.5rem 0.95rem;
+      font-size: 0.87rem;
+      cursor: pointer;
+      text-decoration: none;
+      color: #0d1823;
+      background: linear-gradient(120deg, var(--gold), var(--cyan));
+      font-weight: 700;
+      font-family: inherit;
+    }
+    .link {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.45rem 0.82rem;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.83rem;
+      background: rgba(245, 184, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="brand">
+      <img src="{% static 'assets/img/oro/stickers/head-sleeping-removebg-preview.png' %}" alt="ORO logo">
+      <div><span>ORO</span> Dashboard Staff Login</div>
+    </div>
+    <p class="hint">Sign in with a staff account to edit team names and scores.</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+
+      <label for="id_username">Username</label>
+      <input id="id_username" name="username" autocomplete="username" required>
+
+      <label for="id_password">Password</label>
+      <input id="id_password" name="password" type="password" autocomplete="current-password" required>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <div class="actions">
+        <button class="btn" type="submit">Login</button>
+        <a class="link" href="{% url 'oro_dashboard' %}">View Dashboard</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
