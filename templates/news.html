@@ -4,13 +4,13 @@
 <html lang="en">
 
 <head>
-  <title>News — ATAST Bulletin</title>
+  <title>News â€” ATAST Bulletin</title>
   <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts — Playfair Display for headlines, Open Sans for body -->
+  <!-- Google Fonts â€” Playfair Display for headlines, Open Sans for body -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Raleway:300,400,500,600,700" rel="stylesheet">
 
@@ -21,7 +21,7 @@
   <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
 
   <style>
-    /* ── Base ── */
+    /* â”€â”€ Base â”€â”€ */
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
@@ -36,7 +36,7 @@
     a { color: #ca2120; text-decoration: none; }
     a:hover { color: #e03332; }
 
-    /* ── Header ── */
+    /* â”€â”€ Header â”€â”€ */
     #header {
       z-index: 997;
       padding: 15px 0;
@@ -60,7 +60,7 @@
     }
     .get-started-btn:hover { background: #ca2120; color: #fff; }
 
-    /* ── Masthead ── */
+    /* â”€â”€ Masthead â”€â”€ */
     .masthead {
       margin-top: 70px;
       padding: 48px 0 32px;
@@ -110,14 +110,14 @@
 
     .masthead-meta span { color: #888888; }
 
-    /* ── Layout ── */
+    /* â”€â”€ Layout â”€â”€ */
     .bulletin-wrap {
       max-width: 960px;
       margin: 0 auto;
       padding: 0 20px 80px;
     }
 
-    /* ── Category Tag ── */
+    /* â”€â”€ Category Tag â”€â”€ */
     .cat-tag {
       display: inline-block;
       font-size: 0.68rem;
@@ -132,14 +132,14 @@
       font-family: "Open Sans", sans-serif;
     }
 
-    /* ── Article divider ── */
+    /* â”€â”€ Article divider â”€â”€ */
     .article-rule {
       border: none;
       border-top: 1px solid #2a2a2a;
       margin: 42px 0;
     }
 
-    /* ── FEATURED article ── */
+    /* â”€â”€ FEATURED article â”€â”€ */
     .article-featured {
       padding: 40px 0 0;
     }
@@ -190,7 +190,7 @@
       margin: 6px 8px 0 0;
     }
 
-    /* ── Standard article (Wikipedia-style) ── */
+    /* â”€â”€ Standard article (Wikipedia-style) â”€â”€ */
     .article-standard h2 {
       font-family: "Playfair Display", Georgia, serif;
       font-size: clamp(1.3rem, 3vw, 1.75rem);
@@ -248,7 +248,7 @@
       background: transparent !important;
     }
 
-    /* ── 5-line body clamp ── */
+    /* â”€â”€ 5-line body clamp â”€â”€ */
     .body-clamp {
       display: -webkit-box;
       -webkit-line-clamp: 5;
@@ -257,7 +257,7 @@
       overflow: hidden;
     }
 
-    /* ── Clickable titles ── */
+    /* â”€â”€ Clickable titles â”€â”€ */
     .article-featured a h2,
     .article-standard a h2 {
       color: inherit;
@@ -267,7 +267,7 @@
     .article-standard a:hover h2 { color: #ca2120; }
     .article-featured a, .article-standard a { text-decoration: none; }
 
-    /* ── Read-more link ── */
+    /* â”€â”€ Read-more link â”€â”€ */
     .read-more {
       display: inline-flex;
       align-items: center;
@@ -284,7 +284,7 @@
     }
     .read-more:hover { border-bottom-color: #ca2120; color: #ca2120; }
 
-    /* ── Responsive ── */
+    /* â”€â”€ Responsive â”€â”€ */
     @media (max-width: 600px) {
       .article-standard .article-img-left,
       .article-standard .article-img-right {
@@ -296,7 +296,7 @@
       }
     }
 
-    /* ── Footer ── */
+    /* â”€â”€ Footer â”€â”€ */
     #footer { background: #000; padding: 0; color: #fff; font-size: 14px; }
     #footer .footer-top {
       background: #151515;
@@ -345,13 +345,13 @@
   <div class="masthead">
     <p class="masthead-eyebrow">Association Tunisienne de l ' Avenir' des Sciences et de la Technologie</p>
     <h1>ATAST <span>News</span></h1>
-    <p class="masthead-meta">Est. 2010 &nbsp;·&nbsp; <span>Tunisia</span> &nbsp;·&nbsp; Latest dispatches from the field</p>
+    <p class="masthead-meta">Est. 2010 &nbsp;Â·&nbsp; <span>Tunisia</span> &nbsp;Â·&nbsp; Latest dispatches from the field</p>
   </div>
 
   <!-- ======= Articles ======= -->
   <div class="bulletin-wrap">
 
-    <!-- ── FEATURED ── -->
+    <!-- â”€â”€ FEATURED â”€â”€ -->
     {% if featured %}
     <article class="article-featured">
       {% if featured.category %}<span class="cat-tag">{{ featured.category }}</span>{% endif %}
@@ -364,7 +364,7 @@
     {% if articles %}<hr class="article-rule">{% endif %}
     {% endif %}
 
-    <!-- ── Standard articles — image alternates left / right ── -->
+    <!-- â”€â”€ Standard articles â€” image alternates left / right â”€â”€ -->
     {% for article in articles %}
     <article class="article-standard clearfix">
       {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
