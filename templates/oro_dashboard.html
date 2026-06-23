@@ -286,6 +286,168 @@
       .top-link, .top-btn { display: none; }
       .add-team-input.name { min-width: 160px; }
     }
+
+    /* ── Fullscreen overlay ── */
+    #fs-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      flex-direction: column;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 16% -4%, rgba(25, 182, 182, 0.22), transparent 38%),
+        radial-gradient(circle at 94% 14%, rgba(200, 40, 30, 0.18), transparent 30%),
+        linear-gradient(180deg, #07080d 0%, #05060c 100%);
+    }
+    #fs-overlay.active { display: flex; }
+
+    .fs-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.65rem 1.6rem;
+      border-bottom: 1px solid var(--line-soft);
+      background: rgba(8, 10, 18, 0.88);
+      backdrop-filter: blur(10px);
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .fs-brand {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .fs-brand span { color: var(--primary-bright); }
+    .fs-tabs-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      flex: 1;
+      justify-content: center;
+    }
+    .fs-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      white-space: nowrap;
+    }
+    .fs-pulse {
+      font-size: 0.8rem;
+      color: #9ff6f1;
+      border: 1px solid rgba(25, 182, 182, 0.35);
+      border-radius: 999px;
+      padding: 0.3rem 0.65rem;
+      background: rgba(25, 182, 182, 0.1);
+    }
+    .fs-close-btn {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.86rem;
+      color: var(--primary);
+      background: rgba(245, 184, 0, 0.12);
+      font-family: inherit;
+      cursor: pointer;
+    }
+    .fs-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 1.2rem 1.6rem;
+      overflow: hidden;
+    }
+    .fs-body table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .fs-body th,
+    .fs-body td {
+      padding: 0 0.9rem;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      height: calc((100vh - 180px) / 5); /* header + 4 data rows + footer */
+    }
+    .fs-body th {
+      background: rgba(245, 184, 0, 0.08);
+      color: #ffe39e;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+      height: auto;
+      padding: 0.5rem 0.9rem;
+    }
+    .fs-body td.team {
+      text-align: left;
+      font-weight: 600;
+      color: #f7fbff;
+    }
+    .fs-body td.rank {
+      font-weight: 800;
+      color: #9ff6f1;
+      width: 70px;
+      font-size: clamp(1.3rem, 2.4vw, 2rem);
+    }
+    .fs-body td.total {
+      font-weight: 900;
+      color: #ffd978;
+      font-size: clamp(1.3rem, 2.4vw, 2rem);
+    }
+    /* highlight by global rank, not page position */
+    .fs-body tr.rank-1 td { color: #ffb3a8 !important; }
+
+    /* page-fade animation */
+    @keyframes fs-fade-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fs-body.fading table tbody { animation: fs-fade-in 0.4s ease; }
+
+    .fs-footer {
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.55rem 1.6rem;
+      border-top: 1px solid var(--line-soft);
+      background: rgba(8, 10, 18, 0.75);
+      font-size: 0.82rem;
+      color: var(--muted);
+      gap: 1rem;
+    }
+    .fs-clock {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1rem;
+      color: #ffe39e;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .fs-page-dots {
+      display: flex;
+      gap: 0.45rem;
+      align-items: center;
+    }
+    .fs-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.2);
+      transition: background 0.3s;
+    }
+    .fs-dot.active {
+      background: var(--primary);
+      width: 22px;
+      border-radius: 4px;
+    }
+    .fs-page-label {
+      font-size: 0.82rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
   </style>
 </head>
 <body>
@@ -296,6 +458,7 @@
         <div><span>ORO</span> Live Dashboard</div>
       </a>
       <div class="nav-actions">
+        <button id="fs-open-btn" class="top-btn" type="button">⛶ Fullscreen</button>
         {% if user.is_authenticated and user.is_staff %}
         <form method="post" action="{% url 'oro_dashboard_logout' %}">
           {% csrf_token %}
@@ -347,6 +510,24 @@
     <section class="table-wrap" id="table-wrap"></section>
   </main>
 
+  <!-- Fullscreen scoreboard overlay -->
+  <div id="fs-overlay">
+    <div class="fs-bar">
+      <div class="fs-brand"><span>ORO</span> Live Scoreboard</div>
+      <div class="fs-tabs-row" id="fs-tabs"></div>
+      <div class="fs-right">
+        <span class="fs-pulse" id="fs-pulse">● Live</span>
+        <button class="fs-close-btn" id="fs-close-btn" type="button">✕ Exit</button>
+      </div>
+    </div>
+    <div class="fs-body" id="fs-body"></div>
+    <div class="fs-footer">
+      <div class="fs-clock" id="fs-clock"></div>
+      <div class="fs-page-dots" id="fs-dots"></div>
+      <div class="fs-page-label" id="fs-page-label"></div>
+    </div>
+  </div>
+
   {{ dashboard_data|json_script:"dashboard-data" }}
 
   <script>
@@ -395,7 +576,6 @@
       const category = dashboard.categories.find((c) => c.key === activeCategory) || dashboard.categories[0];
       if (!category) {
         tableWrapEl.innerHTML = '<div class="empty">No categories available yet.</div>';
-        updatedEl.textContent = `Last updated: ${formatTime(dashboard.updated_at)}`;
         return;
       }
 
@@ -443,7 +623,6 @@
 
       html += "</tbody></table>";
       tableWrapEl.innerHTML = html;
-      updatedEl.textContent = `Last updated: ${formatTime(dashboard.updated_at)}`;
     }
 
     function getCookie(name) {
@@ -595,6 +774,188 @@
     if (!isStaff) {
       setInterval(refreshScores, 3000);
     }
+
+    // ── Fullscreen paged scoreboard ──
+    const FS_PAGE_SIZE = 4;
+    const FS_PAGE_SECS = 6; // seconds per page before cycling
+
+    const fsOverlay    = document.getElementById("fs-overlay");
+    const fsTabsEl     = document.getElementById("fs-tabs");
+    const fsBody       = document.getElementById("fs-body");
+    const fsPulse      = document.getElementById("fs-pulse");
+    const fsClockEl    = document.getElementById("fs-clock");
+    const fsDotsEl     = document.getElementById("fs-dots");
+    const fsPageLabel  = document.getElementById("fs-page-label");
+
+    let fsPage            = 0;
+    let fsRefreshInterval = null;
+    let fsCycleInterval   = null;
+    let fsClockInterval   = null;
+
+    function getFsCategory() {
+      return dashboard.categories.find((c) => c.key === activeCategory) || dashboard.categories[0] || null;
+    }
+
+    function fsTotalPages() {
+      const cat = getFsCategory();
+      if (!cat || !cat.teams.length) return 1;
+      return Math.ceil(cat.teams.length / FS_PAGE_SIZE);
+    }
+
+    function renderFsDots() {
+      const total = fsTotalPages();
+      fsDotsEl.innerHTML = "";
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement("div");
+        d.className = "fs-dot" + (i === fsPage ? " active" : "");
+        fsDotsEl.appendChild(d);
+      }
+      const cat = getFsCategory();
+      const start = fsPage * FS_PAGE_SIZE + 1;
+      const end   = Math.min((fsPage + 1) * FS_PAGE_SIZE, cat ? cat.teams.length : 0);
+      fsPageLabel.textContent = cat && cat.teams.length
+        ? `Ranks ${start} – ${end} of ${cat.teams.length}`
+        : "";
+    }
+
+    function renderFsTabs() {
+      fsTabsEl.innerHTML = "";
+      dashboard.categories.forEach((cat) => {
+        const btn = document.createElement("button");
+        btn.className = "tab-btn" + (cat.key === activeCategory ? " active" : "");
+        btn.textContent = cat.label;
+        btn.addEventListener("click", () => {
+          activeCategory = cat.key;
+          fsPage = 0;
+          renderFsTabs();
+          renderFsPage();
+          renderTabs();
+          renderTable();
+        });
+        fsTabsEl.appendChild(btn);
+      });
+    }
+
+    function renderFsPage(animate) {
+      const category = getFsCategory();
+      if (!category) {
+        fsBody.innerHTML = '<div class="empty">No categories available yet.</div>';
+        renderFsDots();
+        return;
+      }
+
+      const comps       = category.competitions || [];
+      const pageTeams   = category.teams.slice(fsPage * FS_PAGE_SIZE, (fsPage + 1) * FS_PAGE_SIZE);
+
+      let html = "<table><thead><tr><th>Rank</th><th>Team</th>";
+      comps.forEach((comp) => { html += `<th>${escapeHtml(comp.label)}</th>`; });
+      html += "<th>Total</th></tr></thead><tbody>";
+
+      if (!category.teams.length) {
+        html += `<tr><td colspan="${comps.length + 3}" class="empty">No scores yet for ${escapeHtml(category.label)}.</td></tr>`;
+      } else {
+        pageTeams.forEach((team) => {
+          const isFirst = team.rank === 1;
+          html += `<tr${isFirst ? ' class="rank-1"' : ""}>`;
+          html += `<td class="rank">${team.rank}</td>`;
+          html += `<td class="team">${escapeHtml(team.team_name)}</td>`;
+          comps.forEach((comp) => {
+            const v = team.scores && typeof team.scores[comp.key] !== "undefined" ? team.scores[comp.key] : 0;
+            html += `<td>${v}</td>`;
+          });
+          const total = comps.reduce((sum, comp) => {
+            const raw = team.scores && typeof team.scores[comp.key] !== "undefined" ? team.scores[comp.key] : 0;
+            return sum + (Number.parseInt(raw, 10) || 0);
+          }, 0);
+          html += `<td class="total">${total}</td></tr>`;
+        });
+      }
+
+      html += "</tbody></table>";
+      fsBody.innerHTML = html;
+
+      // trigger fade animation
+      void fsBody.offsetWidth;
+      fsBody.classList.add("fading");
+      fsBody.addEventListener("animationend", () => fsBody.classList.remove("fading"), { once: true });
+
+      renderFsDots();
+    }
+
+    function advanceFsPage() {
+      fsPage = (fsPage + 1) % fsTotalPages();
+      renderFsPage(true);
+    }
+
+    async function fsFetch() {
+      fsPulse.textContent = "↻ Fetching...";
+      try {
+        const res = await fetch(dashboardDataUrl, { cache: "no-store" });
+        if (!res.ok) return;
+        const fresh = await res.json();
+        dashboard = fresh;
+        if (!dashboard.categories.some((c) => c.key === activeCategory)) {
+          activeCategory = dashboard.categories[0] ? dashboard.categories[0].key : null;
+          fsPage = 0;
+        }
+        // clamp page in case team count shrank
+        fsPage = Math.min(fsPage, fsTotalPages() - 1);
+        renderFsTabs();
+        renderFsPage();
+        renderTabs();
+        renderTable();
+        fsPulse.textContent = "● Live";
+      } catch (e) {
+        fsPulse.textContent = "⚠ Retrying...";
+      }
+    }
+
+    function tickClock() {
+      const now = new Date();
+      fsClockEl.textContent = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    }
+
+    function openFullscreen() {
+      fsPage = 0;
+      renderFsTabs();
+      renderFsPage();
+      fsOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      tickClock();
+      fsClockInterval  = setInterval(tickClock, 1000);
+      fsRefreshInterval = setInterval(fsFetch, 3000);
+      fsCycleInterval   = setInterval(advanceFsPage, FS_PAGE_SECS * 1000);
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    }
+
+    function closeFullscreen() {
+      fsOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+      clearInterval(fsRefreshInterval);
+      clearInterval(fsCycleInterval);
+      clearInterval(fsClockInterval);
+      fsRefreshInterval = fsCycleInterval = fsClockInterval = null;
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    document.getElementById("fs-open-btn").addEventListener("click", openFullscreen);
+    document.getElementById("fs-close-btn").addEventListener("click", closeFullscreen);
+    document.addEventListener("keydown", (e) => {
+      if (!fsOverlay.classList.contains("active")) return;
+      if (e.key === "Escape") closeFullscreen();
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") advanceFsPage();
+      if (e.key === "ArrowLeft"  || e.key === "ArrowUp") {
+        fsPage = (fsPage - 1 + fsTotalPages()) % fsTotalPages();
+        renderFsPage(true);
+      }
+    });
+    document.addEventListener("fullscreenchange", () => {
+      if (!document.fullscreenElement && fsOverlay.classList.contains("active")) closeFullscreen();
+    });
   </script>
 </body>
 </html>
