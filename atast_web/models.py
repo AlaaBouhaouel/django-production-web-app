@@ -6,20 +6,7 @@ class ifestImage(models.Model):
     image = models.ImageField(upload_to='ifest_bg/')
 
         
-class NewsArticle(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=200)
-    category = models.CharField(max_length=100, blank=True, help_text='e.g. International · Competition')
-    link = models.URLField(blank=True, null=True)
-    body = models.TextField()
-    image = models.ImageField(upload_to='news/', blank=True, null=True)
-    is_featured = models.BooleanField(default=False)
-    published_date = models.DateTimeField(default=timezone.now)
 
-    def __str__(self):
-        return self.title
-    class Meta:
-        ordering = ['-published_date'] #So when you do NewsArticle.objects.all() in a view, you automatically get them newest-to-oldest
 
 class Partners_Supporters(models.Model):
     name = models.CharField(max_length=100)
@@ -56,7 +43,9 @@ class GalleryImage(models.Model):
 class LatestNews(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
+    category = models.CharField(max_length=100, blank=True, help_text='e.g. International · Competition')
+    description = models.TextField()
+    body = models.TextField(blank=True)
     image = models.ImageField(upload_to='latest_news/', blank=True, null=True)
     link = models.URLField(blank=True, null=True)
     date = models.DateField(default=timezone.now)
@@ -68,6 +57,7 @@ class LatestNews(models.Model):
         ordering = ['-date']
         verbose_name = 'Latest News'
         verbose_name_plural = 'Latest News'
+
 
 
 class Gifts(models.Model):

@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ article.title }} â€” ATAST</title>
+  <title>{{ article.title }} - ATAST</title>
   <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,7 +252,10 @@
     <div class="article-body">
       {{ article.description|safe }}
     </div>
-
+    <div><br></div>
+    <div class="article-body">
+      {{ article.body|safe }}
+    </div>
     {% if article.link %}
     <a href="{{ article.link }}" class="article-ext-link" target="_blank" rel="noopener">
       <i class="bi bi-box-arrow-up-right"></i> Read full article

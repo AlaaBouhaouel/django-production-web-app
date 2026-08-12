@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-  <title>News â€” ATAST Bulletin</title>
+  <title>News - ATAST Bulletin</title>
   <link rel="icon" href="{% static 'assets/img/atast2.png' %}" type="image/x-icon">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -266,6 +266,9 @@
     .article-featured a:hover h2,
     .article-standard a:hover h2 { color: #ca2120; }
     .article-featured a, .article-standard a { text-decoration: none; }
+    .article-title{
+      color: #ffffff !important;
+    }
 
     /* â”€â”€ Read-more link â”€â”€ */
     .read-more {
@@ -351,41 +354,46 @@
   <!-- ======= Articles ======= -->
   <div class="bulletin-wrap">
 
-    <!-- â”€â”€ FEATURED â”€â”€ -->
-    {% if featured %}
-    <article class="article-featured">
-      {% if featured.category %}<span class="cat-tag">{{ featured.category }}</span>{% endif %}
-      {% if featured.image %}<a href="/news/{{ featured.id }}/"><img src="{{ featured.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ featured.title }}" class="feat-img"></a>{% endif %}
-      <a href="/news/{{ featured.id }}/"><h2>{{ featured.title }}</h2></a>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ featured.published_date|date:"F Y" }}</p>
-      <div class="lead-para article-body body-clamp">{{ featured.body|safe }}</div>
-      <a href="/news/{{ featured.id }}/" class="read-more">Read article <i class="bi bi-arrow-right"></i></a>
-    </article>
-    {% if articles %}<hr class="article-rule">{% endif %}
-    {% endif %}
-
-    <!-- â”€â”€ Standard articles â€” image alternates left / right â”€â”€ -->
-    {% for article in articles %}
-    <article class="article-standard clearfix">
-      {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
-      {% if article.image %}
-        {% if forloop.counter|divisibleby:2 %}
-          <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-right"></a>
-        {% else %}
-          <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-left"></a>
+    {% for article in news %}
+      {% if forloop.first %}
+      <!-- ── Featured: latest article ── -->
+      <article class="article-featured">
+        {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
+        {% if article.image %}
+          <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="feat-img"></a>
         {% endif %}
+        <a href="/news/{{ article.id }}/"><h2 class="article-title">{{ article.title }}</h2></a>
+        <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ article.date|date:'F j, Y' }}</p>
+        <div class="article-body lead-para">{{ article.description|safe }}</div>
+        <a href="/news/{{ article.id }}/" class="read-more">Check Links <i class="bi bi-arrow-right"></i></a>
+      </article>
+
+      {% else %}
+      <!-- ── Standard articles ── -->
+      {% if forloop.counter == 2 %}
+      <hr class="article-rule">
+      <p class="masthead-eyebrow" style="margin-top:36px;margin-bottom:24px;letter-spacing:3px">More dispatches</p>
       {% endif %}
-      <a href="/news/{{ article.id }}/"><h2>{{ article.title }}</h2></a>
-      <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ article.published_date|date:"F Y" }}</p>
-      <div class="article-body body-clamp">{{ article.body|safe }}</div>
-      <a href="/news/{{ article.id }}/" class="read-more">Read article <i class="bi bi-arrow-right"></i></a>
-    </article>
-    {% if not forloop.last %}<hr class="article-rule">{% endif %}
+      <article class="article-standard clearfix">
+        {% if article.category %}<span class="cat-tag">{{ article.category }}</span>{% endif %}
+        {% if article.image %}
+          {% if forloop.counter|divisibleby:2 %}
+            <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-right"></a>
+          {% else %}
+            <a href="/news/{{ article.id }}/"><img src="{{ article.image.url|cloudinary_optimize }}" loading="lazy" alt="{{ article.title }}" class="article-img-left"></a>
+          {% endif %}
+        {% endif %}
+        <a href="/news/{{ article.id }}/"><h2 class="article-title">{{ article.title }}</h2></a>
+        <p class="dateline"><i class="bi bi-calendar3 me-1"></i>{{ article.date|date:'F j, Y' }}</p>
+        <div class="article-body body-clamp">{{ article.description|safe }}</div>
+        <a href="/news/{{ article.id }}/" class="read-more">Check Links <i class="bi bi-arrow-right"></i></a>
+      </article>
+      {% if not forloop.last %}<hr class="article-rule">{% endif %}
+      {% endif %}
     {% empty %}
-    {% if not featured %}
-    <p style="text-align:center;color:#555;padding:60px 0;">No articles published yet.</p>
-    {% endif %}
+      <p style="text-align:center;color:#555;padding:60px 0;">No articles published yet.</p>
     {% endfor %}
+  
 
   </div><!-- /bulletin-wrap -->
 

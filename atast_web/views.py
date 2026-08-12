@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ifestImage, NewsArticle, LatestNews, Partners_Supporters, GalleryImage, Gifts
+from .models import ifestImage, LatestNews, Partners_Supporters, GalleryImage, Gifts
 
 def index(request):
     latest_news = LatestNews.objects.all()[:4]
@@ -72,6 +72,9 @@ def cyber(request):
 def oro(request):
     return render(request, 'oro.html')
 
+def million_coders(request):
+    return render(request, 'million-coders.html')
+
 def photocontest(request):
     return render(request, 'photocontest.html')
 
@@ -84,9 +87,8 @@ def sss(request):
 
 
 def news(request):
-    featured = NewsArticle.objects.filter(is_featured=True).first()
-    articles = NewsArticle.objects.filter(is_featured=False)
-    return render(request, 'news.html', {'featured': featured, 'articles': articles})
+    news = LatestNews.objects.all()
+    return render(request, 'news.html', {'news': news})
 
 
 def news_detail(request, news_id):

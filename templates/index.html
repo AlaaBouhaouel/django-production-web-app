@@ -368,7 +368,65 @@
     text-decoration: underline;
   }
 
-
+  .news-card-item { margin: 8px 4px; }
+  .news-card-body { padding: 18px 20px 20px; }
+  .news-card-body h4 {
+    font-family: "Raleway", sans-serif;
+    font-size: .88rem;
+    font-weight: 800;
+    color: #151515 !important;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  .news-card-body p {
+    font-size: .78rem;
+    color: #666 !important;
+    line-height: 1.55;
+    white-space: normal;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .reach-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .reach-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: #f8f9fa;
+    border-radius: 14px;
+    padding: 20px;
+    border: 1px solid #eee;
+    transition: .25s;
+  }
+  .reach-card:hover {
+    background: #fff8f8;
+    border-color: rgba(202,33,32,.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(202,33,32,.07);
+  }
+  .reach-body h4 {
+    font-size: .93rem;
+    font-weight: 800;
+    color: #151515 !important;
+    margin-bottom: 4px;
+  }
+  .reach-body p {
+    font-size: .8rem;
+    color: #555 !important;
+    margin-bottom: 8px;
+    line-height: 1.5;
+  }
+  .reach-icon i { color: #ca2120; }
 
 </style>
 
@@ -451,7 +509,7 @@
         <div class="col-xl-2 col-md-4 col-4">
           <div class="icon-box border" onclick="window.location.href='/ifest'">
             <i class="ri-store-line"></i>
-            <h3><a href="/ifest">I-FestÂ²</a></h3>
+            <h3><a href="/ifest">I-Fest²</a></h3>
           </div>
         </div>
         <div class="col-xl-2 col-md-4 col-4">
@@ -470,6 +528,12 @@
           <div class="icon-box border" onclick="window.location.href='/gifts'">
             <i class="ri-database-2-line"></i>
             <h3><a href="/gifts">Gift zone</a></h3>
+          </div>
+        </div>
+        <div class="col-xl-2 col-md-4 col-4">
+          <div class="icon-box border" onclick="window.location.href='/million-coders'">
+            <i class="ri-code-s-slash-line"></i>
+            <h3><a href="/million-coders">Million Coders</a></h3>
           </div>
         </div>
       </div>
@@ -504,10 +568,20 @@
     </section>
     {% endif %}
     <section class="impact-banner">
+      <div class="impact-banner-accent"></div>
       <div class="container">
         <div class="impact-inner" data-aos="fade-up">
-          <h3>Find the Latest <span>News</span> &amp; <span>Achievements</span></h3>
-          <a href="/news" class="hero-btn-primary">Explore All &nbsp;<i class="bi bi-arrow-right"></i></a>
+          <div class="impact-left">
+            <span class="impact-eyebrow"><i class="bi bi-newspaper"></i>&nbsp; Stay Informed</span>
+            <h3>Latest <span>News</span> &amp; <span>Achievements</span></h3>
+            <p class="impact-sub">Follow ATAST's journey — competition results, upcoming events, and breakthroughs from Tunisia's brightest young innovators.</p>
+            <a href="/news" class="impact-cta">Explore All &nbsp;<i class="bi bi-arrow-right"></i></a>
+          </div>
+          <div class="impact-right">
+            <div class="impact-pill"><i class="bi bi-trophy-fill"></i><span>Competition Results</span></div>
+            <div class="impact-pill"><i class="bi bi-calendar-event-fill"></i><span>Upcoming Events</span></div>
+            <div class="impact-pill"><i class="bi bi-stars"></i><span>Student Achievements</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -565,34 +639,34 @@
           <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
             <div class="reach-grid">
               <div class="reach-card">
-                <div class="reach-icon">ðŸ¤–</div>
+                <div class="reach-icon"><i class="bi bi-trophy-fill"></i></div>
                 <div class="reach-body">
                   <h4>VEX Robotics</h4>
-                  <p>Tunisia's qualifier sends teams to the VEX World Championship â€” the Guinness World Record's largest robotics event.</p>
+                  <p>Tunisia's qualifier sends teams to the VEX World Championship - the Guinness World Record's largest robotics event.</p>
                   <span class="reach-dest">&#127482;&#127480; St. Louis, MO &middot; USA</span>
                 </div>
               </div>
               <div class="reach-card">
-                <div class="reach-icon">ðŸ”¬</div>
+                <div class="reach-icon"><i class="bi bi-award-fill"></i></div>
                 <div class="reach-body">
                   <h4>Regeneron ISEF</h4>
-                  <p>The world's largest pre-college science fair â€” $7M+ in prizes. Tunisia's finalists compete against 1,700+ students.</p>
+                  <p>The world's largest pre-college science fair - $7M+ in prizes. Tunisia's finalists compete against 1,700+ students.</p>
                   <span class="reach-dest">&#127482;&#127480; USA &middot; Annual</span>
                 </div>
               </div>
               <div class="reach-card">
-                <div class="reach-icon">ðŸŒ¿</div>
+                <div class="reach-icon"><i class="bi bi-globe2"></i></div>
                 <div class="reach-body">
                   <h4>Genius Olympiad</h4>
-                  <p>International environmental science, business &amp; arts competition â€” Tunisia's delegation grows every year.</p>
+                  <p>International environmental science, business &amp; arts competition - Tunisia's delegation grows every year.</p>
                   <span class="reach-dest">&#127482;&#127480; Rochester, NY &middot; USA</span>
                 </div>
               </div>
               <div class="reach-card">
-                <div class="reach-icon">ðŸ›</div>
+                <div class="reach-icon"><i class="bi bi-flag-fill"></i></div>
                 <div class="reach-body">
-                  <h4>I-FestÂ²</h4>
-                  <p>Africa's largest science fair â€” organized by ATAST in Tunisia, bridging local talent with international recognition.</p>
+                  <h4>I-Fest²</h4>
+                  <p>Africa's largest science fair - organized by ATAST in Tunisia, bridging local talent with international recognition.</p>
                   <span class="reach-dest">&#127481;&#127475; Moknine &middot; Tunisia</span>
                 </div>
               </div>

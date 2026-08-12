@@ -1,14 +1,8 @@
 from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
-from .models import ifestImage, NewsArticle, Partners_Supporters, GalleryImage, Gifts, LatestNews
+from .models import ifestImage, Partners_Supporters, GalleryImage, Gifts, LatestNews
 
 
-@admin.register(NewsArticle)
-class NewsArticleAdmin(SummernoteModelAdmin):
-    summernote_fields = ('body',)
-    list_display = ('title', 'is_featured', 'published_date')
-    list_filter = ('is_featured',)
-    search_fields = ('title',)
 
 
 @admin.register(Partners_Supporters)
@@ -31,7 +25,8 @@ class GiftsAdmin(admin.ModelAdmin):
 
 
 @admin.register(LatestNews)
-class LatestNewsAdmin(admin.ModelAdmin):
+class LatestNewsAdmin(SummernoteModelAdmin):
+    summernote_fields = ('description', 'body')
     list_display = ('title', 'date')
     search_fields = ('title',)
     ordering = ('-date',)

@@ -30,6 +30,7 @@ urlpatterns = [
     path('gwp', views.gwp, name='gwp'),
     path('robotex', views.robotex, name='robotex'),
     path('rc-china', views.rc_china, name='rc_china'),
+    path('million-coders', views.million_coders, name='million_coders'),
     path('news/<int:news_id>/', views.news_detail, name='news_detail'),
 
 ]
