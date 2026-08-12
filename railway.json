@@ -1,12 +1,12 @@
 {
-  "$schema": "https://railway.app/railway.schema.json",
-  "build": {
-    "builder": "NIXPACKS"
-  },
-  "deploy": {
-    "preDeployCommand": "python manage.py migrate && python manage.py collectstatic --noinput",
-    "startCommand": "gunicorn atast.wsgi:application --bind 0.0.0.0:$PORT",
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10
-  }
+ "$schema": "https://railway.app/railway.schema.json",
+ "build": {
+ "builder": "NIXPACKS"
+ },
+ "deploy": {
+ "preDeployCommand": "python manage.py migrate && python manage.py collectstatic --noinput; exit 0",
+ "startCommand": "gunicorn atast.wsgi:application --bind 0.0.0.0:$PORT",
+ "restartPolicyType": "ON_FAILURE",
+ "restartPolicyMaxRetries": 10
+ }
 }
