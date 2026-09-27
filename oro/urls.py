@@ -5,7 +5,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('oro', views.oro_home, name='oro_home'),
+    path('oro', views.oro_home),
+    path('oro/', views.oro_home, name='oro_home'),
 
     # ORO category pages
     path('oro_poussins', views.oro_poussins, name='oro_poussins'),
