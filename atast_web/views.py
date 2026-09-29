@@ -28,7 +28,7 @@ def test(request):
     return render(request, 'test.html')
 
 def genius(request):
-    return render(request, 'genius.html')
+    return render(request, 'genius-temp.html')
 
 def spell(request):
     return render(request, 'spell.html')
